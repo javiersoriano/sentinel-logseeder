@@ -1,0 +1,160 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "DeviceVendor", "type": "string", "values": ["Zscaler"] },
+    { "name": "DeviceProduct", "type": "string", "values": ["NSSWeblog"] },
+    { "name": "DeviceVersion", "type": "string", "values": ["6.1.902.95524_04", "6.2.114.75512_02", "6.3.210.42218_01", "6.1.850.31010_03", "6.2.200.60014_05"] },
+    { "name": "DeviceEventClassID", "type": "string", "values": ["ZscalerNSSWeblog", "ZscalerNSSWeblog", "ZscalerNSSWeblog"] },
+    { "name": "Activity", "type": "string", "values": ["Transaction Allowed", "Transaction Blocked", "Transaction Cautioned", "Transaction Allowed", "Transaction Allowed", "Transaction Allowed", "Transaction Blocked"] },
+    { "name": "LogSeverity", "type": "string", "values": ["0", "1", "2", "3", "4", "5", "6"] },
+    { "name": "SourceIP", "type": "string" },
+    { "name": "SourcePort", "type": "int" },
+    { "name": "SourceUserName", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "lchen@contoso.com", "pjones@contoso.com", "rsingh@contoso.com", "kbrown@contoso.com", "tnguyen@contoso.com", "admin@contoso.com", "svc_backup@contoso.com"] },
+    { "name": "SourceTranslatedAddress", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "203.0.113.42", "198.51.100.17"] },
+    { "name": "SourceUserPrivileges", "type": "string", "values": ["Sales", "Engineering", "Marketing", "Finance", "Human Resources", "IT Operations", "Executive", "Legal", "Customer Support"] },
+    { "name": "DestinationIP", "type": "string", "values": ["142.250.80.46", "20.190.151.68", "13.107.42.16", "104.18.32.7", "151.101.1.69", "172.217.14.99", "52.96.166.146", "23.43.51.41", "204.79.197.200", "0.0.0.0"] },
+    { "name": "DestinationPort", "type": "int", "values": [443, 443, 443, 80, 443, 8080, 443, 80, 443, 443] },
+    { "name": "DestinationHostName", "type": "string", "values": [
+      "www.google.com", "login.microsoftonline.com", "outlook.office365.com",
+      "www.dropbox.com", "github.com", "mail.google.com", "slack.com",
+      "portal.contoso.com", "cdn.contoso.com", "api.contoso.com",
+      "app.fabrikam.net", "www.linkedin.com", "teams.microsoft.com",
+      "drive.google.com", "salesforce.com", "www.wikipedia.org",
+      "sharepoint.contoso.com", "zoom.us", "malware-c2.example.com",
+      "phishing-site.example.com", "suspicious-download.example.com"
+    ]},
+    { "name": "DestinationServiceName", "type": "string", "values": [
+      "Google Search", "Microsoft 365", "Microsoft Teams", "Dropbox",
+      "GitHub", "Gmail", "Slack", "LinkedIn", "Salesforce", "Zoom",
+      "Wikipedia", "General Browsing", "General Browsing", "General Browsing",
+      "Box", "Adobe Creative Cloud", "General Browsing"
+    ]},
+    { "name": "DeviceAction", "type": "string", "values": ["Allowed", "Allowed", "Allowed", "Allowed", "Allowed", "Allowed", "Allowed", "Blocked", "Blocked", "Cautioned"] },
+    { "name": "ApplicationProtocol", "type": "string", "values": ["HTTP", "HTTPS", "HTTPS", "HTTPS", "HTTPS", "HTTPS", "HTTPS", "HTTPS", "SSL", "FTP"] },
+    { "name": "Protocol", "type": "string", "values": ["TCP", "TCP", "TCP", "TCP", "UDP", "TCP"] },
+    { "name": "RequestURL", "type": "string", "values": [
+      "www.google.com/search?q=azure+sentinel",
+      "login.microsoftonline.com/common/oauth2/authorize",
+      "outlook.office365.com/owa/",
+      "www.dropbox.com/home",
+      "github.com/Azure/Azure-Sentinel",
+      "mail.google.com/mail/u/0/",
+      "slack.com/api/rtm.connect",
+      "portal.contoso.com/dashboard",
+      "cdn.contoso.com/assets/main.js",
+      "api.contoso.com/v2/users",
+      "teams.microsoft.com/_#/conversations/",
+      "drive.google.com/drive/my-drive",
+      "salesforce.com/lightning/page/home",
+      "zoom.us/j/1234567890",
+      "www.linkedin.com/feed/",
+      "www.wikipedia.org/wiki/Cybersecurity",
+      "sharepoint.contoso.com/sites/hr/documents",
+      "malware-c2.example.com/beacon",
+      "phishing-site.example.com/login.html",
+      "suspicious-download.example.com/update.exe"
+    ]},
+    { "name": "RequestMethod", "type": "string", "values": ["GET", "GET", "GET", "POST", "GET", "CONNECT", "GET", "PUT", "HEAD", "OPTIONS"] },
+    { "name": "RequestContext", "type": "string", "values": [
+      "None", "None", "None", "www.google.com",
+      "portal.contoso.com", "mail.google.com",
+      "login.microsoftonline.com", "None", "None",
+      "teams.microsoft.com", "None"
+    ]},
+    { "name": "RequestClientApplication", "type": "string", "values": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0",
+      "Microsoft Office/16.0 (Windows NT 10.0; Microsoft Outlook 16.0)",
+      "python-requests/2.31.0",
+      "curl/8.4.0"
+    ]},
+    { "name": "FileType", "type": "string", "values": [
+      "text/html", "application/json", "text/javascript",
+      "image/png", "application/pdf", "application/octet-stream",
+      "text/css", "image/jpeg", "application/xml",
+      "application/x-msdownload", "text/plain", "None"
+    ]},
+    { "name": "SentBytes", "type": "long" },
+    { "name": "ReceivedBytes", "type": "long" },
+    { "name": "Message", "type": "string", "values": [
+      "ZscalerNSS: time=Mon Oct 16 22:55:48 2023 action=Allowed reason=Allowed urlclass=General Surfing",
+      "ZscalerNSS: time=Tue Oct 17 10:30:12 2023 action=Blocked reason=Blocked by URL Filtering Policy urlclass=Malware",
+      "ZscalerNSS: time=Wed Oct 18 14:15:33 2023 action=Allowed reason=Allowed urlclass=Business Use",
+      "ZscalerNSS: time=Thu Oct 19 08:45:01 2023 action=Blocked reason=Blocked by DLP Policy urlclass=Privacy Risk",
+      "ZscalerNSS: time=Fri Oct 20 16:22:44 2023 action=Cautioned reason=Cautioned by SSL Policy urlclass=Bandwidth Loss",
+      "ZscalerNSS: time=Sat Oct 21 03:10:55 2023 action=Blocked reason=Malware detected urlclass=Security Risk",
+      "ZscalerNSS: time=Sun Oct 22 11:33:27 2023 action=Allowed reason=Allowed urlclass=Web Mail"
+    ]},
+    { "name": "DeviceCustomString1", "type": "string", "values": [
+      "", "", "", "Credit Cards", "SSN", ""
+    ]},
+    { "name": "DeviceCustomString1Label", "type": "string", "values": ["dlpdict", "dlpdict", "dlpdict", "dlpdict", "dlpdict", "dlpdict"] },
+    { "name": "DeviceCustomString2", "type": "string", "values": [
+      "Internet Services", "Web Search", "Web Mail", "File Sharing",
+      "Streaming Media", "Social Networking", "Professional Services",
+      "Shopping", "Finance", "News and Media",
+      "Corporate Marketing", "Education", "Health",
+      "Malware", "Phishing", "Spyware Callback",
+      "Adult Themes", "Gambling"
+    ]},
+    { "name": "DeviceCustomString2Label", "type": "string", "values": ["urlcat"] },
+    { "name": "DeviceCustomString3", "type": "string", "values": [
+      "None", "None", "None", "None", "None", "None",
+      "Sandbox", "Advanced Threat", "Virus", "None"
+    ]},
+    { "name": "DeviceCustomString3Label", "type": "string", "values": ["malwareclass"] },
+    { "name": "DeviceCustomString4", "type": "string", "values": [
+      "None", "None", "None", "None", "None",
+      "Adware", "Sandbox Malware", "Trojan", "Spyware",
+      "Benign", "Virus", "None"
+    ]},
+    { "name": "DeviceCustomString4Label", "type": "string", "values": ["malwarecat"] },
+    { "name": "DeviceCustomString5", "type": "string", "values": [
+      "None", "None", "None", "None",
+      "EICAR Test File", "Trojan.GenericKD.46546321",
+      "JS/Adware.Agent", "Win32.Backdoor.Cobalt",
+      "None", "None"
+    ]},
+    { "name": "DeviceCustomString5Label", "type": "string", "values": ["threatname"] },
+    { "name": "DeviceCustomString6", "type": "string", "values": [
+      "None", "None", "None", "None",
+      "44d88612fea8a8f36de82e1278abb02f",
+      "154f149b1443fbfa8c121d13e5c019a1",
+      "e99a18c428cb38d5f260853678922e03",
+      "None", "None", "None"
+    ]},
+    { "name": "DeviceCustomString6Label", "type": "string", "values": ["filemd5"] },
+    { "name": "DeviceCustomNumber1", "type": "int", "values": [0, 0, 0, 0, 5, 10, 15, 20, 30, 45, 55, 70, 80, 90, 95, 100] },
+    { "name": "DeviceCustomNumber1Label", "type": "string", "values": ["riskscore"] },
+    { "name": "AdditionalExtensions", "type": "string", "values": [
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=General Surfing;reason=Allowed;outcome=200;devicemodel=;",
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=Business Use;reason=Allowed;outcome=200;devicemodel=;",
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=Web Mail;reason=Allowed;outcome=200;devicemodel=;",
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=Professional Services;reason=Allowed;outcome=301;devicemodel=;",
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=Internet Services;reason=Allowed;outcome=302;devicemodel=;",
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=Corporate Marketing;reason=Allowed;outcome=204;devicemodel=;",
+      "rulelabel=Block_Malware;ruletype=Advanced Threat Protection;urlclass=Security Risk;reason=Malware detected;outcome=403;devicemodel=;",
+      "rulelabel=Block_HighRisk;ruletype=URL Filtering;urlclass=Malware;reason=Blocked by URL Filtering Policy;outcome=403;devicemodel=;",
+      "rulelabel=Block_Phishing;ruletype=URL Filtering;urlclass=Phishing;reason=Destination contains potential phishing content;outcome=403;devicemodel=;",
+      "rulelabel=Block_Adult;ruletype=URL Filtering;urlclass=Adult Themes;reason=Not allowed to browse this category;outcome=403;devicemodel=;",
+      "rulelabel=Block_Gambling;ruletype=URL Filtering;urlclass=Bandwidth Loss;reason=Not allowed to browse this category;outcome=403;devicemodel=;",
+      "rulelabel=DLP_Block;ruletype=Data Loss Prevention;urlclass=File Sharing;reason=Denied due to DLP policy;outcome=403;devicemodel=;",
+      "rulelabel=Caution_SSL;ruletype=SSL Inspection;urlclass=Internet Services;reason=SSL certificate warning;outcome=200;devicemodel=;",
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=Streaming Media;reason=Allowed;outcome=200;devicemodel=;",
+      "rulelabel=Default_Allow;ruletype=URL Filtering;urlclass=Social Networking;reason=Allowed;outcome=200;devicemodel=;"
+    ]},
+    { "name": "Computer", "type": "string", "values": ["syslogfwd01.contoso.local", "syslogfwd02.contoso.local"] },
+    { "name": "DeviceName", "type": "string", "values": ["Zscaler NSS"] },
+    { "name": "DeviceAddress", "type": "string", "values": ["10.0.10.50", "10.0.10.51"] },
+    { "name": "SimplifiedDeviceAction", "type": "string", "values": ["Allowed", "Blocked"] },
+    { "name": "SourceSystem", "type": "string", "values": ["OpsManager"] },
+    { "name": "CommunicationDirection", "type": "string", "values": ["Outbound"] },
+    { "name": "DeviceDirection", "type": "int", "values": [1] },
+    { "name": "DeviceInboundInterface", "type": "string", "values": [""] },
+    { "name": "DeviceOutboundInterface", "type": "string", "values": [""] },
+    { "name": "ExternalID", "type": "int" },
+    { "name": "CollectorHostName", "type": "string", "values": ["syslogfwd01.contoso.local", "syslogfwd02.contoso.local"] }
+  ]
+}

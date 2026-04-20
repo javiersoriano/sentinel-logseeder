@@ -1,0 +1,90 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "Computer", "type": "string", "values": ["squid-proxy01", "squid-proxy02", "squid-proxy03"] },
+    { "name": "RawData", "type": "string", "values": [
+      "1618934400.000    234 10.0.1.50 TCP_MISS/200 12345 GET http://www.contoso.com/index.html jsmith HIER_DIRECT/93.184.216.34 text/html",
+      "1618934401.500    102 10.0.2.10 TCP_HIT/200 8721 GET http://cdn.contoso.com/assets/style.css - HIER_NONE/- text/css",
+      "1618934402.100    1523 10.0.1.51 TCP_MISS/302 498 GET http://portal.fabrikam.net/login agarcia HIER_DIRECT/198.51.100.17 text/html",
+      "1618934403.800    45 172.16.0.100 TCP_MEM_HIT/200 3201 GET http://updates.contoso.com/check lchen HIER_NONE/- application/json",
+      "1618934404.200    8234 10.0.2.20 TCP_MISS/200 1048576 GET http://downloads.contoso.com/files/report.pdf mwilson HIER_DIRECT/52.168.112.66 application/pdf",
+      "1618934405.900    0 192.168.1.200 TCP_DENIED/403 3920 GET http://malware-c2.example.com/beacon pjones HIER_NONE/- text/html",
+      "1618934406.300    5678 10.0.1.50 TCP_TUNNEL/200 0 CONNECT login.microsoftonline.com:443 jsmith HIER_DIRECT/20.190.159.0 -",
+      "1618934407.100    312 10.0.1.51 TCP_REFRESH_HIT/304 278 GET http://intranet.contoso.local/news rsingh HIER_NONE/- -",
+      "1618934408.600    2100 10.0.2.10 TCP_MISS/404 1523 GET http://www.woodgrove.com/missing.html kbrown HIER_DIRECT/203.0.113.42 text/html",
+      "1618934409.000    0 172.16.0.100 TCP_DENIED/407 4010 GET http://external.adatum.com/api/data - HIER_NONE/- text/html"
+    ] },
+    { "name": "Duration_s", "type": "string", "values": ["15", "45", "102", "234", "312", "498", "876", "1523", "2100", "3456", "5678", "8234", "12045", "0"] },
+    { "name": "SrcIpAddr_s", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100", "192.168.1.200"] },
+    { "name": "ResultCode", "type": "string", "values": [
+      "TCP_MISS/200", "TCP_MISS/200", "TCP_MISS/200",
+      "TCP_HIT/200", "TCP_HIT/200",
+      "TCP_MEM_HIT/200",
+      "TCP_REFRESH_HIT/304", "TCP_REFRESH_HIT/304",
+      "TCP_MISS/302", "TCP_MISS/301",
+      "TCP_MISS/404",
+      "TCP_DENIED/403",
+      "TCP_DENIED/407",
+      "TCP_TUNNEL/200", "TCP_TUNNEL/200",
+      "TCP_MISS/500",
+      "TCP_MISS/502",
+      "TCP_REFRESH_MISS/200"
+    ] },
+    { "name": "StatusCode_s", "type": "string", "values": ["200", "200", "200", "200", "200", "301", "302", "304", "304", "403", "404", "407", "500", "502"] },
+    { "name": "Bytes_s", "type": "string", "values": ["0", "278", "498", "1523", "3201", "3920", "4010", "8721", "12345", "24680", "51200", "102400", "524288", "1048576"] },
+    { "name": "RequstMethod_s", "type": "string", "values": ["GET", "GET", "GET", "GET", "GET", "GET", "GET", "POST", "POST", "CONNECT", "CONNECT", "HEAD", "PUT", "OPTIONS", "DELETE"] },
+    { "name": "Url_s", "type": "string", "values": [
+      "http://www.contoso.com/index.html",
+      "http://www.contoso.com/about.html",
+      "http://portal.contoso.com/dashboard",
+      "http://cdn.contoso.com/assets/style.css",
+      "http://cdn.contoso.com/assets/main.js",
+      "http://cdn.contoso.com/images/logo.png",
+      "http://intranet.contoso.local/news",
+      "http://intranet.contoso.local/hr/policies",
+      "http://updates.contoso.com/check",
+      "http://downloads.contoso.com/files/report.pdf",
+      "http://mail.contoso.com/owa",
+      "http://portal.fabrikam.net/login",
+      "http://www.woodgrove.com/products",
+      "http://api.contoso.com/v2/users",
+      "http://external.adatum.com/api/data",
+      "https://login.microsoftonline.com:443",
+      "https://graph.microsoft.com:443",
+      "https://blob.core.windows.net:443",
+      "http://malware-c2.example.com/beacon",
+      "http://suspicious-site.example.net/payload.exe"
+    ] },
+    { "name": "Username_s", "type": "string", "values": ["jsmith", "jsmith", "agarcia", "agarcia", "mwilson", "lchen", "pjones", "rsingh", "kbrown", "tnguyen", "-", "-", "-"] },
+    { "name": "PeerStatus_s", "type": "string", "values": [
+      "HIER_DIRECT", "HIER_DIRECT", "HIER_DIRECT", "HIER_DIRECT", "HIER_DIRECT",
+      "HIER_NONE", "HIER_NONE", "HIER_NONE",
+      "HIER_PARENT_HIT",
+      "HIER_SIBLING_HIT"
+    ] },
+    { "name": "PeerHost", "type": "string", "values": [
+      "93.184.216.34", "198.51.100.17", "203.0.113.42", "52.168.112.66", "100.21.55.130",
+      "20.190.159.0", "13.107.42.14", "52.96.166.130",
+      "-", "-", "-"
+    ] },
+    { "name": "ContentType_s", "type": "string", "values": [
+      "text/html", "text/html", "text/html", "text/html",
+      "text/css",
+      "application/javascript", "application/javascript",
+      "application/json", "application/json",
+      "application/pdf",
+      "application/octet-stream",
+      "image/png", "image/jpeg",
+      "-", "-"
+    ] },
+    { "name": "EventTime_UTC__s", "type": "string" },
+    { "name": "Description_s", "type": "string", "values": [
+      "Squid proxy access log entry",
+      "Web request logged by Squid proxy",
+      "HTTP proxy request processed",
+      "Squid cache event",
+      "Proxy access log"
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["Linux"] }
+  ]
+}
