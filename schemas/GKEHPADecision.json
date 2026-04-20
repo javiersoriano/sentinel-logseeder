@@ -1,0 +1,43 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "ClusterName", "type": "string", "values": ["gke-prod-01", "gke-prod-02", "gke-dev-01"] },
+    { "name": "ClusterLocation", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "Namespace", "type": "string", "values": ["production", "staging", "default", "monitoring"] },
+    { "name": "HPAName", "type": "string", "values": ["nginx-deployment-hpa", "api-gateway-hpa", "web-frontend-hpa", "auth-service-hpa", "worker-hpa"] },
+    { "name": "TargetDeployment", "type": "string", "values": ["nginx-deployment", "api-gateway", "web-frontend", "auth-service", "worker-deployment"] },
+    { "name": "TargetKind", "type": "string", "values": ["Deployment", "StatefulSet", "ReplicaSet"] },
+    { "name": "CurrentReplicas", "type": "int", "values": [1, 2, 3, 5, 8, 10, 15, 20] },
+    { "name": "DesiredReplicas", "type": "int", "values": [1, 2, 3, 5, 8, 10, 15, 20, 25, 30] },
+    { "name": "MinReplicas", "type": "int", "values": [1, 2, 3] },
+    { "name": "MaxReplicas", "type": "int", "values": [10, 20, 30, 50, 100] },
+    { "name": "ScaleDirection", "type": "string", "values": ["UP", "DOWN", "NONE"] },
+    { "name": "MetricName", "type": "string", "values": ["cpu", "memory", "http_requests_per_second", "queue_depth", "custom.googleapis.com/pubsub/subscription/num_undelivered_messages"] },
+    { "name": "MetricType", "type": "string", "values": ["Resource", "Pods", "Object", "External"] },
+    { "name": "CurrentMetricValue", "type": "real", "values": [10.0, 25.0, 45.0, 65.0, 80.0, 92.0, 150.0, 500.0, 1000.0] },
+    { "name": "TargetMetricValue", "type": "real", "values": [50.0, 70.0, 80.0, 100.0, 200.0, 500.0] },
+    { "name": "MetricUtilization", "type": "real", "values": [0.10, 0.25, 0.45, 0.65, 0.80, 0.92, 1.05, 1.50, 2.00] },
+    { "name": "ScaleReason", "type": "string", "values": [
+      "All metrics below target",
+      "cpu resource utilization (percentage of request) above target",
+      "memory resource utilization (percentage of request) above target",
+      "external metric queue_depth above target",
+      "the HPA controller was able to get the target's current scale",
+      "New size: 5; reason: cpu resource utilization (percentage of request) above target",
+      "scaling is limited by max replicas",
+      "scaling is limited by min replicas",
+      "recent recommendation was within acceptable bounds"
+    ] },
+    { "name": "ScaleLimited", "type": "boolean", "values": [true, false] },
+    { "name": "ScaleLimitReason", "type": "string", "values": ["", "TooFewReplicas", "TooManyReplicas", "ScaleDownStabilization", "BackoffBothDirections", "ReadinessGateNotReady"] },
+    { "name": "LastScaleTime", "type": "datetime" },
+    { "name": "Conditions", "type": "dynamic", "values": [
+      [{"type": "AbleToScale", "status": "True", "reason": "ReadyForNewScale"}, {"type": "ScalingActive", "status": "True", "reason": "ValidMetricFound"}],
+      [{"type": "AbleToScale", "status": "True", "reason": "SucceededRescale"}, {"type": "ScalingActive", "status": "True", "reason": "ValidMetricFound"}, {"type": "ScalingLimited", "status": "True", "reason": "TooManyReplicas"}],
+      [{"type": "AbleToScale", "status": "False", "reason": "FailedGetScale"}, {"type": "ScalingActive", "status": "False", "reason": "FailedGetResourceMetric"}]
+    ] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

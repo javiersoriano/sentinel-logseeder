@@ -1,0 +1,30 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "SrcIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.128.0.2", "10.128.0.3", "203.0.113.42", "198.51.100.17"] },
+    { "name": "DstIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.128.0.2", "35.192.0.1", "203.0.113.42", "198.51.100.17", "142.250.80.46", "151.101.1.140"] },
+    { "name": "SrcPort", "type": "int", "values": [1024, 3456, 12345, 32768, 45678, 49152, 54321, 60000] },
+    { "name": "DstPort", "type": "int", "values": [22, 53, 80, 443, 3306, 3389, 5432, 6379, 8080, 8443, 9090, 27017] },
+    { "name": "Protocol", "type": "string", "values": ["TCP", "UDP", "ICMP", "GRE"] },
+    { "name": "BytesSent", "type": "long", "values": [64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 4194304] },
+    { "name": "BytesReceived", "type": "long", "values": [64, 256, 1024, 4096, 16384, 65536, 262144, 1048576, 10485760] },
+    { "name": "PacketsSent", "type": "long", "values": [1, 5, 10, 25, 50, 100, 250, 500, 1000] },
+    { "name": "PacketsReceived", "type": "long", "values": [1, 5, 10, 25, 50, 100, 250, 500, 1000] },
+    { "name": "Direction", "type": "string", "values": ["INGRESS", "EGRESS"] },
+    { "name": "SrcVmName", "type": "string", "values": ["vm-web-01", "vm-web-02", "vm-api-01", "vm-db-01", "vm-bastion-01", ""] },
+    { "name": "SrcVmZone", "type": "string", "values": ["us-central1-a", "us-central1-b", "us-east1-b", ""] },
+    { "name": "DstVmName", "type": "string", "values": ["vm-web-01", "vm-web-02", "vm-api-01", "vm-db-01", "vm-bastion-01", ""] },
+    { "name": "DstVmZone", "type": "string", "values": ["us-central1-a", "us-central1-b", "us-east1-b", ""] },
+    { "name": "NetworkName", "type": "string", "values": ["vpc-prod", "vpc-dev", "default"] },
+    { "name": "SubnetName", "type": "string", "values": ["subnet-web", "subnet-app", "subnet-db", "subnet-mgmt", "default"] },
+    { "name": "StartTime", "type": "datetime" },
+    { "name": "EndTime", "type": "datetime" },
+    { "name": "RttMs", "type": "real", "values": [0.5, 1.0, 2.5, 5.0, 10.0, 25.0, 50.0, 100.0] },
+    { "name": "Reporter", "type": "string", "values": ["SRC", "DST"] },
+    { "name": "GeoSrcCountry", "type": "string", "values": ["US", "GB", "DE", "JP", "CN", "RO", ""] },
+    { "name": "GeoDstCountry", "type": "string", "values": ["US", "GB", "DE", "JP", "CN", "RO", ""] },
+    { "name": "Severity", "type": "string", "values": ["INFO"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "Timestamp", "type": "datetime" },
+    { "name": "EventTimestamp", "type": "datetime" },
+    { "name": "EventType", "type": "string", "values": ["alert"] },
+    { "name": "FirewallName", "type": "string", "values": ["contoso-network-fw", "fabrikam-network-fw", "woodgrove-network-fw"] },
+    { "name": "AvailabilityZone", "type": "string", "values": ["us-east-1a", "us-east-1b", "us-west-2a", "us-west-2b", "eu-west-1a"] },
+    { "name": "SrcIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "10.0.1.50", "10.0.1.51", "10.0.2.10"] },
+    { "name": "SrcPort", "type": "string" },
+    { "name": "DestIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100", "203.0.113.42", "198.51.100.17"] },
+    { "name": "DestPort", "type": "string", "values": ["80", "443", "22", "3389", "53", "8080", "445"] },
+    { "name": "Proto", "type": "string", "values": ["TCP", "UDP", "ICMP"] },
+    { "name": "AlertAction", "type": "string", "values": ["allowed", "blocked", "dropped", "rejected"] },
+    { "name": "Signature", "type": "string", "values": [
+      "ET SCAN Nmap Scripting Engine User-Agent Detected",
+      "ET EXPLOIT Possible CVE-2021-44228 Log4j RCE Attempt",
+      "ET TROJAN CobaltStrike Beacon Activity",
+      "ET POLICY Outbound SSH Connection to External Host",
+      "ET MALWARE Win32.Emotet CnC Activity",
+      "GPL ATTACK_RESPONSE id check returned root",
+      "ET WEB_SERVER SQL Injection Attempt"
+    ] },
+    { "name": "SignatureId", "type": "string", "values": ["2024364", "2034647", "2028759", "2003068", "2025927", "2100498", "2006546"] },
+    { "name": "Severity", "type": "string", "values": ["1", "2", "3"] },
+    { "name": "Category", "type": "string", "values": [
+      "Attempted Information Leak",
+      "Web Application Attack",
+      "A Network Trojan was Detected",
+      "Potentially Bad Traffic",
+      "Misc Attack",
+      "Not Suspicious Traffic",
+      "Attempted Administrator Privilege Gain"
+    ] },
+    { "name": "Direction", "type": "string", "values": ["inbound", "outbound"] },
+    { "name": "Rev", "type": "string", "values": ["1", "2", "3", "5", "8"] },
+    { "name": "FlowId", "type": "string" },
+    { "name": "TxId", "type": "string" },
+    { "name": "AppProto", "type": "string", "values": ["http", "tls", "dns", "ssh", "smtp", "ftp", ""] },
+    { "name": "PktSrc", "type": "string", "values": ["client", "server"] },
+    { "name": "Sni", "type": "string", "values": ["", "contoso.com", "api.contoso.com", "fabrikam.net", "malicious-domain.xyz", "c2-server.evil.com"] },
+    { "name": "VerdictAction", "type": "string", "values": ["pass", "drop", "alert"] },
+    { "name": "Version", "type": "string", "values": ["1"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

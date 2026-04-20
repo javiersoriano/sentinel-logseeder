@@ -1,0 +1,54 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AuditId", "type": "string" },
+    { "name": "AuthType", "type": "string", "values": [
+      "interactive",
+      "api_client",
+      "sso",
+      "mfa",
+      "token_refresh",
+      "service_account"
+    ] },
+    { "name": "OperationName", "type": "string", "values": [
+      "userAuthenticate",
+      "twoFactorAuthenticate",
+      "apiTokenGenerate",
+      "apiTokenRevoke",
+      "ssoLogin",
+      "ssoLogout",
+      "passwordChange",
+      "passwordResetRequest",
+      "sessionCreate",
+      "sessionExpire",
+      "accountLockout",
+      "accountUnlock"
+    ] },
+    { "name": "Result", "type": "string", "values": ["Success", "Success", "Success", "Failure", "Failure", "Locked", "MFARequired"] },
+    { "name": "ResultDescription", "type": "string", "values": [
+      "Authentication successful.",
+      "Invalid credentials provided.",
+      "Account locked due to excessive failed attempts.",
+      "MFA challenge required for this login.",
+      "SSO authentication via SAML completed.",
+      "API token generated successfully.",
+      "Session expired due to inactivity."
+    ] },
+    { "name": "UserId", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "lchen@contoso.com", "pjones@contoso.com", "admin@contoso.com"] },
+    { "name": "UserName", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "lchen", "pjones", "admin"] },
+    { "name": "SourceIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "203.0.113.42", "198.51.100.17"] },
+    { "name": "SourceCountry", "type": "string", "values": ["United States", "United States", "United Kingdom", "Romania", "China", ""] },
+    { "name": "SourceCity", "type": "string", "values": ["Redmond", "Seattle", "London", "Bucharest", "Beijing", ""] },
+    { "name": "UserAgent", "type": "string", "values": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
+      "FalconPy/1.3.4",
+      "PSFalcon/2.2.6"
+    ] },
+    { "name": "MFAMethod", "type": "string", "values": ["totp", "push", "sms", "hardware_key", ""] },
+    { "name": "MFAStatus", "type": "string", "values": ["verified", "pending", "failed", "not_required", ""] },
+    { "name": "CustomerIdCID", "type": "string" },
+    { "name": "FailureReason", "type": "string", "values": ["", "invalid_password", "account_locked", "mfa_timeout", "expired_token", "ip_blocked", "sso_assertion_invalid"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

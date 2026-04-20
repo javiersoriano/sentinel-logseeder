@@ -1,0 +1,24 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "RuleName", "type": "string", "values": ["allow-ssh", "allow-http", "allow-https", "allow-internal", "allow-health-check", "deny-all-ingress", "allow-rdp", "allow-iap-ssh", "allow-lb-health-check", "default-deny-ingress"] },
+    { "name": "Action", "type": "string", "values": ["ALLOWED", "DENIED"] },
+    { "name": "Direction", "type": "string", "values": ["INGRESS", "EGRESS"] },
+    { "name": "Priority", "type": "int", "values": [100, 500, 1000, 2000, 5000, 65534, 65535] },
+    { "name": "SrcIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "10.0.1.50", "10.0.1.51", "10.0.2.10", "10.128.0.2", "35.191.0.0", "130.211.0.0", "100.21.55.130"] },
+    { "name": "DstIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.128.0.2", "10.128.0.3", "35.192.0.1", "203.0.113.42"] },
+    { "name": "SrcPort", "type": "int", "values": [1024, 3456, 12345, 32768, 45678, 54321, 60000] },
+    { "name": "DstPort", "type": "int", "values": [22, 80, 443, 3306, 3389, 5432, 8080, 8443, 9090, 27017] },
+    { "name": "Protocol", "type": "string", "values": ["TCP", "UDP", "ICMP", "GRE"] },
+    { "name": "NetworkName", "type": "string", "values": ["default", "vpc-prod", "vpc-dev", "vpc-shared"] },
+    { "name": "SubnetName", "type": "string", "values": ["subnet-web", "subnet-app", "subnet-db", "subnet-mgmt", "default"] },
+    { "name": "VmName", "type": "string", "values": ["vm-web-01", "vm-web-02", "vm-api-01", "vm-db-01", "vm-bastion-01", ""] },
+    { "name": "VmZone", "type": "string", "values": ["us-central1-a", "us-central1-b", "us-east1-b", ""] },
+    { "name": "BytesSent", "type": "long", "values": [0, 64, 128, 512, 1024, 4096, 16384, 65536] },
+    { "name": "PacketsSent", "type": "long", "values": [0, 1, 2, 5, 10, 25, 50, 100] },
+    { "name": "Disposition", "type": "string", "values": ["ALLOWED", "DENIED"] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "WARNING"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

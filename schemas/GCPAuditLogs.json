@@ -1,0 +1,53 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ServiceName", "type": "string", "values": ["compute.googleapis.com", "storage.googleapis.com", "iam.googleapis.com", "cloudresourcemanager.googleapis.com", "container.googleapis.com", "bigquery.googleapis.com", "sqladmin.googleapis.com", "logging.googleapis.com", "run.googleapis.com", "cloudfunctions.googleapis.com"] },
+    { "name": "MethodName", "type": "string", "values": ["google.iam.admin.v1.CreateServiceAccount", "google.iam.admin.v1.SetIamPolicy", "google.cloud.compute.v1.Instances.Insert", "google.cloud.compute.v1.Instances.Delete", "google.cloud.compute.v1.Firewalls.Insert", "google.cloud.compute.v1.Firewalls.Delete", "storage.buckets.create", "storage.buckets.delete", "storage.objects.get", "storage.objects.create", "google.container.v1.ClusterManager.CreateCluster", "google.container.v1.ClusterManager.DeleteCluster", "SetIamPolicy", "CreateProject", "DeleteProject"] },
+    { "name": "ResourceType", "type": "string", "values": ["gce_instance", "gce_firewall_rule", "gcs_bucket", "gce_network", "gke_cluster", "iam_service_account", "bigquery_dataset", "cloud_sql_instance", "cloud_function", "project"] },
+    { "name": "ResourceName", "type": "string", "values": ["projects/contoso-prod-123/zones/us-central1-a/instances/vm-web-01", "projects/contoso-prod-123/global/firewalls/allow-ssh", "projects/contoso-prod-123/buckets/contoso-data-lake", "projects/contoso-prod-123/zones/us-central1-a/clusters/gke-prod-01", "projects/contoso-prod-123/serviceAccounts/sa-compute@contoso-prod-123.iam.gserviceaccount.com", "projects/contoso-prod-123", "projects/contoso-dev-456/zones/us-east1-b/instances/vm-dev-01"] },
+    { "name": "PrincipalEmail", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "sa-compute@contoso-prod-123.iam.gserviceaccount.com", "sa-deploy@contoso-prod-123.iam.gserviceaccount.com", "admin@contoso.com"] },
+    { "name": "CallerIp", "type": "string", "values": ["203.0.113.42", "10.0.1.50", "198.51.100.17", "35.192.0.1", "34.68.100.22", "gce-internal-ip"] },
+    { "name": "CallerSuppliedUserAgent", "type": "string", "values": ["google-cloud-sdk gcloud/450.0.0", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "google-api-go-client/0.5", "Terraform/1.6.0", "grpc-go/1.59.0", "python-requests/2.31.0"] },
+    { "name": "AuthorizationInfo", "type": "dynamic", "values": [
+      [{"resource": "projects/contoso-prod-123/zones/us-central1-a/instances/vm-web-01", "permission": "compute.instances.create", "granted": true}],
+      [{"resource": "projects/contoso-prod-123/global/firewalls/allow-ssh", "permission": "compute.firewalls.delete", "granted": true}],
+      [{"resource": "projects/contoso-prod-123", "permission": "resourcemanager.projects.setIamPolicy", "granted": true}],
+      [{"resource": "projects/contoso-prod-123/buckets/contoso-data-lake", "permission": "storage.buckets.getIamPolicy", "granted": false}],
+      [{"resource": "projects/contoso-prod-123/serviceAccounts/sa-compute@contoso-prod-123.iam.gserviceaccount.com", "permission": "iam.serviceAccounts.actAs", "granted": true}]
+    ] },
+    { "name": "RequestMetadata", "type": "dynamic", "values": [
+      {"callerIp": "203.0.113.42", "callerSuppliedUserAgent": "google-cloud-sdk gcloud/450.0.0", "callerNetwork": "//compute.googleapis.com/projects/contoso-prod-123/global/networks/default", "destinationAttributes": {}},
+      {"callerIp": "10.0.1.50", "callerSuppliedUserAgent": "Terraform/1.6.0", "callerNetwork": "", "destinationAttributes": {}},
+      {"callerIp": "gce-internal-ip", "callerSuppliedUserAgent": "grpc-go/1.59.0", "callerNetwork": "//compute.googleapis.com/projects/contoso-prod-123/global/networks/default", "destinationAttributes": {}}
+    ] },
+    { "name": "Request", "type": "dynamic", "values": [
+      {"name": "vm-web-01", "machineType": "zones/us-central1-a/machineTypes/e2-medium", "disks": [{"initializeParams": {"sourceImage": "projects/debian-cloud/global/images/debian-11"}}]},
+      {"policy": {"bindings": [{"role": "roles/editor", "members": ["user:jsmith@contoso.com"]}]}},
+      {"name": "contoso-data-lake", "location": "US"},
+      {"name": "allow-ssh", "direction": "INGRESS", "sourceRanges": ["0.0.0.0/0"], "allowed": [{"IPProtocol": "tcp", "ports": ["22"]}]},
+      {}
+    ] },
+    { "name": "Response", "type": "dynamic", "values": [
+      {"status": "DONE", "targetId": "1234567890123456789", "operationType": "insert"},
+      {"status": "RUNNING", "targetId": "9876543210987654321", "operationType": "delete"},
+      {"bindings": [{"role": "roles/editor", "members": ["user:jsmith@contoso.com"]}], "etag": "BwXyz123abc="},
+      {"error": {"code": 403, "message": "Required 'compute.instances.create' permission"}},
+      {}
+    ] },
+    { "name": "Status", "type": "dynamic", "values": [
+      {"code": 0, "message": "OK"},
+      {"code": 7, "message": "PERMISSION_DENIED"},
+      {"code": 5, "message": "NOT_FOUND"},
+      {"code": 9, "message": "FAILED_PRECONDITION"},
+      {"code": 3, "message": "INVALID_ARGUMENT"}
+    ] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "NOTICE", "WARNING", "ERROR", "CRITICAL"] },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456", "contoso-staging-789"] },
+    { "name": "LogName", "type": "string", "values": ["projects/contoso-prod-123/logs/cloudaudit.googleapis.com%2Factivity", "projects/contoso-prod-123/logs/cloudaudit.googleapis.com%2Fdata_access", "projects/contoso-prod-123/logs/cloudaudit.googleapis.com%2Fsystem_event"] },
+    { "name": "InsertId", "type": "string" },
+    { "name": "OperationId", "type": "string" },
+    { "name": "OperationIsFirst", "type": "boolean", "values": [true, false] },
+    { "name": "OperationIsLast", "type": "boolean", "values": [true, false] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

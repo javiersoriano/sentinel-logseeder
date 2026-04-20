@@ -1,0 +1,71 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "BucketOwner", "type": "string", "values": ["a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6a7b8c9d0e1f2a3b4c5d6a7b8c9d0e1f2"] },
+    { "name": "Bucket", "type": "string", "values": ["contoso-data-lake", "contoso-logs", "fabrikam-backups", "woodgrove-assets", "contoso-config", "contoso-reports"] },
+    { "name": "Requester", "type": "string", "values": [
+      "arn:aws:iam::123456789012:user/jsmith",
+      "arn:aws:iam::123456789012:user/agarcia",
+      "arn:aws:iam::123456789012:user/admin",
+      "arn:aws:sts::123456789012:assumed-role/AdminRole/session1",
+      "arn:aws:iam::123456789012:user/mwilson",
+      "-"
+    ] },
+    { "name": "RequestId", "type": "string" },
+    { "name": "Operation", "type": "string", "values": [
+      "REST.GET.OBJECT",
+      "REST.PUT.OBJECT",
+      "REST.DELETE.OBJECT",
+      "REST.GET.BUCKET",
+      "REST.HEAD.OBJECT",
+      "REST.GET.ACL",
+      "REST.PUT.ACL",
+      "REST.GET.BUCKETPOLICY",
+      "REST.PUT.BUCKETPOLICY",
+      "S3.TRANSITION.OBJECT",
+      "REST.COPY.OBJECT"
+    ] },
+    { "name": "Key", "type": "string", "values": [
+      "data/export/2024/customers.csv",
+      "backups/db-snapshot-2024-01-15.tar.gz",
+      "config/app-settings.json",
+      "logs/access-log-2024-01-15.gz",
+      "reports/quarterly-report-q4.pdf",
+      "secrets/credentials.env",
+      "-"
+    ] },
+    { "name": "RequestUri", "type": "string", "values": [
+      "GET /contoso-data-lake/data/export/2024/customers.csv HTTP/1.1",
+      "PUT /contoso-data-lake/backups/db-snapshot.tar.gz HTTP/1.1",
+      "DELETE /contoso-logs/old-logs/2023/ HTTP/1.1",
+      "GET /contoso-data-lake?prefix=data/&delimiter=/ HTTP/1.1",
+      "HEAD /contoso-data-lake/config/app-settings.json HTTP/1.1"
+    ] },
+    { "name": "HttpStatus", "type": "int", "values": [200, 204, 206, 301, 304, 403, 404, 500] },
+    { "name": "ErrorCode", "type": "string", "values": ["", "-", "NoSuchKey", "AccessDenied", "NoSuchBucket", "BucketNotEmpty", "InvalidArgument"] },
+    { "name": "BytesSent", "type": "int" },
+    { "name": "ObjectSize", "type": "int" },
+    { "name": "TotalTime", "type": "int" },
+    { "name": "TurnAroundTime", "type": "string" },
+    { "name": "RemoteIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "10.0.1.50", "10.0.1.51"] },
+    { "name": "UserAgent", "type": "string", "values": [
+      "aws-cli/2.15.0 Python/3.11.6 Linux/5.15.0",
+      "Boto3/1.28.0 Python/3.10.12 Linux/5.15.0",
+      "aws-sdk-java/2.20.56",
+      "S3Console/0.4",
+      "aws-internal/3 aws-sdk-java/1.12.500",
+      "Mozilla/5.0"
+    ] },
+    { "name": "HostId", "type": "string" },
+    { "name": "HostHeader", "type": "string", "values": ["s3.us-east-1.amazonaws.com", "s3.us-west-2.amazonaws.com", "contoso-data-lake.s3.amazonaws.com"] },
+    { "name": "SignatureVersion", "type": "string", "values": ["SigV4", "SigV2", "-"] },
+    { "name": "AuthenticationType", "type": "string", "values": ["AuthHeader", "QueryString", "-"] },
+    { "name": "CipherSuite", "type": "string", "values": ["ECDHE-RSA-AES128-GCM-SHA256", "ECDHE-RSA-AES256-GCM-SHA384", "-"] },
+    { "name": "TLSVersion", "type": "string", "values": ["TLSv1.2", "TLSv1.3", "-"] },
+    { "name": "AccessPointARN", "type": "string", "values": ["", "-", "arn:aws:s3:us-east-1:123456789012:accesspoint/contoso-ap"] },
+    { "name": "ACLRequired", "type": "string", "values": ["-", "Yes"] },
+    { "name": "Referer", "type": "string", "values": ["", "-"] },
+    { "name": "VersionId", "type": "string", "values": ["", "-"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

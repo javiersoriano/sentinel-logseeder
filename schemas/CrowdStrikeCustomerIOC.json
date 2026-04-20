@@ -1,0 +1,61 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "IOCId", "type": "string" },
+    { "name": "IOCType", "type": "string", "values": ["sha256", "md5", "sha1", "domain", "ipv4", "ipv6"] },
+    { "name": "IOCValue", "type": "string", "values": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "d41d8cd98f00b204e9800998ecf8427e",
+      "evil-c2.badactor.xyz",
+      "malware-drop.example.fail",
+      "phishing-login.suspicious.tk",
+      "203.0.113.42",
+      "198.51.100.17",
+      "192.0.2.100"
+    ] },
+    { "name": "Severity", "type": "string", "values": ["Critical", "High", "Medium", "Low", "Informational"] },
+    { "name": "Action", "type": "string", "values": ["detect", "prevent", "no_action", "allow"] },
+    { "name": "Platforms", "type": "dynamic", "values": [
+      ["windows"],
+      ["windows", "mac"],
+      ["windows", "mac", "linux"],
+      ["linux"]
+    ] },
+    { "name": "Source", "type": "string", "values": [
+      "Falcon Intelligence",
+      "Manual Entry",
+      "STIX Import",
+      "Threat Feed",
+      "Incident Response",
+      "Third Party"
+    ] },
+    { "name": "Description", "type": "string", "values": [
+      "Known Cobalt Strike beacon hash associated with APT29 campaign.",
+      "C2 domain used in recent phishing campaign targeting financial sector.",
+      "IP address associated with brute force attacks against VPN infrastructure.",
+      "Malware dropper hash from supply chain compromise.",
+      "Domain used for credential harvesting in spearphishing attack.",
+      "Known ransomware payload hash - LockBit variant."
+    ] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      ["apt29", "cobalt-strike", "c2"],
+      ["phishing", "credential-harvest"],
+      ["brute-force", "vpn-attack"],
+      ["ransomware", "lockbit"],
+      ["supply-chain", "trojanized-update"]
+    ] },
+    { "name": "ExpirationTime", "type": "datetime" },
+    { "name": "CreatedBy", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "admin@contoso.com", "threat-intel-feed"] },
+    { "name": "CreatedTime", "type": "datetime" },
+    { "name": "LastUpdatedTime", "type": "datetime" },
+    { "name": "Applied", "type": "boolean", "values": [true, true, true, false] },
+    { "name": "HostGroups", "type": "dynamic", "values": [
+      ["all"],
+      ["production-servers", "domain-controllers"],
+      ["workstations"],
+      ["dmz-hosts"]
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

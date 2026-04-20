@@ -1,0 +1,23 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "SrcIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100", "203.0.113.42", "192.168.1.15", "10.0.3.30"] },
+    { "name": "DstIP", "type": "string", "values": ["10.0.1.50", "10.0.2.10", "10.0.2.20", "172.16.0.100", "203.0.113.42", "10.0.3.30", "192.168.1.25", "10.0.1.51"] },
+    { "name": "SrcPort", "type": "int" },
+    { "name": "DstPort", "type": "int", "values": [80, 443, 22, 3389, 8080, 5432, 3306, 445, 53, 8443, 6379, 27017] },
+    { "name": "Protocol", "type": "string", "values": ["TCP", "TCP", "TCP", "UDP", "TCP", "UDP", "ICMP"] },
+    { "name": "FlowDirection", "type": "string", "values": ["Inbound", "Outbound"] },
+    { "name": "PolicyDecision", "type": "string", "values": ["Allowed", "Allowed", "Allowed", "PotentiallyBlocked", "Blocked", "Allowed", "Allowed", "Blocked"] },
+    { "name": "WorkloadName", "type": "string", "values": ["web-frontend-01", "api-server-02", "db-primary-01", "cache-redis-01", "SRV-WEB01", "SRV-DC01", "WS-PC01", "app-worker-03"] },
+    { "name": "WorkloadLabels", "type": "dynamic", "values": [
+      "{\"app\":\"web-frontend\",\"env\":\"production\",\"role\":\"web\",\"loc\":\"us-east\"}",
+      "{\"app\":\"api-server\",\"env\":\"production\",\"role\":\"app\",\"loc\":\"us-east\"}",
+      "{\"app\":\"database\",\"env\":\"production\",\"role\":\"db\",\"loc\":\"us-east\"}",
+      "{\"app\":\"cache\",\"env\":\"staging\",\"role\":\"cache\",\"loc\":\"us-west\"}",
+      "{\"app\":\"worker\",\"env\":\"development\",\"role\":\"compute\",\"loc\":\"us-west\"}"
+    ] },
+    { "name": "RuleName", "type": "string", "values": ["Allow-Web-to-App", "Allow-App-to-DB", "Deny-All-Default", "Allow-DNS-Outbound", "Allow-Monitoring", "Block-Lateral-Movement", "Allow-HTTPS-Inbound", "Allow-SSH-Admin"] },
+    { "name": "ServiceName", "type": "string", "values": ["HTTP", "HTTPS", "SSH", "RDP", "DNS", "PostgreSQL", "MySQL", "Redis", "SMB", "MongoDB"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

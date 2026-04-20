@@ -1,0 +1,39 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "EventId", "type": "string" },
+    { "name": "AccountId", "type": "string", "values": ["123456789012", "987654321098"] },
+    { "name": "CloudProvider", "type": "string", "values": ["AWS", "Azure", "GCP"] },
+    { "name": "Region", "type": "string", "values": ["us-east-1", "us-west-2", "eastus", "westeurope", "us-central1"] },
+    { "name": "Service", "type": "string", "values": ["EC2", "S3", "IAM", "Lambda", "RDS", "VPC", "CloudTrail", "KMS", "EKS", "Azure VM"] },
+    { "name": "ResourceId", "type": "string", "values": [
+      "arn:aws:s3:::contoso-data-lake",
+      "arn:aws:ec2:us-east-1:123456789012:instance/i-0abcdef1234567890",
+      "arn:aws:iam::123456789012:user/jsmith",
+      "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg-prod/providers/Microsoft.Compute/virtualMachines/SRV-WEB01"
+    ] },
+    { "name": "ResourceType", "type": "string", "values": ["S3::Bucket", "EC2::Instance", "IAM::User", "IAM::Role", "EC2::SecurityGroup", "RDS::DBInstance", "Lambda::Function"] },
+    { "name": "ResourceName", "type": "string", "values": ["contoso-data-lake", "SRV-WEB01", "jsmith", "AdminRole", "sg-production", "production-db", "data-processor-func"] },
+    { "name": "SearchQuery", "type": "string", "values": [
+      "resource_type='S3::Bucket' AND public_access='true'",
+      "resource_type='EC2::Instance' AND state='running'",
+      "resource_type='IAM::User' AND mfa_enabled='false'",
+      "resource_type='EC2::SecurityGroup' AND inbound_rules.cidr='0.0.0.0/0'",
+      "resource_type='RDS::DBInstance' AND encrypted='false'"
+    ] },
+    { "name": "ConfigurationState", "type": "string", "values": ["compliant", "non_compliant", "unknown", "not_applicable"] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      {"Environment": "Production", "Owner": "jsmith", "CostCenter": "IT-Security"},
+      {"Environment": "Development", "Owner": "agarcia"},
+      {"Environment": "Staging", "Owner": "mwilson", "Application": "WebApp"},
+      {}
+    ] },
+    { "name": "ConfigurationDetails", "type": "dynamic", "values": [
+      {"encryption": "AES-256", "versioning": true, "publicAccess": false, "logging": true},
+      {"instanceType": "t3.medium", "state": "running", "publicIp": "52.168.112.66", "vpcId": "vpc-0abcdef1234567890"},
+      {"mfaEnabled": false, "accessKeyAge": 120, "lastLogin": "2024-01-15T10:30:00Z", "policies": ["ReadOnlyAccess"]},
+      {"inboundRules": [{"port": 443, "cidr": "0.0.0.0/0"}, {"port": 22, "cidr": "10.0.0.0/8"}]}
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

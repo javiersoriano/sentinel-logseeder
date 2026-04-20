@@ -1,0 +1,30 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456", "contoso-staging-789"] },
+    { "name": "OrganizationId", "type": "string", "values": ["123456789", "987654321"] },
+    { "name": "FolderId", "type": "string", "values": ["111222333", "444555666", ""] },
+    { "name": "OperationType", "type": "string", "values": ["CreateProject", "DeleteProject", "UndeleteProject", "UpdateProject", "MoveProject", "SetIamPolicy", "GetIamPolicy", "CreateFolder", "DeleteFolder", "UpdateFolder", "SetOrgPolicy", "ClearOrgPolicy"] },
+    { "name": "ResourceName", "type": "string", "values": ["projects/contoso-prod-123", "projects/contoso-dev-456", "projects/contoso-staging-789", "folders/111222333", "organizations/123456789", "projects/contoso-temp-test"] },
+    { "name": "ResourceType", "type": "string", "values": ["project", "folder", "organization"] },
+    { "name": "PrincipalEmail", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "admin@contoso.com", "sa-deploy@contoso-prod-123.iam.gserviceaccount.com"] },
+    { "name": "CallerIp", "type": "string", "values": ["203.0.113.42", "10.0.1.50", "198.51.100.17", "35.192.0.1"] },
+    { "name": "CallerUserAgent", "type": "string", "values": ["google-cloud-sdk gcloud/450.0.0", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "Terraform/1.6.0", "google-api-go-client/0.5"] },
+    { "name": "PolicyDelta", "type": "dynamic", "values": [
+      {"bindingDeltas": [{"action": "ADD", "role": "roles/owner", "member": "user:jsmith@contoso.com"}]},
+      {"bindingDeltas": [{"action": "REMOVE", "role": "roles/editor", "member": "user:agarcia@contoso.com"}]},
+      {"bindingDeltas": [{"action": "ADD", "role": "roles/viewer", "member": "group:developers@contoso.com"}]},
+      {}
+    ] },
+    { "name": "OrgPolicyConstraint", "type": "string", "values": ["", "constraints/compute.vmExternalIpAccess", "constraints/iam.disableServiceAccountKeyCreation", "constraints/compute.restrictSharedVpcSubnetworks", "constraints/sql.restrictPublicIp"] },
+    { "name": "ProjectLabels", "type": "dynamic", "values": [
+      {"environment": "production", "team": "platform", "cost-center": "CC-1234"},
+      {"environment": "development", "team": "engineering"},
+      {"environment": "staging", "team": "qa"},
+      {}
+    ] },
+    { "name": "Status", "type": "string", "values": ["SUCCESS", "PERMISSION_DENIED", "NOT_FOUND", "ALREADY_EXISTS", "FAILED_PRECONDITION"] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "NOTICE", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

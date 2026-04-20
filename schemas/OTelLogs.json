@@ -1,0 +1,31 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "SeverityText", "type": "string", "values": ["Trace", "Debug", "Info", "Info", "Info", "Warn", "Error", "Fatal"] },
+    { "name": "SeverityNumber", "type": "int", "values": [1, 5, 9, 10, 11, 13, 17, 21, 24] },
+    { "name": "Body", "type": "string", "values": ["Request received for /api/v1/users", "Database connection established", "Processing order #98234", "Cache miss for key session:abc123", "User authentication successful", "High memory usage detected: 89%", "Failed to connect to downstream service payments-svc", "Unhandled exception in request pipeline", "Disk space critically low on /var/log", "Connection pool exhausted, retrying in 5s", "Health check passed for service inventory-svc", "TLS handshake completed successfully"] },
+    { "name": "TraceId", "type": "string", "values": ["4bf92f3577b34da6a3ce929d0e0e4736", "e8f9a1b2c3d4e5f6a7b8c9d0e1f2a3b4", "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d", "f0e1d2c3b4a5968778695a4b3c2d1e0f", "a1b2c3d4e5f6789012345678abcdef01", ""] },
+    { "name": "SpanId", "type": "string", "values": ["00f067aa0ba902b7", "a1b2c3d4e5f60718", "fedcba9876543210", "0123456789abcdef", ""] },
+    { "name": "TraceFlags", "type": "int", "values": [0, 1, 0, 1, 0] },
+    { "name": "ResourceAttributes", "type": "dynamic", "values": [
+      "{\"service.name\":\"order-svc\",\"service.version\":\"2.4.1\",\"host.name\":\"SRV-WEB01\",\"deployment.environment\":\"production\"}",
+      "{\"service.name\":\"auth-svc\",\"service.version\":\"1.8.0\",\"host.name\":\"SRV-DC01\",\"deployment.environment\":\"production\"}",
+      "{\"service.name\":\"inventory-svc\",\"service.version\":\"3.1.2\",\"host.name\":\"SRV-WEB01\",\"deployment.environment\":\"staging\"}",
+      "{\"service.name\":\"payments-svc\",\"service.version\":\"1.2.5\",\"host.name\":\"WS-PC01\",\"deployment.environment\":\"development\"}",
+      "{\"service.name\":\"gateway-svc\",\"service.version\":\"4.0.0\",\"host.name\":\"SRV-WEB01\",\"deployment.environment\":\"production\"}"
+    ] },
+    { "name": "LogAttributes", "type": "dynamic", "values": [
+      "{\"code.filepath\":\"src/controllers/OrderController.cs\",\"code.function\":\"ProcessOrder\",\"code.lineno\":142}",
+      "{\"code.filepath\":\"src/services/AuthService.cs\",\"code.function\":\"ValidateToken\",\"code.lineno\":87}",
+      "{\"code.filepath\":\"src/middleware/ErrorHandler.cs\",\"code.function\":\"HandleException\",\"code.lineno\":34,\"exception.type\":\"System.TimeoutException\",\"exception.message\":\"Operation timed out after 30000ms\"}",
+      "{\"code.filepath\":\"src/data/DbContext.cs\",\"code.function\":\"OpenConnection\",\"code.lineno\":56,\"exception.type\":\"System.Data.SqlClient.SqlException\",\"exception.message\":\"Connection pool exhausted\"}",
+      "{\"code.filepath\":\"src/handlers/RequestHandler.cs\",\"code.function\":\"Execute\",\"code.lineno\":201}"
+    ] },
+    { "name": "ServiceName", "type": "string", "values": ["order-svc", "auth-svc", "inventory-svc", "payments-svc", "gateway-svc", "notification-svc"] },
+    { "name": "ServiceVersion", "type": "string", "values": ["2.4.1", "1.8.0", "3.1.2", "1.2.5", "4.0.0", "1.0.3"] },
+    { "name": "SpanKind", "type": "string", "values": ["Server", "Client", "Internal", "Producer", "Consumer", ""] },
+    { "name": "StatusCode", "type": "string", "values": ["Unset", "Ok", "Error", "Ok", "Ok", "Unset"] },
+    { "name": "StatusMessage", "type": "string", "values": ["", "Success", "TimeoutException", "Connection refused", "", "OK", "Internal server error"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

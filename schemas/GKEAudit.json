@@ -1,0 +1,30 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "ClusterName", "type": "string", "values": ["gke-prod-01", "gke-prod-02", "gke-dev-01", "gke-staging-01"] },
+    { "name": "ClusterLocation", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "OperationType", "type": "string", "values": ["CreateCluster", "DeleteCluster", "UpdateCluster", "SetNodePoolSize", "CreateNodePool", "DeleteNodePool", "UpdateNodePool", "SetMaintenancePolicy", "SetNetworkPolicy", "SetMasterAuth", "SetLoggingService", "SetMonitoringService", "SetAddonsConfig", "StartIPRotation", "CompleteIPRotation", "EnablePrivateCluster"] },
+    { "name": "ResourceType", "type": "string", "values": ["cluster", "nodePool", "operation"] },
+    { "name": "ResourceName", "type": "string", "values": ["gke-prod-01", "gke-dev-01", "pool-1", "pool-highmem", "pool-gpu", "pool-preemptible"] },
+    { "name": "PrincipalEmail", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "sa-gke-admin@contoso-prod-123.iam.gserviceaccount.com", "sa-deploy@contoso-prod-123.iam.gserviceaccount.com"] },
+    { "name": "CallerIp", "type": "string", "values": ["203.0.113.42", "10.0.1.50", "35.192.0.1", "34.68.100.22"] },
+    { "name": "CallerUserAgent", "type": "string", "values": ["google-cloud-sdk gcloud/450.0.0", "Terraform/1.6.0", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "google-api-go-client/0.5"] },
+    { "name": "ClusterVersion", "type": "string", "values": ["1.28.3-gke.1200", "1.27.8-gke.1067", "1.29.0-gke.1000"] },
+    { "name": "NodePoolConfig", "type": "dynamic", "values": [
+      {"machineType": "e2-standard-4", "diskSizeGb": 100, "diskType": "pd-standard", "imageType": "COS_CONTAINERD", "minNodeCount": 1, "maxNodeCount": 10, "initialNodeCount": 3},
+      {"machineType": "n2-highmem-8", "diskSizeGb": 200, "diskType": "pd-ssd", "imageType": "COS_CONTAINERD", "preemptible": true, "minNodeCount": 0, "maxNodeCount": 20},
+      {"machineType": "n1-standard-4", "accelerators": [{"acceleratorType": "nvidia-tesla-t4", "acceleratorCount": 1}], "diskSizeGb": 100},
+      {}
+    ] },
+    { "name": "NetworkConfig", "type": "dynamic", "values": [
+      {"network": "vpc-prod", "subnetwork": "subnet-gke", "clusterIpv4Cidr": "10.4.0.0/14", "servicesIpv4Cidr": "10.8.0.0/20"},
+      {"network": "vpc-dev", "subnetwork": "subnet-gke-dev", "enablePrivateNodes": true, "masterIpv4CidrBlock": "172.16.0.0/28"},
+      {}
+    ] },
+    { "name": "OperationStatus", "type": "string", "values": ["DONE", "RUNNING", "PENDING", "ABORTING"] },
+    { "name": "ErrorMessage", "type": "string", "values": ["", "Insufficient regional quota for resource 'CPUS'", "Node pool already exists", "Permission denied for resource", "Cluster version not supported"] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "NOTICE", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ExtractedTime", "type": "datetime" },
+    { "name": "Message", "type": "string", "values": [
+      "{\"logGroup\":\"/aws/lambda/contoso-auth\",\"logStream\":\"2024/01/15/[$LATEST]abc123\",\"message\":\"START RequestId: a1b2c3d4-e5f6-7890-abcd-ef1234567890 Version: $LATEST\"}",
+      "{\"logGroup\":\"/aws/ec2/syslog\",\"logStream\":\"i-0abcdef1234567890\",\"message\":\"Jan 15 10:23:45 ip-10-0-1-50 sshd[12345]: Accepted publickey for jsmith from 203.0.113.42 port 52341 ssh2\"}",
+      "{\"logGroup\":\"/aws/rds/cluster/contoso-db/audit\",\"logStream\":\"contoso-db-instance-1\",\"message\":\"Query: SELECT * FROM users WHERE username='admin'\"}",
+      "{\"logGroup\":\"/aws/apigateway/contoso-api\",\"logStream\":\"abc123\",\"message\":\"(a1b2c3d4) Method request body before transformations: {}\"}",
+      "{\"logGroup\":\"/aws/ecs/contoso-app\",\"logStream\":\"ecs/web/abc123\",\"message\":\"192.168.1.1 - - [15/Jan/2024:10:00:00 +0000] \\\"GET /api/health HTTP/1.1\\\" 200 15\"}",
+      "{\"logGroup\":\"/aws/codebuild/contoso-build\",\"logStream\":\"abc123\",\"message\":\"[Container] Phase INSTALL is SUCCEEDED after 12 seconds\"}",
+      "{\"logGroup\":\"/aws/elasticbeanstalk/contoso-env\",\"logStream\":\"i-0abcdef1234567890\",\"message\":\"Error: ECONNREFUSED 127.0.0.1:5432\"}",
+      "{\"logGroup\":\"/aws/lambda/contoso-auth\",\"logStream\":\"2024/01/15/[$LATEST]def456\",\"message\":\"END RequestId: a1b2c3d4-e5f6-7890-abcd-ef1234567890\"}"
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "CveId", "type": "string", "values": ["CVE-2024-1234", "CVE-2024-5678", "CVE-2024-21626", "CVE-2024-0727", "CVE-2024-6387", "CVE-2024-38476", "CVE-2023-44487", "CVE-2024-1086", "CVE-2024-3596", "CVE-2023-28856"] },
+    { "name": "CvssScore", "type": "real", "values": [9.8, 8.8, 9.1, 7.5, 8.1, 7.8, 7.5, 7.8, 6.5, 5.3, 4.3, 10.0] },
+    { "name": "Severity", "type": "string", "values": ["Critical", "Critical", "High", "High", "Medium", "Medium", "Low", "Critical"] },
+    { "name": "AffectedSoftware", "type": "dynamic", "values": [
+      "[{\"vendor\":\"OpenSSL\",\"product\":\"OpenSSL\",\"versions\":\"1.1.1 - 3.2.0\"}]",
+      "[{\"vendor\":\"Apache\",\"product\":\"Log4j\",\"versions\":\"2.0 - 2.17.0\"}]",
+      "[{\"vendor\":\"Microsoft\",\"product\":\"Windows 11\",\"versions\":\"21H2 - 23H2\"},{\"vendor\":\"Microsoft\",\"product\":\"Windows Server 2022\",\"versions\":\"All\"}]",
+      "[{\"vendor\":\"OpenSSH\",\"product\":\"OpenSSH\",\"versions\":\"8.5p1 - 9.7p1\"}]",
+      "[{\"vendor\":\"Apache\",\"product\":\"HTTP Server\",\"versions\":\"2.4.0 - 2.4.59\"}]",
+      "[{\"vendor\":\"Redis\",\"product\":\"Redis\",\"versions\":\"6.0 - 7.2.3\"}]"
+    ] },
+    { "name": "PublishedDate", "type": "datetime" },
+    { "name": "LastModifiedDate", "type": "datetime" },
+    { "name": "ExploitAvailable", "type": "boolean", "values": [true, true, true, false, true, false, false, true] },
+    { "name": "ExploitVerified", "type": "boolean", "values": [true, true, false, false, true, false, false, false] },
+    { "name": "VulnerabilityDescription", "type": "string", "values": ["A buffer overflow vulnerability in OpenSSL allows remote code execution via crafted TLS handshake", "Remote code execution via JNDI lookup in Apache Log4j logging library", "Container escape vulnerability in runc allows attackers to break out of container isolation", "Authentication bypass in OpenSSH allows unauthenticated remote code execution on affected Linux systems", "HTTP request smuggling in Apache HTTP Server via malformed Transfer-Encoding headers", "Unauthorized access vulnerability in Redis allows remote command execution without authentication", "HTTP/2 rapid reset attack enables denial of service against web servers", "Use-after-free vulnerability in Linux kernel netfilter allows local privilege escalation to root"] },
+    { "name": "RemediationSteps", "type": "string", "values": ["Upgrade OpenSSL to version 3.2.1 or later. Apply vendor patches if direct upgrade is not possible.", "Upgrade Log4j to 2.17.1+. Set log4j2.formatMsgNoLookups=true as interim mitigation.", "Update container runtime (runc) to 1.1.12 or later. Restrict container privileges.", "Update OpenSSH to 9.8p1 or later. Apply LoginGraceTime restrictions as interim mitigation.", "Update Apache HTTP Server to 2.4.60 or later. Review proxy configurations.", "Enable Redis AUTH, bind to localhost, and upgrade to 7.2.4 or later.", "Apply HTTP/2 patches from your web server vendor. Consider rate limiting as interim mitigation.", "Update Linux kernel to the latest patched version for your distribution."] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

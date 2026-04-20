@@ -1,0 +1,21 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "QueryName", "type": "string", "values": ["www.contoso.com", "api.contoso.com", "mail.contoso.com", "login.contoso.com", "storage.googleapis.com", "compute.googleapis.com", "malicious-c2.example.net", "pool.minergate.com", "update.microsoft.com", "github.com"] },
+    { "name": "QueryType", "type": "string", "values": ["A", "AAAA", "CNAME", "MX", "TXT", "NS", "SOA", "PTR", "SRV"] },
+    { "name": "ResponseCode", "type": "string", "values": ["NOERROR", "NXDOMAIN", "SERVFAIL", "REFUSED", "FORMERR"] },
+    { "name": "ResponseData", "type": "string", "values": ["10.0.1.50", "203.0.113.42", "35.192.0.1", "2607:f8b0:4004:800::200e", "CNAME api.contoso.com.cdn.cloudflare.net", ""] },
+    { "name": "SourceIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.128.0.2", "10.128.0.3"] },
+    { "name": "SourcePort", "type": "int", "values": [1024, 5353, 12345, 32768, 45678, 54321, 60000] },
+    { "name": "DestinationIp", "type": "string", "values": ["169.254.169.254", "8.8.8.8", "8.8.4.4", "10.0.0.2"] },
+    { "name": "Protocol", "type": "string", "values": ["UDP", "TCP"] },
+    { "name": "NetworkName", "type": "string", "values": ["default", "vpc-prod", "vpc-dev", "vpc-shared"] },
+    { "name": "VmInstanceName", "type": "string", "values": ["vm-web-01", "vm-web-02", "vm-api-01", "vm-db-01", "vm-bastion-01", ""] },
+    { "name": "VmInstanceZone", "type": "string", "values": ["us-central1-a", "us-central1-b", "us-east1-b", "europe-west1-b", ""] },
+    { "name": "LatencyMs", "type": "real", "values": [0.5, 1.2, 2.8, 5.5, 10.3, 25.0, 50.0] },
+    { "name": "EgressError", "type": "string", "values": ["", "TIMEOUT", "NETWORK_ERROR", "SERVFAIL"] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

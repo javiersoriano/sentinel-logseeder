@@ -1,0 +1,7 @@
+{
+  "tenantId": "<your-entra-tenant-id>",
+  "subscriptionId": "<your-azure-subscription-id>",
+  "resourceGroup": "<your-resource-group-name>",
+  "workspaceName": "<your-log-analytics-workspace-name>",
+  "workspaceId": "<your-log-analytics-workspace-id>"
+}

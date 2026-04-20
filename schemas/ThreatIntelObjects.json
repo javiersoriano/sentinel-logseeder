@@ -1,0 +1,44 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ObjectId", "type": "string" },
+    { "name": "ObjectType", "type": "string", "values": ["indicator", "attack-pattern", "threat-actor", "malware", "tool", "campaign", "intrusion-set", "vulnerability", "identity", "relationship"] },
+    { "name": "ObjectVersion", "type": "string", "values": ["1", "2", "3"] },
+    { "name": "StixObjectId", "type": "string" },
+    { "name": "Name", "type": "string", "values": ["Cobalt Strike Beacon", "APT28", "Emotet", "Mimikatz", "Ryuk Ransomware", "Phishing Campaign Q1 2024", "FIN7 Intrusion Set", "CVE-2024-1234", "Contoso Corp"] },
+    { "name": "Description", "type": "string", "values": ["Commercial penetration testing tool frequently abused by threat actors", "Russian state-sponsored threat actor group", "Modular banking trojan turned botnet", "Credential dumping tool", "Ransomware variant targeting enterprise organizations", "Phishing campaign targeting financial sector employees", "Financially motivated threat group", "Remote code execution vulnerability", "Target organization identity"] },
+    { "name": "ConfidenceLevel", "type": "int", "values": [25, 50, 75, 85, 90, 95, 100] },
+    { "name": "Created", "type": "datetime" },
+    { "name": "Modified", "type": "datetime" },
+    { "name": "Labels", "type": "dynamic", "values": [["malware"], ["threat-actor", "nation-state"], ["tool", "credential-access"], ["campaign", "phishing"], ["vulnerability", "critical"]] },
+    { "name": "KillChainPhases", "type": "dynamic", "values": [
+      [{"KillChainName": "lockheed-martin-cyber-kill-chain", "PhaseName": "command-and-control"}],
+      [{"KillChainName": "lockheed-martin-cyber-kill-chain", "PhaseName": "delivery"}],
+      [{"KillChainName": "mitre-attack", "PhaseName": "credential-access"}],
+      []
+    ]},
+    { "name": "ExternalReferences", "type": "dynamic", "values": [
+      [{"SourceName": "MITRE ATT&CK", "ExternalId": "S0154", "Url": "https://attack.mitre.org/software/S0154/"}],
+      [{"SourceName": "MITRE ATT&CK", "ExternalId": "G0007", "Url": "https://attack.mitre.org/groups/G0007/"}],
+      []
+    ]},
+    { "name": "ThreatTypes", "type": "dynamic", "values": [["malware"], ["phishing"], ["ransomware"], ["exploit"], []] },
+    { "name": "IndicatorTypes", "type": "dynamic", "values": [["ipv4-addr"], ["domain-name"], ["url"], ["file"], ["email-addr"], []] },
+    { "name": "Pattern", "type": "string", "values": ["[ipv4-addr:value = '203.0.113.42']", "[domain-name:value = 'malware-c2.example.com']", "[file:hashes.SHA-256 = 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855']", "[url:value = 'http://malware-c2.example.com/beacon']", ""] },
+    { "name": "PatternType", "type": "string", "values": ["stix", "yara", "sigma", ""] },
+    { "name": "ValidFrom", "type": "datetime" },
+    { "name": "ValidUntil", "type": "datetime" },
+    { "name": "Source", "type": "string", "values": ["Microsoft Threat Intelligence", "Open Source Intelligence", "Anomali", "Recorded Future", "Custom"] },
+    { "name": "IsRevoked", "type": "boolean" },
+    { "name": "RelationshipType", "type": "string", "values": ["", "indicates", "uses", "attributed-to", "targets", "related-to", "mitigates", "variant-of"] },
+    { "name": "SourceRef", "type": "string" },
+    { "name": "TargetRef", "type": "string" },
+    { "name": "AdditionalFields", "type": "dynamic", "values": [
+      {"Aliases": ["Fancy Bear", "Sofacy", "Sednit"], "Country": "Russia"},
+      {"MalwareTypes": ["backdoor", "trojan"], "Capabilities": ["keylogging", "screen-capture"]},
+      {"CVSSv3Score": 9.8, "AffectedProducts": ["Apache Log4j"]},
+      {}
+    ]},
+    { "name": "SourceSystem", "type": "string", "values": ["SecurityGraph", "Azure Sentinel"] }
+  ]
+}

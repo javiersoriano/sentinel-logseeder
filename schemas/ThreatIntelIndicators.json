@@ -1,0 +1,39 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "IndicatorId", "type": "string" },
+    { "name": "IndicatorType", "type": "string", "values": ["ipv4-addr", "domain-name", "url", "file:hashes.SHA-256", "file:hashes.MD5", "email-addr", "ipv6-addr"] },
+    { "name": "IndicatorValues", "type": "dynamic", "values": [
+      ["203.0.113.42"],
+      ["malware-c2.example.com"],
+      ["http://malware-c2.example.com/beacon"],
+      ["e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"],
+      ["phisher@evil-domain.example.org"]
+    ]},
+    { "name": "Source", "type": "string", "values": ["Microsoft Threat Intelligence", "Open Source Intelligence", "Anomali ThreatStream", "Recorded Future", "AlienVault OTX", "VirusTotal", "Custom"] },
+    { "name": "SourceConfidence", "type": "int", "values": [25, 50, 75, 85, 90, 95, 100] },
+    { "name": "IsActive", "type": "boolean" },
+    { "name": "Description", "type": "string", "values": ["Known malicious IP associated with ransomware C2", "Phishing domain targeting financial sector", "Exploit kit hosting URL", "File hash associated with Cobalt Strike beacon", "Email address used in BEC campaigns"] },
+    { "name": "Action", "type": "string", "values": ["alert", "allow", "block"] },
+    { "name": "ThreatTypes", "type": "dynamic", "values": [["malware"], ["phishing"], ["botnet", "C2"], ["ransomware"], ["exploit"]] },
+    { "name": "Tags", "type": "dynamic", "values": [["APT28", "C2"], ["phishing", "BEC"], ["ransomware", "Ryuk"], ["exploit", "CVE-2024-1234"], []] },
+    { "name": "TrafficLightProtocol", "type": "string", "values": ["white", "green", "amber", "red"] },
+    { "name": "KillChainPhases", "type": "dynamic", "values": [["delivery"], ["command-and-control"], ["actions-on-objectives"], ["reconnaissance", "weaponization"], []] },
+    { "name": "ExpirationDateTime", "type": "datetime" },
+    { "name": "Created", "type": "datetime" },
+    { "name": "LastUpdatedDateTime", "type": "datetime" },
+    { "name": "ExternalReferences", "type": "dynamic", "values": [
+      [{"SourceName": "MITRE ATT&CK", "ExternalId": "T1566.001", "Url": "https://attack.mitre.org/techniques/T1566/001/"}],
+      [{"SourceName": "CVE", "ExternalId": "CVE-2024-1234", "Url": "https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2024-1234"}],
+      []
+    ]},
+    { "name": "GranularMarkings", "type": "dynamic", "values": [[], [{"Language": "en", "MarkingRef": "marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da"}]] },
+    { "name": "ConfidenceScore", "type": "int", "values": [25, 50, 75, 85, 90, 95, 100] },
+    { "name": "AdditionalFields", "type": "dynamic", "values": [
+      {"FirstSeen": "2024-01-01T00:00:00Z", "LastSeen": "2024-01-15T12:00:00Z", "Severity": "High"},
+      {"FirstSeen": "2024-01-10T00:00:00Z", "LastSeen": "2024-01-15T18:00:00Z", "Severity": "Medium"},
+      {}
+    ]},
+    { "name": "SourceSystem", "type": "string", "values": ["SecurityGraph", "Azure Sentinel", "ThreatIntelligence"] }
+  ]
+}

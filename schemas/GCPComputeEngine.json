@@ -1,0 +1,25 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456", "contoso-staging-789"] },
+    { "name": "InstanceName", "type": "string", "values": ["vm-web-01", "vm-web-02", "vm-api-01", "vm-db-01", "vm-bastion-01", "vm-dev-01", "vm-jump-01"] },
+    { "name": "InstanceId", "type": "string", "values": ["1234567890123456789", "9876543210987654321", "5678901234567890123", "3456789012345678901"] },
+    { "name": "Zone", "type": "string", "values": ["us-central1-a", "us-central1-b", "us-east1-b", "europe-west1-b", "asia-east1-a"] },
+    { "name": "MachineType", "type": "string", "values": ["e2-medium", "e2-standard-4", "n2-standard-8", "n2-highmem-16", "c2-standard-4", "e2-micro"] },
+    { "name": "OperationType", "type": "string", "values": ["insert", "delete", "start", "stop", "reset", "setMetadata", "setTags", "setLabels", "attachDisk", "detachDisk", "setMachineType", "addAccessConfig", "deleteAccessConfig", "setDiskAutoDelete", "suspendInstances", "resumeInstances"] },
+    { "name": "OperationStatus", "type": "string", "values": ["DONE", "RUNNING", "PENDING"] },
+    { "name": "PrincipalEmail", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "sa-compute@contoso-prod-123.iam.gserviceaccount.com", "sa-deploy@contoso-prod-123.iam.gserviceaccount.com"] },
+    { "name": "CallerIp", "type": "string", "values": ["203.0.113.42", "10.0.1.50", "35.192.0.1", "34.68.100.22"] },
+    { "name": "NetworkInterface", "type": "string", "values": ["nic0", "nic1"] },
+    { "name": "InternalIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.11", "10.128.0.2", "10.128.0.3"] },
+    { "name": "ExternalIp", "type": "string", "values": ["", "35.192.0.1", "34.68.100.22", "35.202.45.67"] },
+    { "name": "DiskName", "type": "string", "values": ["vm-web-01-boot", "vm-web-01-data", "vm-db-01-boot", "vm-db-01-data", ""] },
+    { "name": "DiskSizeGb", "type": "int", "values": [10, 20, 50, 100, 200, 500, 1000] },
+    { "name": "DiskType", "type": "string", "values": ["pd-standard", "pd-ssd", "pd-balanced", "local-ssd", ""] },
+    { "name": "ImageName", "type": "string", "values": ["debian-11-bullseye-v20240110", "ubuntu-2204-jammy-v20240112", "centos-stream-9-v20240110", "windows-server-2022-dc-v20240110", ""] },
+    { "name": "Preemptible", "type": "boolean", "values": [true, false] },
+    { "name": "CpuUtilization", "type": "real", "values": [0.02, 0.10, 0.25, 0.45, 0.65, 0.80, 0.95] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "NOTICE", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

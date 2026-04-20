@@ -1,0 +1,78 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AccountId", "type": "string", "values": ["123456789012", "987654321098"] },
+    { "name": "Region", "type": "string", "values": ["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1"] },
+    { "name": "ClusterName", "type": "string", "values": ["contoso-eks-prod", "contoso-eks-staging", "fabrikam-eks-cluster"] },
+    { "name": "ObjectRef", "type": "dynamic", "values": [
+      {"resource": "pods", "namespace": "default", "name": "web-app-7d6f8b9c5d-x2k4m", "apiVersion": "v1"},
+      {"resource": "secrets", "namespace": "kube-system", "name": "aws-auth", "apiVersion": "v1"},
+      {"resource": "deployments", "namespace": "production", "name": "api-server", "apiGroup": "apps", "apiVersion": "v1"},
+      {"resource": "configmaps", "namespace": "default", "name": "app-config", "apiVersion": "v1"},
+      {"resource": "serviceaccounts", "namespace": "default", "name": "admin-sa", "apiVersion": "v1"},
+      {"resource": "clusterroles", "name": "cluster-admin", "apiGroup": "rbac.authorization.k8s.io", "apiVersion": "v1"},
+      {"resource": "nodes", "name": "ip-10-0-1-50.ec2.internal", "apiVersion": "v1"}
+    ] },
+    { "name": "RequestUri", "type": "string", "values": [
+      "/api/v1/namespaces/default/pods",
+      "/api/v1/namespaces/kube-system/secrets/aws-auth",
+      "/apis/apps/v1/namespaces/production/deployments/api-server",
+      "/api/v1/namespaces/default/configmaps/app-config",
+      "/api/v1/namespaces/default/serviceaccounts",
+      "/apis/rbac.authorization.k8s.io/v1/clusterrolebindings",
+      "/api/v1/nodes"
+    ] },
+    { "name": "Verb", "type": "string", "values": ["get", "list", "create", "update", "patch", "delete", "watch"] },
+    { "name": "User", "type": "dynamic", "values": [
+      {"username": "kubernetes-admin", "uid": "heptio-authenticator-aws:123456789012:AROA3XFRBF23F5N2LBCPZ", "groups": ["system:masters", "system:authenticated"]},
+      {"username": "system:serviceaccount:kube-system:aws-node", "uid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890", "groups": ["system:serviceaccounts", "system:authenticated"]},
+      {"username": "jsmith", "uid": "heptio-authenticator-aws:123456789012:AIDAJQABLZS4A3QDU576Q", "groups": ["developers", "system:authenticated"]},
+      {"username": "admin", "uid": "heptio-authenticator-aws:123456789012:AIDAADMIN123456789012", "groups": ["system:masters", "system:authenticated"]},
+      {"username": "system:anonymous", "groups": ["system:unauthenticated"]}
+    ] },
+    { "name": "SourceIps", "type": "dynamic", "values": [
+      ["10.0.1.50"],
+      ["10.0.1.51"],
+      ["10.0.2.10"],
+      ["203.0.113.42"],
+      ["198.51.100.17"],
+      ["172.16.0.100"]
+    ] },
+    { "name": "UserAgent", "type": "string", "values": [
+      "kubectl/v1.28.0 (linux/amd64) kubernetes/855e7c4",
+      "kube-apiserver-healthcheck/v1.28.0",
+      "kubelet/v1.28.0 (linux/amd64) kubernetes/855e7c4",
+      "Go-http-client/2.0",
+      "python-kubernetes/28.1.0",
+      "arn:aws:iam::123456789012:user/jsmith"
+    ] },
+    { "name": "ResponseStatus", "type": "dynamic", "values": [
+      {"metadata": {}, "status": "Success", "code": 200},
+      {"metadata": {}, "status": "Success", "code": 201},
+      {"metadata": {}, "status": "Failure", "message": "forbidden: User \"jsmith\" cannot create resource \"secrets\" in API group \"\" in the namespace \"kube-system\"", "reason": "Forbidden", "code": 403},
+      {"metadata": {}, "status": "Failure", "message": "pods \"web-app-7d6f8b9c5d-x2k4m\" not found", "reason": "NotFound", "code": 404},
+      {"metadata": {}, "status": "Failure", "message": "unauthorized", "reason": "Unauthorized", "code": 401}
+    ] },
+    { "name": "Annotations", "type": "dynamic", "values": [
+      {"authorization.k8s.io/decision": "allow", "authorization.k8s.io/reason": ""},
+      {"authorization.k8s.io/decision": "forbid", "authorization.k8s.io/reason": "no RBAC policy matched"},
+      {"authorization.k8s.io/decision": "allow", "authorization.k8s.io/reason": "RBAC: allowed by ClusterRoleBinding \"system:masters\" of ClusterRole \"cluster-admin\" to Group \"system:masters\""}
+    ] },
+    { "name": "RequestObject", "type": "dynamic", "values": [
+      {"kind": "Pod", "apiVersion": "v1", "metadata": {"name": "web-app", "namespace": "default", "labels": {"app": "web-app"}}},
+      {"kind": "Deployment", "apiVersion": "apps/v1", "metadata": {"name": "api-server", "namespace": "production"}},
+      {"kind": "ClusterRoleBinding", "apiVersion": "rbac.authorization.k8s.io/v1", "metadata": {"name": "admin-binding"}, "roleRef": {"kind": "ClusterRole", "name": "cluster-admin"}, "subjects": [{"kind": "User", "name": "jsmith"}]},
+      null
+    ] },
+    { "name": "ResponseObject", "type": "dynamic", "values": [
+      {"kind": "Pod", "apiVersion": "v1", "metadata": {"name": "web-app-7d6f8b9c5d-x2k4m", "namespace": "default", "uid": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"}},
+      {"kind": "Status", "apiVersion": "v1", "status": "Success"},
+      null
+    ] },
+    { "name": "Stage", "type": "string", "values": ["ResponseComplete", "ResponseStarted", "RequestReceived", "Panic"] },
+    { "name": "StageTimestamp", "type": "datetime" },
+    { "name": "Level", "type": "string", "values": ["Metadata", "Request", "RequestResponse", "None"] },
+    { "name": "AuditId", "type": "string" },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

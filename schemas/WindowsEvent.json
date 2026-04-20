@@ -1,0 +1,26 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "Computer", "type": "string" },
+    { "name": "TimeCreated", "type": "datetime" },
+    { "name": "EventID", "type": "int", "values": [4688, 4663, 4657, 4656, 4658, 4624, 4625, 4634, 4672, 4720, 4732, 4728, 4648, 4768, 4769, 4776, 1102, 4698, 4697, 5156, 5140, 4771, 4104] },
+    { "name": "Channel", "type": "string", "values": ["Security", "Security", "Microsoft-Windows-PowerShell/Operational", "Microsoft-Windows-Sysmon/Operational", "System"] },
+    { "name": "Provider", "type": "string", "values": ["Microsoft-Windows-Security-Auditing", "Microsoft-Windows-PowerShell", "Microsoft-Windows-Sysmon", "Microsoft-Windows-EventLog", "Service Control Manager"] },
+    { "name": "Level", "type": "string", "values": ["LogAlways", "Information", "Warning", "Error", "Critical", "Verbose"] },
+    { "name": "Task", "type": "int", "values": [0, 12544, 13312, 13313, 13568, 13824, 14336, 14337] },
+    { "name": "Opcode", "type": "string", "values": ["Info", ""] },
+    { "name": "Keywords", "type": "string", "values": ["Audit Success", "Audit Failure", ""] },
+    { "name": "EventData", "type": "dynamic", "values": [
+      {"SubjectUserName": "jsmith", "SubjectDomainName": "CONTOSO", "SubjectLogonId": "0x3E7", "TargetUserName": "agarcia", "TargetDomainName": "CONTOSO", "LogonType": "3", "IpAddress": "10.0.1.50", "IpPort": "52431", "Status": "0x0"},
+      {"SubjectUserName": "admin", "SubjectDomainName": "CONTOSO", "SubjectLogonId": "0x3E7", "NewProcessName": "C:\\Windows\\System32\\cmd.exe", "CommandLine": "cmd.exe /c whoami", "ParentProcessName": "C:\\Windows\\explorer.exe", "NewProcessId": "0x1234"},
+      {"SubjectUserName": "SYSTEM", "SubjectDomainName": "NT AUTHORITY", "ObjectName": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", "ObjectType": "Key", "AccessMask": "0x2"},
+      {"SubjectUserName": "mwilson", "SubjectDomainName": "CONTOSO", "TargetUserName": "mwilson", "TargetDomainName": "CONTOSO", "LogonType": "10", "IpAddress": "10.0.2.20", "Status": "0xC000006A"},
+      {"ScriptBlockText": "Get-Process | Where-Object { $_.CPU -gt 100 }", "ScriptBlockId": "a1b2c3d4-e5f6-7890-abcd-ef1234567890"},
+      {"SubjectUserName": "jsmith", "SubjectDomainName": "CONTOSO", "MemberName": "CN=agarcia,CN=Users,DC=contoso,DC=local", "TargetUserName": "Domain Admins"}
+    ]},
+    { "name": "EventOriginId", "type": "string" },
+    { "name": "ManagementGroupName", "type": "string" },
+    { "name": "SourceSystem", "type": "string", "values": ["OpsManager"] },
+    { "name": "RawEventData", "type": "string" }
+  ]
+}

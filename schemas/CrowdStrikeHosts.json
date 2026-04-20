@@ -1,0 +1,52 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "DeviceId", "type": "string" },
+    { "name": "ComputerName", "type": "string", "values": ["WS-PC01", "SRV-DC01", "SRV-WEB01", "LNX-APP01"] },
+    { "name": "HostName", "type": "string", "values": ["WS-PC01", "SRV-DC01", "SRV-WEB01", "LNX-APP01"] },
+    { "name": "DomainName", "type": "string", "values": ["contoso.com", "fabrikam.net", ""] },
+    { "name": "SiteName", "type": "string", "values": ["Default-First-Site-Name", "US-East-Site", "EU-West-Site", ""] },
+    { "name": "OSVersion", "type": "string", "values": [
+      "Windows 10 22H2 (Build 19045)",
+      "Windows 11 23H2 (Build 22631)",
+      "Windows Server 2019 (Build 17763)",
+      "Windows Server 2022 (Build 20348)",
+      "RHEL 8.8",
+      "Ubuntu 22.04 LTS"
+    ] },
+    { "name": "OSPlatform", "type": "string", "values": ["Windows", "Windows", "Windows", "Linux", "Mac"] },
+    { "name": "AgentVersion", "type": "string", "values": ["7.10.16303.0", "7.09.16205.0", "7.08.16103.0", "7.11.16404.0"] },
+    { "name": "AgentLocalTime", "type": "datetime" },
+    { "name": "LastSeenTime", "type": "datetime" },
+    { "name": "FirstSeenTime", "type": "datetime" },
+    { "name": "Status", "type": "string", "values": ["normal", "normal", "normal", "containment_pending", "contained", "lift_containment_pending", "reduced_functionality"] },
+    { "name": "ContainmentStatus", "type": "string", "values": ["not_contained", "not_contained", "not_contained", "contained", "containment_pending", "lift_containment_pending"] },
+    { "name": "LocalIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10"] },
+    { "name": "ExternalIP", "type": "string", "values": ["203.0.113.42", "198.51.100.17"] },
+    { "name": "MacAddress", "type": "string", "values": ["00-15-5D-4C-3B-2A", "00-15-5D-7E-6D-5C", "00-15-5D-9A-8B-7F", "00-15-5D-1D-0E-FF"] },
+    { "name": "Manufacturer", "type": "string", "values": ["Dell Inc.", "HP", "Lenovo", "Microsoft Corporation", "VMware, Inc."] },
+    { "name": "ProductType", "type": "string", "values": ["1", "2", "3"] },
+    { "name": "ProductTypeDesc", "type": "string", "values": ["Workstation", "Domain Controller", "Server"] },
+    { "name": "SystemSerialNumber", "type": "string" },
+    { "name": "BIOSVersion", "type": "string", "values": ["1.15.0", "2.8.0", "A22", "P89"] },
+    { "name": "PreventionPolicyId", "type": "string" },
+    { "name": "PreventionPolicyName", "type": "string", "values": ["Production-Prevention", "Development-Prevention", "Server-Prevention", "Linux-Prevention"] },
+    { "name": "SensorUpdatePolicyId", "type": "string" },
+    { "name": "SensorUpdatePolicyName", "type": "string", "values": ["Production-AutoUpdate", "Staged-Update", "Manual-Update", "N-1-Update"] },
+    { "name": "Groups", "type": "dynamic", "values": [
+      ["Production", "Workstations", "US-East"],
+      ["Production", "Domain Controllers", "US-East"],
+      ["Production", "Web Servers", "DMZ"],
+      ["Production", "Linux Servers", "US-West"]
+    ] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      ["SensorGroupingTags/Production", "FalconGroupingTags/Critical"],
+      ["SensorGroupingTags/DC", "FalconGroupingTags/HighValue"],
+      ["SensorGroupingTags/DMZ", "FalconGroupingTags/WebTier"],
+      ["SensorGroupingTags/Linux", "FalconGroupingTags/AppTier"]
+    ] },
+    { "name": "ReducedFunctionalityMode", "type": "string", "values": ["no", "no", "no", "yes"] },
+    { "name": "KernelVersion", "type": "string", "values": ["10.0.19045", "10.0.22631", "5.14.0-362.el8.x86_64", "5.15.0-91-generic", ""] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

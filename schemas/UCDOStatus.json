@@ -1,0 +1,17 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AzureADDeviceId", "type": "string", "values": ["d1a2b3c4-0001-4000-8000-000000000001", "d1a2b3c4-0002-4000-8000-000000000002", "d1a2b3c4-0003-4000-8000-000000000003", "d1a2b3c4-0004-4000-8000-000000000004", "d1a2b3c4-0008-4000-8000-000000000008"] },
+    { "name": "DeviceName", "type": "string", "values": ["WS-PC01", "WS-PC02", "SRV-DC01", "SRV-WEB01", "WS-LAPTOP03"] },
+    { "name": "ContentType", "type": "string", "values": ["Update", "Apps", "Dynamic"] },
+    { "name": "BytesFromHTTP", "type": "long", "values": [20971520, 41943040, 5242880, 83886080, 10485760] },
+    { "name": "BytesFromPeers", "type": "long", "values": [8388608, 16777216, 2097152, 33554432, 4194304] },
+    { "name": "BytesFromGroupPeers", "type": "long", "values": [6291456, 12582912, 1572864, 25165824, 3145728] },
+    { "name": "BytesFromInternetPeers", "type": "long", "values": [2097152, 4194304, 524288, 8388608, 1048576] },
+    { "name": "BytesFromCache", "type": "long", "values": [4194304, 8388608, 0, 16777216, 2097152] },
+    { "name": "DownloadMode", "type": "int", "values": [0, 1, 2, 3, 99] },
+    { "name": "NATType", "type": "string", "values": ["Symmetric", "PortRestricted", "FullCone", "Restricted", "Unknown"] },
+    { "name": "ContentDownloadMode", "type": "string", "values": ["HTTP", "LAN", "Group", "Internet", "Simple"] },
+    { "name": "PeerCachePct", "type": "real", "values": [28.5, 32.1, 15.0, 48.7, 22.3] }
+  ]
+}

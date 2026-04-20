@@ -1,0 +1,87 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "IncidentId", "type": "string" },
+    { "name": "IncidentName", "type": "string", "values": [
+      "Ransomware attack on production workstation",
+      "Credential theft and lateral movement",
+      "Phishing-initiated malware infection",
+      "Insider threat - data exfiltration",
+      "Brute force attack on RDP",
+      "Supply chain compromise via trojanized update",
+      "Fileless malware execution chain",
+      "Cryptomining activity detected"
+    ] },
+    { "name": "Description", "type": "string", "values": [
+      "Multiple ransomware detections triggered across production endpoints with file encryption activity.",
+      "Credential theft via LSASS dumping followed by lateral movement to domain controller.",
+      "Phishing email delivered macro-enabled document leading to payload execution.",
+      "Insider user accessed and staged sensitive data for external transfer.",
+      "Sustained brute force attack against RDP services from external IP addresses.",
+      "Compromised software update package delivered backdoored DLL to endpoints.",
+      "Fileless attack using PowerShell and WMI for execution and persistence.",
+      "Unauthorized cryptomining software detected running on server infrastructure."
+    ] },
+    { "name": "Status", "type": "string", "values": ["New", "In Progress", "Closed", "Reopened"] },
+    { "name": "State", "type": "string", "values": ["open", "open", "closed", "reopened"] },
+    { "name": "Priority", "type": "int", "values": [1, 2, 3, 4, 5] },
+    { "name": "Severity", "type": "string", "values": ["Critical", "High", "Medium", "Low"] },
+    { "name": "AssignedTo", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "lchen@contoso.com", ""] },
+    { "name": "CreatedTime", "type": "datetime" },
+    { "name": "LastUpdatedTime", "type": "datetime" },
+    { "name": "StartTime", "type": "datetime" },
+    { "name": "EndTime", "type": "datetime" },
+    { "name": "Tactics", "type": "dynamic", "values": [
+      ["Impact", "Execution", "Defense Evasion"],
+      ["Credential Access", "Lateral Movement", "Privilege Escalation"],
+      ["Initial Access", "Execution", "Persistence"],
+      ["Collection", "Exfiltration"],
+      ["Initial Access", "Credential Access"],
+      ["Initial Access", "Execution", "Persistence", "Defense Evasion"],
+      ["Execution", "Persistence", "Defense Evasion"],
+      ["Execution", "Impact"]
+    ] },
+    { "name": "Techniques", "type": "dynamic", "values": [
+      ["T1486", "T1059.001", "T1562"],
+      ["T1003", "T1021.002", "T1068"],
+      ["T1566.001", "T1204.002", "T1053.005"],
+      ["T1560", "T1041"],
+      ["T1110", "T1078"],
+      ["T1195.002", "T1059.001", "T1547.001", "T1036"],
+      ["T1059.001", "T1546.003", "T1027"],
+      ["T1059", "T1496"]
+    ] },
+    { "name": "Objectives", "type": "dynamic", "values": [
+      ["Encrypt files for ransom", "Disable security controls"],
+      ["Steal credentials", "Gain domain admin access"],
+      ["Establish initial foothold", "Deploy persistence mechanism"],
+      ["Collect sensitive files", "Exfiltrate via external channel"],
+      ["Gain unauthorized access via credential brute force"]
+    ] },
+    { "name": "DetectionIds", "type": "dynamic", "values": [
+      ["det:abc123:1001", "det:abc123:1002", "det:abc123:1003"],
+      ["det:def456:2001", "det:def456:2002"],
+      ["det:ghi789:3001"],
+      ["det:jkl012:4001", "det:jkl012:4002"]
+    ] },
+    { "name": "HostIds", "type": "dynamic", "values": [
+      ["host:abc123:WS-PC01"],
+      ["host:def456:SRV-DC01", "host:def456:WS-PC01"],
+      ["host:ghi789:WS-PC01"],
+      ["host:jkl012:SRV-WEB01", "host:jkl012:LNX-APP01"]
+    ] },
+    { "name": "UserNames", "type": "dynamic", "values": [
+      ["jsmith"],
+      ["admin", "jsmith"],
+      ["agarcia"],
+      ["mwilson", "lchen"]
+    ] },
+    { "name": "FineScore", "type": "int", "values": [100, 95, 85, 75, 60, 45, 30] },
+    { "name": "FalconHostLink", "type": "string", "values": [
+      "https://falcon.crowdstrike.com/incidents/detail/inc:abc123:1",
+      "https://falcon.crowdstrike.com/incidents/detail/inc:def456:2",
+      "https://falcon.crowdstrike.com/incidents/detail/inc:ghi789:3"
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

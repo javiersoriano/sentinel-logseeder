@@ -1,0 +1,50 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AnomalyTemplateName", "type": "string", "values": ["Anomalous Login to Devices", "Unusual Volume of Failed Sign-Ins", "Anomalous Account Creation", "Unusual Geolocation of Login", "Anomalous Process Execution", "Unusual Volume of Data Access", "Anomalous Password Reset", "Anomalous Privilege Escalation", "Unusual Cloud API Calls", "Anomalous Resource Deployment"] },
+    { "name": "AnomalyTemplateId", "type": "string" },
+    { "name": "AnomalyTemplateVersion", "type": "string", "values": ["1.0.0", "1.0.1", "1.1.0", "2.0.0"] },
+    { "name": "Id", "type": "string" },
+    { "name": "Description", "type": "string", "values": ["A user logged into a device they have not previously used, indicating potential lateral movement.", "An unusually high number of failed sign-in attempts were observed from a user account.", "A new account was created outside of normal business processes.", "A user signed in from a geographic location never previously seen.", "A process was executed that has never been seen on this endpoint.", "An unusual volume of data was accessed by a service account.", "A password was reset on a privileged account outside normal workflow.", "A user account was elevated to admin privileges unexpectedly.", "An unusual pattern of cloud API calls was detected.", "An unusual number of resources were deployed in a short time."] },
+    { "name": "Score", "type": "real" },
+    { "name": "StartTime", "type": "datetime" },
+    { "name": "EndTime", "type": "datetime" },
+    { "name": "Tactics", "type": "string", "values": ["LateralMovement", "InitialAccess", "Persistence", "Discovery", "CredentialAccess", "Collection", "PrivilegeEscalation", "Execution", "DefenseEvasion"] },
+    { "name": "Techniques", "type": "string", "values": ["T1078", "T1110", "T1136", "T1059", "T1083", "T1003", "T1548", "T1098", "T1543"] },
+    { "name": "Entities", "type": "dynamic", "values": [
+      [{"Type": "account", "Name": "jsmith", "UPNSuffix": "contoso.com", "AadUserId": "00000000-0000-0000-0000-000000000001"}],
+      [{"Type": "account", "Name": "agarcia", "UPNSuffix": "contoso.com"}, {"Type": "ip", "Address": "203.0.113.42"}],
+      [{"Type": "host", "HostName": "WS-PC01", "DnsDomain": "contoso.local"}, {"Type": "account", "Name": "admin", "UPNSuffix": "contoso.com"}],
+      [{"Type": "ip", "Address": "198.51.100.17"}, {"Type": "account", "Name": "mwilson", "UPNSuffix": "contoso.com"}, {"Type": "host", "HostName": "SRV-DC01"}]
+    ]},
+    { "name": "ExtendedProperties", "type": "dynamic", "values": [
+      {"AnomalyReasons": "[{\"PropertyName\": \"FailedLoginCount\", \"ChangePercentage\": 450, \"AnomalyTimeline\": \"2024-01-15\"}]", "State": "Active"},
+      {"AnomalyReasons": "[{\"PropertyName\": \"GeoLocation\", \"ChangePercentage\": 100, \"AnomalyTimeline\": \"2024-01-15\"}]", "State": "Active"},
+      {"AnomalyReasons": "[{\"PropertyName\": \"ProcessCount\", \"ChangePercentage\": 200}]", "State": "Testing"},
+      {}
+    ]},
+    { "name": "ExtendedLinks", "type": "dynamic", "values": [
+      [{"Href": "https://portal.azure.com/#blade/Microsoft_Azure_Security_Insights/AlertBlade", "Label": "View in Sentinel", "Type": "url"}],
+      []
+    ]},
+    { "name": "RuleId", "type": "string" },
+    { "name": "RuleName", "type": "string", "values": ["", "Built-in Anomaly Rule", "ML-Based Detection", "Custom Anomaly Rule"] },
+    { "name": "RuleStatus", "type": "string", "values": ["Production", "Flighting", "Testing"] },
+    { "name": "UserPrincipalName", "type": "string" },
+    { "name": "UserName", "type": "string" },
+    { "name": "WorkspaceId", "type": "string" },
+    { "name": "AnomalyDetails", "type": "dynamic", "values": [
+      {"Score": 0.85, "Threshold": 0.5, "Reason": "Unusual pattern detected", "DetectionMethod": "ML"},
+      {"Score": 0.92, "Threshold": 0.5, "Reason": "Statistical outlier", "DetectionMethod": "Statistical"},
+      {"Score": 0.65, "Threshold": 0.5, "Reason": "Behavioral deviation", "DetectionMethod": "Behavioral"},
+      {}
+    ]},
+    { "name": "SourceSystem", "type": "string", "values": ["Detection"] },
+    { "name": "VendorName", "type": "string", "values": ["Microsoft"] },
+    { "name": "AnomalyReasons", "type": "dynamic", "values": [
+      {"PropertyName": "LoginCount", "ChangePercentage": 350, "CurrentValue": 45, "HistoricalAverage": 10},
+      {"PropertyName": "SourceIP", "ChangePercentage": 100, "CurrentValue": "203.0.113.42", "HistoricalAverage": "10.0.1.50"},
+      {}
+    ]}
+  ]
+}

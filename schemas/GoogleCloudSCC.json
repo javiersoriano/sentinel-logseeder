@@ -1,0 +1,82 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456", "contoso-staging-789"] },
+    { "name": "OrganizationId", "type": "string", "values": ["123456789", "987654321"] },
+    { "name": "FindingId", "type": "string" },
+    { "name": "FindingName", "type": "string", "values": [
+      "organizations/123456789/sources/12345/findings/abc-001",
+      "organizations/123456789/sources/12345/findings/abc-002",
+      "organizations/123456789/sources/12345/findings/abc-003"
+    ] },
+    { "name": "Category", "type": "string", "values": [
+      "PUBLIC_BUCKET_ACL",
+      "OPEN_FIREWALL",
+      "MFA_NOT_ENFORCED",
+      "ADMIN_SERVICE_ACCOUNT",
+      "OVER_PRIVILEGED_ACCOUNT",
+      "SQL_PUBLIC_IP",
+      "SSH_PORT_OPEN",
+      "RDP_PORT_OPEN",
+      "DEFAULT_SERVICE_ACCOUNT_USED",
+      "FLOW_LOGS_DISABLED",
+      "AUDIT_LOGGING_DISABLED",
+      "WEB_UI_ENABLED",
+      "LEGACY_AUTHORIZATION_ENABLED",
+      "MALWARE",
+      "CRYPTOMINING",
+      "BRUTE_FORCE",
+      "DATA_EXFILTRATION",
+      "PERSISTENCE"
+    ] },
+    { "name": "FindingClass", "type": "string", "values": ["VULNERABILITY", "MISCONFIGURATION", "THREAT", "OBSERVATION", "SCC_ERROR", "TOXIC_COMBINATION"] },
+    { "name": "Severity", "type": "string", "values": ["CRITICAL", "HIGH", "MEDIUM", "LOW"] },
+    { "name": "State", "type": "string", "values": ["ACTIVE", "INACTIVE", "MUTED"] },
+    { "name": "Mute", "type": "string", "values": ["UNMUTED", "MUTED", "UNDEFINED"] },
+    { "name": "SourceName", "type": "string", "values": ["Security Health Analytics", "Event Threat Detection", "Container Threat Detection", "Web Security Scanner", "Virtual Machine Threat Detection"] },
+    { "name": "SourceId", "type": "string", "values": ["12345", "67890", "11111", "22222", "33333"] },
+    { "name": "ResourceName", "type": "string", "values": [
+      "//storage.googleapis.com/contoso-data-lake",
+      "//compute.googleapis.com/projects/contoso-prod-123/global/firewalls/allow-all-ingress",
+      "//compute.googleapis.com/projects/contoso-prod-123/zones/us-central1-a/instances/vm-web-01",
+      "//sqladmin.googleapis.com/projects/contoso-prod-123/instances/sql-prod-primary",
+      "//container.googleapis.com/projects/contoso-prod-123/zones/us-central1/clusters/gke-prod-01",
+      "//iam.googleapis.com/projects/contoso-prod-123/serviceAccounts/sa-compute@contoso-prod-123.iam.gserviceaccount.com",
+      "//cloudresourcemanager.googleapis.com/projects/contoso-prod-123"
+    ] },
+    { "name": "ResourceType", "type": "string", "values": ["google.cloud.storage.Bucket", "google.compute.Firewall", "google.compute.Instance", "google.cloud.sql.Instance", "google.container.Cluster", "google.iam.ServiceAccount", "google.cloud.resourcemanager.Project"] },
+    { "name": "ResourceParent", "type": "string", "values": ["//cloudresourcemanager.googleapis.com/projects/contoso-prod-123", "//cloudresourcemanager.googleapis.com/organizations/123456789"] },
+    { "name": "Description", "type": "string", "values": [
+      "Bucket contoso-data-lake has a public ACL granting allUsers access.",
+      "Firewall rule allow-all-ingress allows traffic from 0.0.0.0/0 to all ports.",
+      "MFA is not enforced for user jsmith@contoso.com.",
+      "Service account sa-compute has Owner role on project contoso-prod-123.",
+      "Cloud SQL instance sql-prod-primary has a public IP address.",
+      "SSH port 22 is open to 0.0.0.0/0 in firewall rule allow-ssh.",
+      "Cryptomining activity detected on instance vm-web-01.",
+      "Brute force SSH attack detected targeting instance vm-bastion-01.",
+      "Suspicious data exfiltration from storage bucket contoso-data-lake."
+    ] },
+    { "name": "Recommendation", "type": "string", "values": [
+      "Remove public access from the bucket ACL.",
+      "Restrict firewall rules to specific IP ranges and ports.",
+      "Enforce MFA for all user accounts.",
+      "Use least-privilege roles instead of Owner.",
+      "Remove public IP from Cloud SQL and use Private IP.",
+      "Restrict SSH access to specific IP ranges.",
+      "Investigate and terminate unauthorized processes.",
+      "Implement IP-based access controls and monitor for anomalies."
+    ] },
+    { "name": "Indicator", "type": "dynamic", "values": [
+      {"ipAddresses": ["203.0.113.42"], "domains": [], "uris": []},
+      {"ipAddresses": ["198.51.100.17", "100.21.55.130"], "domains": ["malicious-c2.example.net"], "uris": []},
+      {"ipAddresses": [], "domains": ["pool.minergate.com"], "uris": ["stratum+tcp://pool.minergate.com:3333"]},
+      {}
+    ] },
+    { "name": "MitreAttackTactic", "type": "string", "values": ["", "Initial Access", "Persistence", "Privilege Escalation", "Defense Evasion", "Credential Access", "Discovery", "Lateral Movement", "Collection", "Exfiltration", "Impact"] },
+    { "name": "MitreAttackTechnique", "type": "string", "values": ["", "T1190", "T1078", "T1098", "T1548", "T1562", "T1110", "T1087", "T1021", "T1119", "T1567", "T1496"] },
+    { "name": "EventTime", "type": "datetime" },
+    { "name": "CreateTime", "type": "datetime" },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "Timestamp", "type": "datetime" },
+    { "name": "EventTimestamp", "type": "string" },
+    { "name": "EventType", "type": "string", "values": ["netflow"] },
+    { "name": "FirewallName", "type": "string", "values": ["contoso-network-fw", "fabrikam-network-fw", "woodgrove-network-fw"] },
+    { "name": "AvailabilityZone", "type": "string", "values": ["us-east-1a", "us-east-1b", "us-west-2a", "us-west-2b", "eu-west-1a"] },
+    { "name": "SrcIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "10.0.1.50", "10.0.1.51", "10.0.2.10"] },
+    { "name": "SrcPort", "type": "string" },
+    { "name": "DestIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100", "203.0.113.42", "198.51.100.17"] },
+    { "name": "DestPort", "type": "string", "values": ["80", "443", "22", "3389", "53", "8080", "445"] },
+    { "name": "Proto", "type": "string", "values": ["TCP", "UDP", "ICMP"] },
+    { "name": "AppProto", "type": "string", "values": ["http", "tls", "dns", "ssh", "smtp", "ftp", "failed"] },
+    { "name": "FlowId", "type": "string" },
+    { "name": "NetFlowAge", "type": "string" },
+    { "name": "NetFlowBytes", "type": "string" },
+    { "name": "NetFlowPkts", "type": "string" },
+    { "name": "NetFlowStart", "type": "datetime" },
+    { "name": "NetFlowEnd", "type": "datetime" },
+    { "name": "NetFlowMaxttl", "type": "string", "values": ["64", "128", "255"] },
+    { "name": "NetFlowMinttl", "type": "string", "values": ["32", "64", "128"] },
+    { "name": "Syn", "type": "boolean", "values": [true, false] },
+    { "name": "Fin", "type": "boolean", "values": [true, false] },
+    { "name": "Rst", "type": "boolean", "values": [true, false] },
+    { "name": "Psh", "type": "boolean", "values": [true, false] },
+    { "name": "Ack", "type": "boolean", "values": [true, false] },
+    { "name": "Ecn", "type": "boolean", "values": [true, false] },
+    { "name": "TCPFlags", "type": "string", "values": ["1e", "12", "02", "10", "11", "18", "04"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

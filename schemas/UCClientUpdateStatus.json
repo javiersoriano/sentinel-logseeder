@@ -1,0 +1,14 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AzureADDeviceId", "type": "string", "values": ["d1a2b3c4-0001-4000-8000-000000000001", "d1a2b3c4-0002-4000-8000-000000000002", "d1a2b3c4-0003-4000-8000-000000000003", "d1a2b3c4-0004-4000-8000-000000000004", "d1a2b3c4-0008-4000-8000-000000000008"] },
+    { "name": "DeviceName", "type": "string", "values": ["WS-PC01", "WS-PC02", "SRV-DC01", "SRV-WEB01", "WS-LAPTOP03"] },
+    { "name": "UpdateId", "type": "string", "values": ["b0f89b2a-1c3d-4e5f-a6b7-c8d9e0f1a2b3", "c1a2b3c4-2d3e-5f6a-b7c8-d9e0f1a2b3c4", "d2b3c4d5-3e4f-6a7b-c8d9-e0f1a2b3c4d5", "e3c4d5e6-4f5a-7b8c-d9e0-f1a2b3c4d5e6", "f4d5e6f7-5a6b-8c9d-e0f1-a2b3c4d5e6f7"] },
+    { "name": "UpdateTitle", "type": "string", "values": ["2024-01 Cumulative Update for Windows 11 Version 23H2 (KB5034123)", "2024-01 Security Update for Windows 10 Version 22H2 (KB5034122)", "2024-01 .NET Framework 4.8.1 Security Update (KB5033920)", "Windows Malicious Software Removal Tool x64 - v5.120 (KB890830)", "2024-01 Cumulative Update Preview for Windows 11 (KB5034204)"] },
+    { "name": "UpdateCategory", "type": "string", "values": ["QualityUpdate", "QualityUpdate", "FeatureUpdate", "Driver", "Other"] },
+    { "name": "UpdateClassification", "type": "string", "values": ["Security", "Critical", "Definition", "UpdateRollup", "ServicePack", "FeaturePack", "Drivers"] },
+    { "name": "UpdateState", "type": "string", "values": ["Installed", "NotInstalled", "Installing", "DownloadFailed", "InstallFailed", "RebootRequired"] },
+    { "name": "UpdateInstalledTime", "type": "datetime" },
+    { "name": "IsSecurityUpdate", "type": "boolean", "values": [true, true, false, false, true] }
+  ]
+}

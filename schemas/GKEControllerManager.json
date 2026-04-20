@@ -1,0 +1,35 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "ClusterName", "type": "string", "values": ["gke-prod-01", "gke-prod-02", "gke-dev-01"] },
+    { "name": "ClusterLocation", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "Level", "type": "string", "values": ["I", "W", "E", "F"] },
+    { "name": "ControllerType", "type": "string", "values": ["deployment-controller", "replicaset-controller", "statefulset-controller", "daemonset-controller", "job-controller", "cronjob-controller", "endpoint-controller", "service-controller", "node-controller", "gc-controller", "pv-binder-controller", "pvc-protection-controller", "namespace-controller", "serviceaccount-controller", "ttl-after-finished-controller"] },
+    { "name": "Message", "type": "string", "values": [
+      "Starting deployment controller",
+      "Successfully synced deployment production/nginx-deployment",
+      "Scaling replica set nginx-deployment-7b8c9d from 3 to 5",
+      "Observed a new ReplicaSet nginx-deployment-abc12345",
+      "Deleted pod production/api-gateway-7b8c9d-abc12 successfully",
+      "Error syncing deployment production/auth-service: context deadline exceeded",
+      "Node gke-prod-01-pool-1-abc123 is NotReady",
+      "Marking node gke-prod-01-pool-1-def456 as unreachable",
+      "Evicting pod production/redis-master-0 from unreachable node",
+      "Starting garbage collection of terminated pods",
+      "PersistentVolumeClaim production/postgres-data-0 bound to PersistentVolume pv-gce-pd-abc123",
+      "Job production/data-migration-job completed successfully",
+      "CronJob monitoring/prometheus-scrape triggered job prometheus-scrape-28400000",
+      "DaemonSet kube-system/fluentbit-ds updated to revision 3",
+      "StatefulSet production/postgres scaled from 1 to 3 replicas"
+    ] },
+    { "name": "Namespace", "type": "string", "values": ["default", "production", "staging", "monitoring", "kube-system", ""] },
+    { "name": "ResourceName", "type": "string", "values": ["nginx-deployment", "api-gateway", "auth-service", "redis-master", "postgres-primary", "fluentbit-ds", "coredns", ""] },
+    { "name": "ResourceKind", "type": "string", "values": ["Deployment", "ReplicaSet", "StatefulSet", "DaemonSet", "Job", "CronJob", "Pod", "Node", "PersistentVolumeClaim", "Service", ""] },
+    { "name": "Reason", "type": "string", "values": ["ScalingReplicaSet", "SuccessfulCreate", "SuccessfulDelete", "SyncError", "FailedSync", "NodeNotReady", "Evicted", "Completed", "BackoffLimitExceeded", "DeadlineExceeded", ""] },
+    { "name": "ErrorDetails", "type": "string", "values": ["", "context deadline exceeded", "connection refused", "resource quota exceeded", "image pull backoff", "insufficient cpu", "insufficient memory"] },
+    { "name": "WorkQueueDepth", "type": "int", "values": [0, 1, 2, 5, 10, 25, 50, 100] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "WARNING", "ERROR", "CRITICAL"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

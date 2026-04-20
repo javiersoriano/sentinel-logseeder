@@ -1,0 +1,95 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "VulnerabilityId", "type": "string" },
+    { "name": "CVE", "type": "string", "values": [
+      "CVE-2024-21351",
+      "CVE-2024-21412",
+      "CVE-2023-44487",
+      "CVE-2023-36884",
+      "CVE-2023-23397",
+      "CVE-2023-28252",
+      "CVE-2024-3400",
+      "CVE-2024-1709",
+      "CVE-2023-4966",
+      "CVE-2024-21762",
+      "CVE-2023-46805",
+      "CVE-2024-0012"
+    ] },
+    { "name": "CVSSBaseScore", "type": "real", "values": [9.8, 9.1, 8.8, 8.1, 7.8, 7.5, 7.2, 6.5, 5.5, 4.3] },
+    { "name": "CVSSSeverity", "type": "string", "values": ["Critical", "High", "Medium", "Low"] },
+    { "name": "ExploitStatus", "type": "string", "values": ["Available", "Available", "Weaponized", "POC", "None", "None"] },
+    { "name": "ExploitedInWild", "type": "boolean", "values": [true, true, false, false, false] },
+    { "name": "ProductName", "type": "string", "values": [
+      "Microsoft Windows",
+      "Microsoft Office",
+      "Microsoft Exchange Server",
+      "Google Chrome",
+      "Mozilla Firefox",
+      "Apache HTTP Server",
+      "OpenSSL",
+      "Log4j",
+      "Palo Alto PAN-OS",
+      "Citrix ADC",
+      "Fortinet FortiOS",
+      "Ivanti Connect Secure"
+    ] },
+    { "name": "ProductVersion", "type": "string", "values": [
+      "10.0.19045",
+      "16.0.17328.20162",
+      "15.2.1258.12",
+      "120.0.6099.130",
+      "121.0",
+      "2.4.58",
+      "3.0.12",
+      "2.17.1",
+      "11.1.0",
+      "14.1-8.50",
+      "7.4.1"
+    ] },
+    { "name": "VulnerabilityDescription", "type": "string", "values": [
+      "Windows SmartScreen Security Feature Bypass Vulnerability",
+      "Internet Shortcut Files Security Feature Bypass Vulnerability",
+      "HTTP/2 Rapid Reset Attack (DDoS)",
+      "Office and Windows HTML Remote Code Execution",
+      "Microsoft Outlook Elevation of Privilege",
+      "Windows Common Log File System Driver Elevation of Privilege",
+      "PAN-OS GlobalProtect Gateway Command Injection",
+      "ConnectWise ScreenConnect Authentication Bypass",
+      "Citrix NetScaler ADC Buffer Overflow",
+      "FortiOS Out-of-Bound Write"
+    ] },
+    { "name": "DeviceId", "type": "string" },
+    { "name": "ComputerName", "type": "string", "values": ["WS-PC01", "SRV-DC01", "SRV-WEB01", "LNX-APP01"] },
+    { "name": "OSVersion", "type": "string", "values": ["Windows 10 22H2", "Windows 11 23H2", "Windows Server 2019", "Windows Server 2022", "RHEL 8.8", "Ubuntu 22.04"] },
+    { "name": "Status", "type": "string", "values": ["open", "open", "open", "patched", "suppressed", "in_review"] },
+    { "name": "Remediation", "type": "string", "values": [
+      "Apply latest Windows cumulative update KB5034763.",
+      "Update Microsoft Office to latest build via Microsoft Update.",
+      "Upgrade to patched version. Apply vendor-specific mitigations.",
+      "Update Chrome browser to latest stable version.",
+      "Apply Apache HTTP Server security patch.",
+      "Update OpenSSL to version 3.0.13 or later.",
+      "Apply Palo Alto PAN-OS hotfix.",
+      "Update Citrix ADC to version 14.1-12.35.",
+      "Upgrade FortiOS to version 7.4.2 or later."
+    ] },
+    { "name": "HostGroups", "type": "dynamic", "values": [
+      ["Production", "Workstations"],
+      ["Production", "Domain Controllers"],
+      ["DMZ", "Web Servers"],
+      ["Production", "Linux Servers"]
+    ] },
+    { "name": "DiscoveredTime", "type": "datetime" },
+    { "name": "PatchAvailable", "type": "boolean", "values": [true, true, true, false, false] },
+    { "name": "CISAKnownExploited", "type": "boolean", "values": [true, true, false, false] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      ["critical-patch", "actively-exploited"],
+      ["high-priority", "remote-code-execution"],
+      ["privilege-escalation"],
+      ["denial-of-service"],
+      ["information-disclosure"]
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

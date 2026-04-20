@@ -1,0 +1,14 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AzureADDeviceId", "type": "string", "values": ["d1a2b3c4-0001-4000-8000-000000000001", "d1a2b3c4-0002-4000-8000-000000000002", "d1a2b3c4-0003-4000-8000-000000000003", "d1a2b3c4-0004-4000-8000-000000000004", "d1a2b3c4-0008-4000-8000-000000000008"] },
+    { "name": "DeviceName", "type": "string", "values": ["WS-PC01", "WS-PC02", "SRV-DC01", "SRV-WEB01", "WS-LAPTOP03"] },
+    { "name": "ReadinessStatus", "type": "string", "values": ["UpToDate", "NotUpToDate", "Unknown", "UpToDate", "NotUpToDate"] },
+    { "name": "ReadinessSubStatus", "type": "string", "values": ["", "IncompatibleDriver", "IncompatibleApp", "SafeguardHold", "DiskSpaceLow"] },
+    { "name": "ReadinessExpiryTime", "type": "datetime" },
+    { "name": "TargetBuild", "type": "string", "values": ["10.0.22631.3007", "10.0.22631.2861", "10.0.19045.3930", "10.0.22621.3007", "10.0.22631.3007"] },
+    { "name": "OSVersion", "type": "string", "values": ["10.0.19045.3803", "10.0.22631.2861", "10.0.22631.3007", "10.0.19045.3930", "10.0.22621.3007"] },
+    { "name": "SetupReadinessResult", "type": "string", "values": ["Ready", "NotReady", "Unknown", "Ready", "NotReady"] },
+    { "name": "UpdateCategory", "type": "string", "values": ["FeatureUpdate", "QualityUpdate"] }
+  ]
+}

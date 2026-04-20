@@ -1,0 +1,159 @@
+{
+  "users": [
+    { "username": "jsmith", "upn": "jsmith@contoso.com", "displayName": "John Smith", "sid": "S-1-5-21-3623811015-3361044348-30300820-1013" },
+    { "username": "agarcia", "upn": "agarcia@contoso.com", "displayName": "Ana Garcia", "sid": "S-1-5-21-3623811015-3361044348-30300820-1014" },
+    { "username": "mwilson", "upn": "mwilson@contoso.com", "displayName": "Michael Wilson", "sid": "S-1-5-21-3623811015-3361044348-30300820-1015" },
+    { "username": "lchen", "upn": "lchen@contoso.com", "displayName": "Li Chen", "sid": "S-1-5-21-3623811015-3361044348-30300820-1016" },
+    { "username": "pjones", "upn": "pjones@contoso.com", "displayName": "Patricia Jones", "sid": "S-1-5-21-3623811015-3361044348-30300820-1017" },
+    { "username": "admin", "upn": "admin@contoso.com", "displayName": "Local Admin", "sid": "S-1-5-21-3623811015-3361044348-30300820-500" },
+    { "username": "svc_backup", "upn": "svc_backup@contoso.com", "displayName": "Backup Service", "sid": "S-1-5-21-3623811015-3361044348-30300820-1100" },
+    { "username": "rsingh", "upn": "rsingh@contoso.com", "displayName": "Raj Singh", "sid": "S-1-5-21-3623811015-3361044348-30300820-1018" },
+    { "username": "kbrown", "upn": "kbrown@contoso.com", "displayName": "Karen Brown", "sid": "S-1-5-21-3623811015-3361044348-30300820-1019" },
+    { "username": "tnguyen", "upn": "tnguyen@contoso.com", "displayName": "Tran Nguyen", "sid": "S-1-5-21-3623811015-3361044348-30300820-1020" }
+  ],
+  "ipAddresses": [
+    { "address": "10.0.1.50", "type": "internal" },
+    { "address": "10.0.1.51", "type": "internal" },
+    { "address": "10.0.2.10", "type": "internal" },
+    { "address": "10.0.2.20", "type": "internal" },
+    { "address": "172.16.0.100", "type": "internal" },
+    { "address": "192.168.1.200", "type": "internal" },
+    { "address": "203.0.113.42", "type": "external" },
+    { "address": "198.51.100.17", "type": "external" },
+    { "address": "100.21.55.130", "type": "external" },
+    { "address": "52.168.112.66", "type": "external" }
+  ],
+  "devices": [
+    { "hostname": "WS-PC01", "fqdn": "WS-PC01.contoso.local", "os": "Windows 11", "id": "d1a2b3c4-0001-4000-8000-000000000001" },
+    { "hostname": "WS-PC02", "fqdn": "WS-PC02.contoso.local", "os": "Windows 11", "id": "d1a2b3c4-0002-4000-8000-000000000002" },
+    { "hostname": "SRV-DC01", "fqdn": "SRV-DC01.contoso.local", "os": "Windows Server 2022", "id": "d1a2b3c4-0003-4000-8000-000000000003" },
+    { "hostname": "SRV-WEB01", "fqdn": "SRV-WEB01.contoso.local", "os": "Ubuntu 22.04", "id": "d1a2b3c4-0004-4000-8000-000000000004" },
+    { "hostname": "SRV-DB01", "fqdn": "SRV-DB01.contoso.local", "os": "Windows Server 2022", "id": "d1a2b3c4-0005-4000-8000-000000000005" },
+    { "hostname": "FW-EDGE01", "fqdn": "FW-EDGE01.contoso.local", "os": "PAN-OS 11.1", "id": "d1a2b3c4-0006-4000-8000-000000000006" },
+    { "hostname": "LNX-APP01", "fqdn": "LNX-APP01.contoso.local", "os": "RHEL 9", "id": "d1a2b3c4-0007-4000-8000-000000000007" },
+    { "hostname": "WS-LAPTOP03", "fqdn": "WS-LAPTOP03.contoso.local", "os": "Windows 11", "id": "d1a2b3c4-0008-4000-8000-000000000008" },
+    { "hostname": "SRV-MAIL01", "fqdn": "SRV-MAIL01.contoso.local", "os": "Windows Server 2022", "id": "d1a2b3c4-0009-4000-8000-000000000009" },
+    { "hostname": "SRV-FILE01", "fqdn": "SRV-FILE01.contoso.local", "os": "Windows Server 2022", "id": "d1a2b3c4-0010-4000-8000-000000000010" }
+  ],
+  "domains": [
+    "contoso.com",
+    "contoso.local",
+    "fabrikam.net",
+    "woodgrove.com",
+    "tailspintoys.com",
+    "adatum.com",
+    "litware.com",
+    "northwindtraders.com"
+  ],
+  "urls": [
+    "https://portal.contoso.com/dashboard",
+    "https://api.contoso.com/v2/users",
+    "https://mail.contoso.com/owa",
+    "https://sharepoint.contoso.com/sites/hr",
+    "https://app.fabrikam.net/login",
+    "https://cdn.contoso.com/assets/main.js",
+    "https://blob.core.windows.net/logs/audit.json",
+    "https://graph.microsoft.com/v1.0/me",
+    "http://malware-c2.example.com/beacon",
+    "https://updates.contoso.com/check"
+  ],
+  "emailAddresses": [
+    "jsmith@contoso.com",
+    "agarcia@contoso.com",
+    "mwilson@contoso.com",
+    "lchen@contoso.com",
+    "pjones@contoso.com",
+    "admin@contoso.com",
+    "secops@contoso.com",
+    "helpdesk@contoso.com",
+    "alerts@fabrikam.net",
+    "noreply@contoso.com"
+  ],
+  "fileHashes": [
+    { "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855", "md5": "d41d8cd98f00b204e9800998ecf8427e", "sha1": "da39a3ee5e6b4b0d3255bfef95601890afd80709", "fileName": "empty_file.txt" },
+    { "sha256": "275a021bbfb6489e54d471899f7db9d1663fc695ec2fe2a2c4538aabf651fd0f", "md5": "44d88612fea8a8f36de82e1278abb02f", "sha1": "3395856ce81f2b7382dee72602f798b642f14140", "fileName": "eicar_test.com" },
+    { "sha256": "7d865e959b2466918c9863afca942d0fb89d7c9ac0c99bafc3749504ded97730", "md5": "8350e5a3e24c153df2275c9f80692773", "sha1": "2ef7bde608ce5404e97d5f042f95f89f1c232871", "fileName": "document.pdf" },
+    { "sha256": "a591a6d40bf420404a011733cfb7b190d62c65bf0bcda32b57b277d9ad9f146e", "md5": "e99a18c428cb38d5f260853678922e03", "sha1": "6367c48dd193d56ea7b0baad25b19455e529f5ee", "fileName": "update.exe" },
+    { "sha256": "2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae", "md5": "acbd18db4cc2f85cedef654fccc4a4d8", "sha1": "0beec7b5ea3f0fdbc95d0dd47f3c5bc275da8a33", "fileName": "script.ps1" }
+  ],
+  "macAddresses": [
+    "00:50:56:C0:00:01",
+    "00:50:56:C0:00:02",
+    "00:0C:29:A1:B2:C3",
+    "00:0C:29:D4:E5:F6",
+    "DC:A6:32:12:34:56",
+    "AC:DE:48:78:9A:BC"
+  ],
+  "awsResources": {
+    "accountId": "123456789012",
+    "regions": ["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1"],
+    "vpcIds": ["vpc-0a1b2c3d4e5f60001", "vpc-0a1b2c3d4e5f60002"],
+    "subnetIds": ["subnet-0a1b2c3d00000001", "subnet-0a1b2c3d00000002", "subnet-0a1b2c3d00000003"],
+    "securityGroupIds": ["sg-0a1b2c3d4e5f6001", "sg-0a1b2c3d4e5f6002"],
+    "instanceIds": ["i-0a1b2c3d4e5f60001", "i-0a1b2c3d4e5f60002", "i-0a1b2c3d4e5f60003"],
+    "s3Buckets": ["contoso-prod-logs", "contoso-prod-data", "contoso-backups"],
+    "roleArns": [
+      "arn:aws:iam::123456789012:role/ContosoProdAdmin",
+      "arn:aws:iam::123456789012:role/ContosoReadOnly",
+      "arn:aws:iam::123456789012:role/ContosoLambdaExec"
+    ],
+    "userArns": [
+      "arn:aws:iam::123456789012:user/jsmith",
+      "arn:aws:iam::123456789012:user/agarcia",
+      "arn:aws:iam::123456789012:user/admin"
+    ]
+  },
+  "gcpResources": {
+    "projectIds": ["contoso-prod-123", "contoso-staging-456", "contoso-dev-789"],
+    "regions": ["us-central1", "us-east1", "europe-west1", "asia-east1"],
+    "zones": ["us-central1-a", "us-central1-b", "us-east1-b", "europe-west1-b"],
+    "serviceAccounts": [
+      "sa-compute@contoso-prod-123.iam.gserviceaccount.com",
+      "sa-storage@contoso-prod-123.iam.gserviceaccount.com",
+      "sa-gke@contoso-prod-123.iam.gserviceaccount.com"
+    ],
+    "instanceNames": ["contoso-web-01", "contoso-app-01", "contoso-db-01"],
+    "bucketNames": ["contoso-prod-assets", "contoso-prod-logs", "contoso-backups"],
+    "networkNames": ["contoso-vpc-prod", "contoso-vpc-dev"],
+    "clusterNames": ["contoso-gke-prod", "contoso-gke-staging"]
+  },
+  "sapResources": {
+    "clients": ["100", "200", "300"],
+    "transactionCodes": ["SM37", "SM21", "SE38", "SU01", "STMS", "SE80", "SM30", "ST22", "SU10", "PFCG"],
+    "systems": ["PRD", "QAS", "DEV"],
+    "roles": ["SAP_ALL", "SAP_NEW", "Z_ADMIN_ROLE", "Z_FINANCE_DISPLAY", "Z_HR_MANAGER", "Z_BASIS_ADMIN"]
+  },
+  "kubernetesResources": {
+    "namespaces": ["default", "kube-system", "kube-public", "monitoring", "production", "staging"],
+    "podNames": ["web-app-7d8f9b6c5d-x2k4m", "api-server-5b9c8d7e6f-n3j8p", "redis-cache-0", "nginx-ingress-controller-abc123"],
+    "containerNames": ["web-app", "api-server", "redis", "nginx", "sidecar-proxy", "log-forwarder"],
+    "serviceAccountNames": ["default", "cluster-admin", "monitoring-sa", "app-deployer"],
+    "clusterNames": ["contoso-prod-aks", "contoso-staging-aks"]
+  },
+  "processes": [
+    { "name": "C:\\Windows\\System32\\cmd.exe", "shortName": "cmd.exe" },
+    { "name": "C:\\Windows\\System32\\powershell.exe", "shortName": "powershell.exe" },
+    { "name": "C:\\Windows\\System32\\svchost.exe", "shortName": "svchost.exe" },
+    { "name": "C:\\Windows\\explorer.exe", "shortName": "explorer.exe" },
+    { "name": "C:\\Windows\\System32\\net.exe", "shortName": "net.exe" },
+    { "name": "C:\\Windows\\System32\\whoami.exe", "shortName": "whoami.exe" },
+    { "name": "C:\\Windows\\System32\\rundll32.exe", "shortName": "rundll32.exe" },
+    { "name": "C:\\Windows\\System32\\certutil.exe", "shortName": "certutil.exe" },
+    { "name": "/usr/bin/bash", "shortName": "bash" },
+    { "name": "/usr/bin/python3", "shortName": "python3" },
+    { "name": "/usr/bin/curl", "shortName": "curl" },
+    { "name": "/usr/bin/wget", "shortName": "wget" }
+  ],
+  "geoLocations": [
+    { "country": "United States", "region": "Washington", "city": "Seattle", "latitude": 47.6062, "longitude": -122.3321 },
+    { "country": "United States", "region": "California", "city": "San Francisco", "latitude": 37.7749, "longitude": -122.4194 },
+    { "country": "United States", "region": "Texas", "city": "Dallas", "latitude": 32.7767, "longitude": -96.7970 },
+    { "country": "United Kingdom", "region": "London", "city": "London", "latitude": 51.5074, "longitude": -0.1278 },
+    { "country": "Germany", "region": "Berlin", "city": "Berlin", "latitude": 52.5200, "longitude": 13.4050 },
+    { "country": "Canada", "region": "Ontario", "city": "Toronto", "latitude": 43.6532, "longitude": -79.3832 },
+    { "country": "India", "region": "Maharashtra", "city": "Mumbai", "latitude": 19.0760, "longitude": 72.8777 },
+    { "country": "Australia", "region": "New South Wales", "city": "Sydney", "latitude": -33.8688, "longitude": 151.2093 },
+    { "country": "Russia", "region": "Moscow", "city": "Moscow", "latitude": 55.7558, "longitude": 37.6173 },
+    { "country": "China", "region": "Beijing", "city": "Beijing", "latitude": 39.9042, "longitude": 116.4074 }
+  ]
+}

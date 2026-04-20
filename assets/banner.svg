@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200" width="720" height="200">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0e1a2b"/>
+      <stop offset="100%" style="stop-color:#1a2d4a"/>
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00bcf2"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="dbBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0078d4"/>
+      <stop offset="50%" style="stop-color:#00bcf2"/>
+      <stop offset="100%" style="stop-color:#0078d4"/>
+    </linearGradient>
+    <linearGradient id="dbTop" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#50e6f7"/>
+      <stop offset="100%" style="stop-color:#00bcf2"/>
+    </linearGradient>
+    <linearGradient id="dropGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#50e6a0"/>
+      <stop offset="100%" style="stop-color:#00d4aa"/>
+    </linearGradient>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse">
+      <path d="M 30 0 L 0 0 0 30" fill="none" stroke="#ffffff" stroke-width="0.3" opacity="0.05"/>
+    </pattern>
+    <filter id="iconGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feFlood flood-color="#00bcf2" flood-opacity="0.35" result="color"/>
+      <feComposite in="color" in2="blur" operator="in" result="shadow"/>
+      <feComposite in="SourceGraphic" in2="shadow" operator="over"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="720" height="200" rx="12" ry="12" fill="url(#bgGrad)"/>
+  <rect width="720" height="200" rx="12" ry="12" fill="url(#grid)"/>
+
+  <!-- Decorative data stream lines -->
+  <g opacity="0.12">
+    <line x1="0" y1="40" x2="140" y2="40" stroke="#00bcf2" stroke-width="1"/>
+    <line x1="0" y1="70" x2="100" y2="70" stroke="#00d4aa" stroke-width="1"/>
+    <line x1="0" y1="100" x2="120" y2="100" stroke="#00bcf2" stroke-width="1"/>
+    <line x1="0" y1="130" x2="80" y2="130" stroke="#00d4aa" stroke-width="1"/>
+    <line x1="0" y1="160" x2="110" y2="160" stroke="#00bcf2" stroke-width="1"/>
+    <line x1="580" y1="50" x2="720" y2="50" stroke="#00bcf2" stroke-width="1"/>
+    <line x1="620" y1="80" x2="720" y2="80" stroke="#00d4aa" stroke-width="1"/>
+    <line x1="600" y1="110" x2="720" y2="110" stroke="#00bcf2" stroke-width="1"/>
+    <line x1="640" y1="140" x2="720" y2="140" stroke="#00d4aa" stroke-width="1"/>
+    <line x1="610" y1="170" x2="720" y2="170" stroke="#00bcf2" stroke-width="1"/>
+  </g>
+  <g opacity="0.25">
+    <circle cx="145" cy="40" r="2" fill="#00bcf2"/>
+    <circle cx="105" cy="70" r="2" fill="#00d4aa"/>
+    <circle cx="125" cy="100" r="2" fill="#00bcf2"/>
+    <circle cx="85" cy="130" r="2" fill="#00d4aa"/>
+    <circle cx="115" cy="160" r="2" fill="#00bcf2"/>
+    <circle cx="575" cy="50" r="2" fill="#00bcf2"/>
+    <circle cx="615" cy="80" r="2" fill="#00d4aa"/>
+    <circle cx="595" cy="110" r="2" fill="#00bcf2"/>
+    <circle cx="635" cy="140" r="2" fill="#00d4aa"/>
+    <circle cx="605" cy="170" r="2" fill="#00bcf2"/>
+  </g>
+
+  <!-- ===== ICON: Microsoft Sentinel logo (two overlapping blue layers) ===== -->
+  <g transform="translate(175, 50)" filter="url(#iconGlow)">
+    <!-- Back layer (darker blue, offset up-left) -->
+    <rect x="8" y="8" width="68" height="68" rx="10" ry="10" fill="#0078d4" transform="rotate(-6, 42, 42)"/>
+    <!-- Front layer (lighter blue, offset down-right) -->
+    <rect x="22" y="22" width="68" height="68" rx="10" ry="10" fill="#00bcf2" transform="rotate(-6, 56, 56)"/>
+    <!-- Subtle highlight on front layer -->
+    <rect x="22" y="22" width="68" height="68" rx="10" ry="10" fill="none" stroke="#ffffff" stroke-width="0.8" opacity="0.2" transform="rotate(-6, 56, 56)"/>
+  </g>
+
+  <!-- ===== TEXT ===== -->
+  <g transform="translate(290, 72)">
+    <text font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="36" font-weight="700" fill="#ffffff" letter-spacing="0.5">
+      <tspan>Sentinel</tspan>
+      <tspan dx="8" fill="url(#accentGrad)">LogSeeder</tspan>
+    </text>
+    <text y="34" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="13" fill="#8899aa" letter-spacing="2">
+      SAMPLE DATA &amp; ATTACK SCENARIO INGESTION
+    </text>
+    <line x1="0" y1="48" x2="140" y2="48" stroke="url(#accentGrad)" stroke-width="2" opacity="0.6"/>
+  </g>
+
+  <!-- Badge pills -->
+  <g transform="translate(292, 140)">
+    <rect width="68" height="22" rx="11" fill="#00bcf2" opacity="0.15"/>
+    <rect width="68" height="22" rx="11" fill="none" stroke="#00bcf2" stroke-width="0.8" opacity="0.4"/>
+    <text x="34" y="15" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" fill="#00bcf2" text-anchor="middle" font-weight="600">Sentinel</text>
+  </g>
+  <g transform="translate(368, 140)">
+    <rect width="84" height="22" rx="11" fill="#00d4aa" opacity="0.15"/>
+    <rect width="84" height="22" rx="11" fill="none" stroke="#00d4aa" stroke-width="0.8" opacity="0.4"/>
+    <text x="42" y="15" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" fill="#00d4aa" text-anchor="middle" font-weight="600">Log Analytics</text>
+  </g>
+  <g transform="translate(460, 140)">
+    <rect width="80" height="22" rx="11" fill="#ff8c00" opacity="0.15"/>
+    <rect width="80" height="22" rx="11" fill="none" stroke="#ff8c00" stroke-width="0.8" opacity="0.4"/>
+    <text x="40" y="15" font-family="'Segoe UI','Helvetica Neue',Arial,sans-serif" font-size="10" fill="#ff8c00" text-anchor="middle" font-weight="600">Attack Sims</text>
+  </g>
+
+  <!-- Corner accents -->
+  <path d="M12,1 L1,1 L1,12" fill="none" stroke="#00bcf2" stroke-width="1.5" opacity="0.3"/>
+  <path d="M708,1 L719,1 L719,12" fill="none" stroke="#00bcf2" stroke-width="1.5" opacity="0.3"/>
+  <path d="M12,199 L1,199 L1,188" fill="none" stroke="#00d4aa" stroke-width="1.5" opacity="0.3"/>
+  <path d="M708,199 L719,199 L719,188" fill="none" stroke="#00d4aa" stroke-width="1.5" opacity="0.3"/>
+</svg>

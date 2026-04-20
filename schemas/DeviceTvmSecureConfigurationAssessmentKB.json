@@ -1,0 +1,30 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ConfigurationId", "type": "string", "values": ["scid-2000", "scid-2001", "scid-2002", "scid-2003", "scid-2010", "scid-2011", "scid-2012", "scid-5000", "scid-5001", "scid-6070", "scid-6071", "scid-91"] },
+    { "name": "ConfigurationName", "type": "string", "values": ["Turn on Microsoft Defender Antivirus real-time protection", "Turn on cloud-delivered protection", "Turn on PUA protection", "Enable network protection", "Enable attack surface reduction rules", "Turn on controlled folder access", "Block credential stealing from LSASS", "Enable BitLocker drive encryption", "Require secure boot", "Enable firewall for domain profile", "Enable firewall for public profile", "Turn on audit mode for SmartScreen"] },
+    { "name": "ConfigurationDescription", "type": "string", "values": ["Ensure real-time protection is enabled to detect and block malware at runtime", "Cloud-delivered protection provides faster malware detection using cloud intelligence", "Potentially unwanted application detection helps block adware and other unwanted software", "Network protection blocks connections to malicious domains and IP addresses", "ASR rules help prevent attack techniques used by malware and ransomware", "Controlled folder access protects data in key folders from ransomware", "Blocks credential theft attempts from the LSASS process", "Full-volume encryption protects data at rest on the device", "Secure boot ensures only trusted software loads during startup", "Windows Firewall should be enabled for domain-connected networks", "Windows Firewall should be enabled for public networks", "SmartScreen audit mode logs events without blocking"] },
+    { "name": "ConfigurationCategory", "type": "string", "values": ["Antivirus", "Antivirus", "Antivirus", "Network protection", "Attack surface reduction", "Ransomware protection", "Credential protection", "Encryption", "Firmware", "Firewall", "Firewall", "Application control"] },
+    { "name": "ConfigurationSubcategory", "type": "string", "values": ["Real-time protection", "Cloud protection", "PUA", "Network filtering", "ASR rules", "Controlled folder access", "LSASS protection", "Drive encryption", "Secure boot", "Domain firewall", "Public firewall", "SmartScreen"] },
+    { "name": "RiskLevel", "type": "string", "values": ["High", "Medium", "Low", "High", "Critical", "High", "Critical", "Medium", "Medium", "High", "High", "Low"] },
+    { "name": "RemediationOptions", "type": "string", "values": ["Enable real-time protection via Group Policy or Intune", "Enable cloud-delivered protection in Windows Security settings", "Configure PUA protection via Microsoft Endpoint Manager", "Enable network protection using PowerShell or Group Policy", "Deploy ASR rules through Intune or ConfigMgr", "Enable controlled folder access in Windows Security", "Enable Credential Guard or ASR rule for LSASS", "Enable BitLocker via Intune or Group Policy", "Enable Secure Boot in UEFI firmware settings", "Enable Windows Firewall for the domain profile", "Enable Windows Firewall for the public profile", "Enable SmartScreen via Group Policy"] },
+    { "name": "ConfigurationBenchmarks", "type": "dynamic", "values": [
+      "{\"CIS\":\"18.9.47.4.1\",\"STIG\":\"V-63753\",\"NIST\":\"SI-3\"}",
+      "{\"CIS\":\"18.9.47.4.2\",\"NIST\":\"SI-3\"}",
+      "{\"CIS\":\"18.9.47.11\",\"NIST\":\"SI-3\"}",
+      "{\"CIS\":\"18.9.47.5.1\",\"NIST\":\"SC-7\"}",
+      "{\"CIS\":\"18.9.47.5.1.1\",\"STIG\":\"V-63755\",\"NIST\":\"CM-6\"}",
+      "{\"NIST\":\"AC-6\",\"MITRE\":\"T1486\"}"
+    ] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      "[\"MDE\",\"Endpoint Security\",\"Antivirus\"]",
+      "[\"MDE\",\"Cloud Protection\"]",
+      "[\"MDE\",\"PUA\",\"Endpoint Security\"]",
+      "[\"MDE\",\"Network Protection\",\"Zero Trust\"]",
+      "[\"MDE\",\"ASR\",\"Ransomware Prevention\"]",
+      "[\"MDE\",\"Encryption\",\"Compliance\"]"
+    ] },
+    { "name": "IsCompliant", "type": "boolean", "values": [true, true, false, true, false, false, true, true] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

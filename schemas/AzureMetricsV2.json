@@ -1,0 +1,31 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "MetricName", "type": "string", "values": ["Percentage CPU", "Network In Total", "Network Out Total", "Disk Read Bytes/sec", "Disk Write Bytes/sec", "Available Memory Bytes", "OS Disk Queue Depth", "Transactions", "Ingress", "Egress", "UsedCapacity", "Availability", "SuccessE2ELatency", "ServerLatency"] },
+    { "name": "Namespace", "type": "string", "values": ["Microsoft.Compute/virtualMachines", "Microsoft.Compute/virtualMachines", "Microsoft.Storage/storageAccounts", "Microsoft.Storage/storageAccounts", "Microsoft.Web/sites", "Microsoft.Sql/servers/databases", "Microsoft.Network/loadBalancers", "Microsoft.KeyVault/vaults"] },
+    { "name": "ResourceId", "type": "string", "values": [
+      "/subscriptions/a1b2c3d4-e5f6-7890-abcd-ef1234567890/resourceGroups/rg-contoso-prod/providers/Microsoft.Compute/virtualMachines/SRV-WEB01",
+      "/subscriptions/a1b2c3d4-e5f6-7890-abcd-ef1234567890/resourceGroups/rg-contoso-prod/providers/Microsoft.Compute/virtualMachines/SRV-DC01",
+      "/subscriptions/a1b2c3d4-e5f6-7890-abcd-ef1234567890/resourceGroups/rg-contoso-prod/providers/Microsoft.Storage/storageAccounts/stcontosoprod01",
+      "/subscriptions/a1b2c3d4-e5f6-7890-abcd-ef1234567890/resourceGroups/rg-contoso-prod/providers/Microsoft.Web/sites/app-contoso-web",
+      "/subscriptions/a1b2c3d4-e5f6-7890-abcd-ef1234567890/resourceGroups/rg-contoso-prod/providers/Microsoft.Sql/servers/sql-contoso-prod/databases/db-contoso"
+    ] },
+    { "name": "Average", "type": "real" },
+    { "name": "Minimum", "type": "real" },
+    { "name": "Maximum", "type": "real" },
+    { "name": "Total", "type": "real" },
+    { "name": "Count", "type": "real" },
+    { "name": "TimeGrain", "type": "string", "values": ["PT1M", "PT5M", "PT1H", "PT1M", "PT5M"] },
+    { "name": "UnitName", "type": "string", "values": ["Percent", "Bytes", "Bytes", "BytesPerSecond", "BytesPerSecond", "Bytes", "Count", "Count", "Milliseconds"] },
+    { "name": "Dimensions", "type": "dynamic", "values": [
+      "{}",
+      "{\"VMName\":\"SRV-WEB01\"}",
+      "{\"VMName\":\"SRV-DC01\"}",
+      "{\"ApiName\":\"GetBlob\",\"Authentication\":\"SAS\"}",
+      "{\"ApiName\":\"PutBlob\",\"Authentication\":\"AccountKey\"}",
+      "{\"DatabaseName\":\"db-contoso\",\"ElasticPoolName\":\"\"}",
+      "{\"FrontendIPAddress\":\"10.0.1.50\",\"FrontendPort\":\"443\"}"
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

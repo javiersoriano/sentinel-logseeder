@@ -1,0 +1,46 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AccountId", "type": "string", "values": ["123456789012", "987654321098"] },
+    { "name": "Region", "type": "string", "values": ["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1"] },
+    { "name": "QueryName", "type": "string", "values": [
+      "contoso.com.",
+      "api.contoso.com.",
+      "mail.contoso.com.",
+      "fabrikam.net.",
+      "woodgrove.com.",
+      "login.microsoftonline.com.",
+      "s3.us-east-1.amazonaws.com.",
+      "ec2.us-east-1.amazonaws.com.",
+      "malicious-domain.xyz.",
+      "c2-callback.evil.com.",
+      "crypto-miner-pool.net."
+    ] },
+    { "name": "QueryType", "type": "string", "values": ["A", "AAAA", "MX", "TXT", "CNAME", "NS", "SOA", "SRV", "PTR"] },
+    { "name": "QueryClass", "type": "string", "values": ["IN"] },
+    { "name": "Rcode", "type": "string", "values": ["NOERROR", "NXDOMAIN", "SERVFAIL", "REFUSED", "FORMERR"] },
+    { "name": "SrcAddr", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100"] },
+    { "name": "SrcPort", "type": "string" },
+    { "name": "Transport", "type": "string", "values": ["UDP", "TCP", "DOH"] },
+    { "name": "VpcId", "type": "string", "values": ["vpc-0abcdef1234567890", "vpc-0fedcba0987654321"] },
+    { "name": "LogType", "type": "string", "values": ["ResolverQueryLog"] },
+    { "name": "Answers", "type": "dynamic", "values": [
+      [{"Rdata": "10.0.1.50", "Type": "A", "Class": "IN"}],
+      [{"Rdata": "93.184.216.34", "Type": "A", "Class": "IN"}],
+      [{"Rdata": "2606:2800:220:1:248:1893:25c8:1946", "Type": "AAAA", "Class": "IN"}],
+      [{"Rdata": "mail.contoso.com.", "Type": "MX", "Class": "IN", "Priority": "10"}],
+      [{"Rdata": "v=spf1 include:_spf.google.com ~all", "Type": "TXT", "Class": "IN"}],
+      []
+    ] },
+    { "name": "SrcIds", "type": "dynamic", "values": [
+      {"instance": "i-0abcdef1234567890", "resolver_endpoint": "rslvr-in-a1b2c3d4e5f6a7b8c"},
+      {"instance": "i-0fedcba0987654321"},
+      {"vpc_endpoint": "vpce-0abcdef1234567890"}
+    ] },
+    { "name": "FirewallDomainListId", "type": "string", "values": ["", "rslvr-fdl-a1b2c3d4e5f6a7b8c"] },
+    { "name": "FirewallRuleAction", "type": "string", "values": ["", "ALLOW", "BLOCK", "ALERT"] },
+    { "name": "FirewallRuleGroupId", "type": "string", "values": ["", "rslvr-frg-a1b2c3d4e5f6a7b8c"] },
+    { "name": "Version", "type": "string", "values": ["1.100000"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

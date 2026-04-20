@@ -1,0 +1,23 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "Source", "type": "string", "values": ["Microsoft-Windows-Security-Auditing", "Service Control Manager", "Microsoft-Windows-GroupPolicy", "Microsoft-Windows-TaskScheduler", "Application Error", "MSSQLSERVER", "VSS"] },
+    { "name": "EventLog", "type": "string", "values": ["System", "Application", "Security"] },
+    { "name": "Computer", "type": "string" },
+    { "name": "EventLevel", "type": "int", "values": [0, 1, 2, 3, 4, 5] },
+    { "name": "EventLevelName", "type": "string", "values": ["LogAlways", "Critical", "Error", "Warning", "Information", "Verbose"] },
+    { "name": "EventID", "type": "int", "values": [7036, 7040, 7045, 1074, 6005, 6006, 6013, 104, 1000, 1001, 1002, 11707, 11724, 41, 4107] },
+    { "name": "RenderedDescription", "type": "string", "values": ["The Windows Event Log service entered the running state.", "The start type of the Background Intelligent Transfer Service service was changed from auto start to demand start.", "A service was installed in the system.", "The process explorer.exe has initiated the restart of computer on behalf of user CONTOSO\\jsmith.", "The Event log service was started.", "The Event log service was stopped.", "The system uptime is 345600 seconds.", "The audit log was cleared.", "Faulting application name: app.exe, version: 1.0.0.0", "Windows Error Reporting", "The program notepad.exe stopped interacting with Windows", "Product: Microsoft Office -- Installation completed successfully.", "Product: Microsoft Office -- Removal completed successfully."] },
+    { "name": "UserName", "type": "string" },
+    { "name": "ParameterXml", "type": "string" },
+    { "name": "EventData", "type": "dynamic", "values": [
+      {"param1": "Windows Update", "param2": "running"},
+      {"param1": "Background Intelligent Transfer Service", "param2": "auto start", "param3": "demand start"},
+      {"ServiceName": "Updater", "ImagePath": "C:\\temp\\update.exe", "ServiceType": "user mode service", "StartType": "auto start", "AccountName": "LocalSystem"},
+      {"param1": "explorer.exe", "param2": "CONTOSO\\jsmith", "param5": "restart"},
+      {}
+    ]},
+    { "name": "ManagementGroupName", "type": "string" },
+    { "name": "SourceSystem", "type": "string", "values": ["OpsManager"] }
+  ]
+}

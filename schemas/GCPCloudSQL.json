@@ -1,0 +1,25 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "InstanceName", "type": "string", "values": ["sql-prod-primary", "sql-prod-replica-01", "sql-dev-01", "sql-analytics-01"] },
+    { "name": "DatabaseName", "type": "string", "values": ["contoso_app", "contoso_auth", "contoso_analytics", "contoso_inventory", "postgres", "information_schema"] },
+    { "name": "DatabaseVersion", "type": "string", "values": ["POSTGRES_15", "POSTGRES_14", "MYSQL_8_0", "SQLSERVER_2019_STANDARD"] },
+    { "name": "Region", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "Tier", "type": "string", "values": ["db-custom-4-16384", "db-custom-2-8192", "db-custom-8-32768", "db-f1-micro"] },
+    { "name": "UserName", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "app_user", "replication_user", "postgres", "cloudsqlsuperuser"] },
+    { "name": "ClientIp", "type": "string", "values": ["10.0.1.50", "10.0.2.10", "203.0.113.42", "35.192.0.1", "127.0.0.1"] },
+    { "name": "QueryType", "type": "string", "values": ["SELECT", "INSERT", "UPDATE", "DELETE", "CREATE", "ALTER", "DROP", "GRANT", "REVOKE", "BEGIN", "COMMIT", "ROLLBACK"] },
+    { "name": "Statement", "type": "string", "values": ["SELECT * FROM users WHERE id = $1", "INSERT INTO audit_log (action, user_id, timestamp) VALUES ($1, $2, $3)", "UPDATE orders SET status = $1 WHERE order_id = $2", "DELETE FROM sessions WHERE expires_at < NOW()", "CREATE TABLE temp_export AS SELECT * FROM customers", "ALTER TABLE users ADD COLUMN last_login TIMESTAMP", "DROP TABLE temp_export", "GRANT SELECT ON ALL TABLES IN SCHEMA public TO app_user", "SELECT 1"] },
+    { "name": "Duration", "type": "real", "values": [0.5, 1.2, 5.8, 15.3, 45.7, 120.5, 350.0, 1200.0, 5000.0] },
+    { "name": "RowsAffected", "type": "long", "values": [0, 1, 5, 10, 50, 100, 500, 1000, 10000] },
+    { "name": "ErrorCode", "type": "string", "values": ["", "42P01", "42501", "23505", "28P01", "57P03", "53300"] },
+    { "name": "ErrorMessage", "type": "string", "values": ["", "relation \"nonexistent_table\" does not exist", "permission denied for table users", "duplicate key value violates unique constraint", "password authentication failed for user", "the database system is shutting down", "too many connections for role"] },
+    { "name": "CpuUtilization", "type": "real", "values": [0.05, 0.15, 0.30, 0.50, 0.70, 0.85, 0.95] },
+    { "name": "MemoryUtilization", "type": "real", "values": [0.20, 0.35, 0.50, 0.65, 0.80, 0.90] },
+    { "name": "DiskUtilization", "type": "real", "values": [0.10, 0.25, 0.40, 0.55, 0.70, 0.85, 0.95] },
+    { "name": "ConnectionCount", "type": "int", "values": [5, 15, 30, 50, 80, 100, 150] },
+    { "name": "Severity", "type": "string", "values": ["DEBUG", "INFO", "NOTICE", "WARNING", "ERROR", "CRITICAL"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

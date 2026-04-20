@@ -1,0 +1,65 @@
+{
+  "_comment": "Attack Scenario Template — product-agnostic. Do NOT include EventProduct, EventVendor, EventSchema, or EventSchemaVersion in event templates. These are injected at runtime based on user product selection.",
+  "name": "scenario-name",
+  "description": "A brief description of the attack scenario.",
+  "mitreTactics": ["Initial Access", "Execution", "Persistence"],
+  "mitreIds": ["T1078", "T1059", "T1547"],
+  "tables": {
+    "TableName1": {
+      "schema": "schemas/TableName1.json",
+      "sampleDataFile": "samples/TableName1.json",
+      "rowCount": 100
+    },
+    "TableName2": {
+      "schema": "schemas/TableName2.json",
+      "rowCount": 50
+    }
+  },
+  "actors": {
+    "attacker": {
+      "ip": "external",
+      "username": "random",
+      "device": "random"
+    },
+    "victim": {
+      "ip": "internal",
+      "username": "random",
+      "device": "random",
+      "upn": "random"
+    },
+    "targetServer": {
+      "ip": "internal",
+      "device": "random",
+      "deviceFqdn": "random"
+    }
+  },
+  "timeline": [
+    {
+      "phase": "Phase 1 - Initial Access",
+      "description": "What happens in this phase",
+      "offsetMinutes": 0,
+      "durationMinutes": 30,
+      "table": "TableName1",
+      "count": 25,
+      "eventTemplate": {
+        "FieldName1": "{{attacker.ip}}",
+        "FieldName2": "{{victim.username}}",
+        "FieldName3": "FixedValue",
+        "FieldName4": ["RandomChoice1", "RandomChoice2", "RandomChoice3"],
+        "EventResult": "Failure"
+      }
+    },
+    {
+      "phase": "Phase 2 - Execution",
+      "description": "What happens next",
+      "offsetMinutes": 35,
+      "durationMinutes": 10,
+      "table": "TableName2",
+      "count": 5,
+      "eventTemplate": {
+        "FieldName1": "{{attacker.ip}}",
+        "FieldName2": "{{victim.username}}"
+      }
+    }
+  ]
+}

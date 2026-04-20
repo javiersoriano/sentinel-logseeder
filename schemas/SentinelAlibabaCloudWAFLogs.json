@@ -1,0 +1,21 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "MatchedRules", "type": "dynamic", "values": [
+      "[{\"ruleId\":\"waf-rule-001\",\"ruleName\":\"SQL Injection Detection\",\"action\":\"block\",\"confidence\":\"high\"}]",
+      "[{\"ruleId\":\"waf-rule-002\",\"ruleName\":\"XSS Attack Prevention\",\"action\":\"block\",\"confidence\":\"high\"}]",
+      "[{\"ruleId\":\"waf-rule-003\",\"ruleName\":\"Web Shell Upload Detection\",\"action\":\"block\",\"confidence\":\"medium\"}]",
+      "[{\"ruleId\":\"waf-rule-010\",\"ruleName\":\"Rate Limiting\",\"action\":\"monitor\",\"confidence\":\"low\"}]",
+      "[{\"ruleId\":\"waf-rule-005\",\"ruleName\":\"Custom Geo-Block Rule\",\"action\":\"block\",\"confidence\":\"high\"},{\"ruleId\":\"waf-rule-001\",\"ruleName\":\"SQL Injection Detection\",\"action\":\"block\",\"confidence\":\"high\"}]",
+      "[]"
+    ] },
+    { "name": "Action", "type": "string", "values": ["block", "block", "monitor", "captcha", "block", "monitor", "monitor"] },
+    { "name": "ClientIP", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "10.0.1.50", "172.16.0.100", "192.168.1.15", "10.0.2.10", "10.0.2.20"] },
+    { "name": "RequestURL", "type": "string", "values": ["https://app.contoso.com/api/users?id=1%27+OR+1%3D1--", "https://app.contoso.com/search?q=<script>alert(1)</script>", "https://app.contoso.com/upload/shell.php", "https://app.contoso.com/login", "https://app.contoso.com/admin/config", "https://app.contoso.com/api/data/export", "https://app.contoso.com/wp-admin/install.php"] },
+    { "name": "HttpMethod", "type": "string", "values": ["GET", "POST", "POST", "POST", "GET", "PUT", "DELETE"] },
+    { "name": "UserAgent", "type": "string", "values": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36", "sqlmap/1.7.2", "python-requests/2.31.0", "curl/8.4.0", "Nmap Scripting Engine", "Mozilla/5.0 (compatible; Googlebot/2.1)", ""] },
+    { "name": "AttackType", "type": "string", "values": ["sqli", "xss", "webshell", "cc", "custom", "sqli", "xss", "custom"] },
+    { "name": "RiskLevel", "type": "string", "values": ["High", "High", "Critical", "Medium", "Low", "Critical", "Medium"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

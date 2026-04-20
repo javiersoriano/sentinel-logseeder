@@ -1,0 +1,45 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "RouterName", "type": "string", "values": ["nat-router-prod-us-central1", "nat-router-prod-us-east1", "nat-router-dev-us-central1"] },
+    { "name": "GatewayName", "type": "string", "values": ["nat-gw-prod", "nat-gw-dev", "nat-gw-staging"] },
+    { "name": "Region", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "OperationType", "type": "string", "values": ["CREATE", "UPDATE", "DELETE", "PATCH"] },
+    { "name": "ResourceType", "type": "string", "values": ["compute.routers", "compute.addresses", "compute.subnetworks"] },
+    { "name": "PrincipalEmail", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "sa-deploy@contoso-prod-123.iam.gserviceaccount.com"] },
+    { "name": "CallerIp", "type": "string", "values": ["203.0.113.42", "10.0.1.50", "35.192.0.1"] },
+    { "name": "CallerUserAgent", "type": "string", "values": ["google-cloud-sdk gcloud/450.0.0", "Terraform/1.6.0", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"] },
+    { "name": "ConfigChange", "type": "dynamic", "values": [
+      {"field": "natIpAllocateOption", "oldValue": "AUTO_ONLY", "newValue": "MANUAL_ONLY"},
+      {"field": "sourceSubnetworkIpRangesToNat", "oldValue": "ALL_SUBNETWORKS_ALL_IP_RANGES", "newValue": "LIST_OF_SUBNETWORKS"},
+      {"field": "minPortsPerVm", "oldValue": "64", "newValue": "256"},
+      {"field": "enableEndpointIndependentMapping", "oldValue": "true", "newValue": "false"},
+      {"field": "logConfig.enable", "oldValue": "false", "newValue": "true"}
+    ] },
+    { "name": "NatIpsBefore", "type": "dynamic", "values": [
+      ["35.192.0.1"],
+      ["35.192.0.1", "35.192.0.2"],
+      []
+    ] },
+    { "name": "NatIpsAfter", "type": "dynamic", "values": [
+      ["35.192.0.1", "34.68.100.22"],
+      ["35.192.0.1", "35.192.0.2", "34.68.100.23"],
+      ["35.192.0.1"]
+    ] },
+    { "name": "SubnetworksBefore", "type": "dynamic", "values": [
+      ["subnet-web", "subnet-app"],
+      ["subnet-web"],
+      []
+    ] },
+    { "name": "SubnetworksAfter", "type": "dynamic", "values": [
+      ["subnet-web", "subnet-app", "subnet-db"],
+      ["subnet-web", "subnet-app"],
+      ["subnet-web"]
+    ] },
+    { "name": "Status", "type": "string", "values": ["SUCCESS", "FAILED", "IN_PROGRESS"] },
+    { "name": "ErrorMessage", "type": "string", "values": ["", "Quota exceeded for NAT IPs in region us-central1", "Permission denied on resource", "Resource not found"] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "NOTICE", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

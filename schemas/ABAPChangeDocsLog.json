@@ -1,0 +1,17 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ChangeDocumentClass", "type": "string", "values": ["USER", "ROLE", "PFCG", "TOBJ", "CUST"] },
+    { "name": "ChangeDocumentNumber", "type": "string", "values": ["0000012345", "0000012346", "0000012347", "0000012348", "0000012349", "0000012350", "0000012351", "0000012352"] },
+    { "name": "ObjectClass", "type": "string", "values": ["USER", "AGR_DEFINE", "AGR_PROF", "TOBJ", "SCUSTOM", "AGR_USERS"] },
+    { "name": "ObjectId", "type": "string", "values": ["JSMITH", "Z_CUSTOM_ROLE_01", "SAP_BC_BASIS_ADMIN", "S_TCODE", "Z_CUSTOM_TABLE", "AGARCIA"] },
+    { "name": "ChangeType", "type": "string", "values": ["Insert", "Update", "Delete"] },
+    { "name": "FieldName", "type": "string", "values": ["USTYP", "GLTGB", "BNAME", "ACTPS", "LOW", "AGR_NAME", "PROFILE", "UFLAG"] },
+    { "name": "OldValue", "type": "string", "values": ["", "Dialog", "Unlocked", "Active", "20240101", "Z_OLD_ROLE", "SAP_ALL"] },
+    { "name": "NewValue", "type": "string", "values": ["Communication", "System", "Locked", "Inactive", "20241231", "Z_NEW_ROLE", "SAP_NEW", "Dialog"] },
+    { "name": "User", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "admin"] },
+    { "name": "Client", "type": "string", "values": ["100", "200", "300"] },
+    { "name": "TransactionCode", "type": "string", "values": ["SU01", "PFCG", "SM30", "SU10", "SCC4", "SE16"] },
+    { "name": "ChangedAt", "type": "datetime" }
+  ]
+}

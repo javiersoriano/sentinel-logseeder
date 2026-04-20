@@ -1,0 +1,68 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "NotificationId", "type": "string" },
+    { "name": "RuleName", "type": "string", "values": [
+      "Domain Impersonation - contoso.com",
+      "Leaked Credentials Monitoring",
+      "Brand Abuse Detection",
+      "Dark Web Mention - Contoso",
+      "Executive Impersonation Alert",
+      "Data Leak Detection",
+      "Typosquat Domain Monitoring",
+      "Exposed API Keys and Secrets"
+    ] },
+    { "name": "RuleId", "type": "string" },
+    { "name": "NotificationType", "type": "string", "values": [
+      "DomainAlert",
+      "CredentialLeak",
+      "BrandAbuse",
+      "DarkWebMention",
+      "Impersonation",
+      "DataExposure",
+      "Typosquat",
+      "SecretExposure"
+    ] },
+    { "name": "Severity", "type": "string", "values": ["Critical", "High", "Medium", "Low"] },
+    { "name": "Title", "type": "string", "values": [
+      "Lookalike domain c0ntoso.com registered",
+      "Employee credentials found on dark web paste",
+      "Fake Contoso login page detected",
+      "Contoso mentioned in underground forum post",
+      "Fake LinkedIn profile impersonating CEO",
+      "Internal documents found on public file sharing site",
+      "Typosquat domain contosoo.com serving phishing page",
+      "AWS access key found in public GitHub repository"
+    ] },
+    { "name": "Description", "type": "string", "values": [
+      "A domain visually similar to contoso.com was registered and may be used for phishing.",
+      "Credentials for jsmith@contoso.com were found in a dark web data dump.",
+      "A webpage impersonating the Contoso corporate login was detected.",
+      "Contoso was mentioned in a forum post discussing potential targets for ransomware.",
+      "A fake social media profile impersonating a Contoso executive was identified.",
+      "Confidential documents with Contoso branding were found on a public file-sharing platform.",
+      "A typosquat domain hosting a credential harvesting page was detected.",
+      "An AWS access key associated with a Contoso account was committed to a public repository."
+    ] },
+    { "name": "MatchedAsset", "type": "string", "values": ["contoso.com", "jsmith@contoso.com", "agarcia@contoso.com", "fabrikam.net", "Contoso Corporation"] },
+    { "name": "SourceUrl", "type": "string", "values": [
+      "https://pastebin.com/example123",
+      "https://forums.example.onion/thread/456",
+      "https://c0ntoso.com",
+      "https://github.com/example/leaked-repo",
+      ""
+    ] },
+    { "name": "Status", "type": "string", "values": ["new", "acknowledged", "in_progress", "resolved", "dismissed"] },
+    { "name": "CreatedTime", "type": "datetime" },
+    { "name": "LastUpdatedTime", "type": "datetime" },
+    { "name": "AssignedTo", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", ""] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      ["phishing", "domain-impersonation"],
+      ["credential-leak", "dark-web"],
+      ["brand-abuse", "investigation"],
+      ["executive-protection"],
+      ["data-leak", "critical"]
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

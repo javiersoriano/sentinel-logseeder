@@ -1,0 +1,18 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "MessageId", "type": "string", "values": ["AUW001", "AUW002", "AUW003", "AUW004", "AUW005", "AUW006", "AUW007", "AUW008", "AUW009", "AUW010"] },
+    { "name": "MessageClass", "type": "string", "values": ["DU", "AU", "BI", "CU", "DY", "FU", "IU", "EU", "CK", "CC"] },
+    { "name": "MessageNumber", "type": "int", "values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] },
+    { "name": "AuditLogText", "type": "string", "values": ["Logon successful (type=DialogUser)", "Logon failed (reason=wrong password)", "Transaction SM37 started", "Report RSUSR002 started", "Authorization check failed for object S_TCODE", "User master record changed for user JSMITH", "RFC/CPIC logon successful", "File download initiated from application server", "System event: Parameter change detected", "Critical authorization assigned to user"] },
+    { "name": "Client", "type": "string", "values": ["100", "200", "300"] },
+    { "name": "User", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "admin", "SAP*", "DDIC"] },
+    { "name": "Terminal", "type": "string", "values": ["WS-PC01", "WS-PC02", "SRV-DC01", "SRV-WEB01", "WS-LAPTOP03"] },
+    { "name": "TransactionCode", "type": "string", "values": ["SM37", "SM21", "SE38", "SU01", "STMS", "SE80", "SM30", "ST22", "SM59", "SA38"] },
+    { "name": "SAPProgramName", "type": "string", "values": ["RSUSR002", "SAPMSYST", "SAPLSMTR_NAVIGATION", "RSBTCDEL2", "SAPLSUID_MAINTENANCE", "SAPMSSY1", "SAPLRHALTDOC_CUSTOMI", "SAPLTPST"] },
+    { "name": "Variable1", "type": "string", "values": ["jsmith", "agarcia", "SM37", "SE38", "STMS", "100", "", "SU01"] },
+    { "name": "Variable2", "type": "string", "values": ["100", "200", "300", "Dialog", "RFC", "CPIC", "", "Background"] },
+    { "name": "Variable3", "type": "string", "values": ["", "10.0.1.50", "10.0.1.51", "10.0.2.10", "172.16.0.100", "WS-PC01"] },
+    { "name": "AuditClassDescription", "type": "string", "values": ["Dialog logon", "RFC logon", "Transaction start", "Report start", "System Event", "User master change", "Authorization check", "File access"] }
+  ]
+}

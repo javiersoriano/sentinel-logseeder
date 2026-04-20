@@ -1,0 +1,39 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "QualysId", "type": "int", "values": [11827, 19056, 38173, 45002, 45017, 45124, 90783, 91464, 105612, 110396, 150013, 375858] },
+    { "name": "Title", "type": "string", "values": ["OpenSSL Multiple Vulnerabilities", "Apache HTTP Server Remote Code Execution", "Microsoft Windows SMB Remote Code Execution", "Linux Kernel Privilege Escalation", "Microsoft Exchange Server ProxyShell", "Log4j Remote Code Execution (Log4Shell)", "OpenSSH Vulnerability", "TLS/SSL Certificate Expired", "PostgreSQL Buffer Overflow", "Nginx HTTP Request Smuggling", "Redis Unauthorized Access", "Docker Container Escape"] },
+    { "name": "Severity", "type": "int", "values": [1, 2, 3, 3, 4, 5, 5, 4, 3, 2, 4, 5] },
+    { "name": "Category", "type": "string", "values": ["General remote services", "Web server", "Windows", "Local", "Information gathering", "CGI", "DNS", "Cryptography", "Database", "Firewall"] },
+    { "name": "CVEList", "type": "dynamic", "values": [
+      "[\"CVE-2024-0727\",\"CVE-2024-0565\"]",
+      "[\"CVE-2024-38476\",\"CVE-2024-38477\"]",
+      "[\"CVE-2023-44487\"]",
+      "[\"CVE-2024-1086\"]",
+      "[\"CVE-2021-34473\",\"CVE-2021-34523\",\"CVE-2021-31207\"]",
+      "[\"CVE-2021-44228\",\"CVE-2021-45046\"]"
+    ] },
+    { "name": "BugtraqList", "type": "dynamic", "values": [
+      "[\"107899\"]",
+      "[\"110234\",\"110235\"]",
+      "[]",
+      "[\"109876\"]",
+      "[\"108500\",\"108501\"]",
+      "[]"
+    ] },
+    { "name": "Solution", "type": "string", "values": ["Upgrade to the latest version of OpenSSL", "Apply vendor-supplied patches for Apache HTTP Server", "Install the latest Microsoft security updates", "Update the Linux kernel to the patched version", "Apply the latest cumulative update from Microsoft", "Upgrade Log4j to version 2.17.1 or later", "Update OpenSSH to the latest stable release", "Renew the expired TLS/SSL certificate"] },
+    { "name": "Consequence", "type": "string", "values": ["Remote attackers could execute arbitrary code", "Unauthorized access to sensitive data", "Denial of service or system compromise", "Local privilege escalation to root", "Remote code execution with SYSTEM privileges", "Complete system compromise via JNDI injection", "Information disclosure or unauthorized access", "Man-in-the-middle attacks possible"] },
+    { "name": "Diagnosis", "type": "string", "values": ["Detected vulnerable version of OpenSSL installed", "Apache server running unpatched version", "SMBv1 enabled with known vulnerability", "Kernel version contains privilege escalation flaw", "Exchange Server missing critical security patches", "Log4j library version 2.x prior to 2.17.1 detected", "OpenSSH version with known vulnerabilities detected", "TLS certificate has expired"] },
+    { "name": "PatchAvailable", "type": "boolean", "values": [true, true, true, true, true, true, false, true] },
+    { "name": "ThreatIntelligence", "type": "dynamic", "values": [
+      "{\"sources\":[\"CISA KEV\"],\"activeExploit\":true,\"ransomware\":false}",
+      "{\"sources\":[\"NVD\",\"CISA KEV\"],\"activeExploit\":true,\"ransomware\":false}",
+      "{\"sources\":[\"NVD\"],\"activeExploit\":false,\"ransomware\":false}",
+      "{\"sources\":[\"CISA KEV\",\"MITRE ATT&CK\"],\"activeExploit\":true,\"ransomware\":true}",
+      "{\"sources\":[\"NVD\",\"CISA KEV\"],\"activeExploit\":true,\"ransomware\":true}",
+      "{\"sources\":[\"NVD\"],\"activeExploit\":false,\"ransomware\":false}"
+    ] },
+    { "name": "PCI_Flag", "type": "boolean", "values": [true, true, false, true, true, false] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

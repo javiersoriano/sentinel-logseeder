@@ -1,0 +1,17 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AzureADDeviceId", "type": "string", "values": ["d1a2b3c4-0001-4000-8000-000000000001", "d1a2b3c4-0002-4000-8000-000000000002", "d1a2b3c4-0003-4000-8000-000000000003", "d1a2b3c4-0004-4000-8000-000000000004", "d1a2b3c4-0008-4000-8000-000000000008"] },
+    { "name": "DeviceName", "type": "string", "values": ["WS-PC01", "WS-PC02", "SRV-DC01", "SRV-WEB01", "WS-LAPTOP03"] },
+    { "name": "OSVersion", "type": "string", "values": ["10.0.19045.3803", "10.0.22631.2861", "10.0.22631.3007", "10.0.19045.3930", "10.0.22621.3007"] },
+    { "name": "OSEdition", "type": "string", "values": ["Enterprise", "Professional", "Education", "Enterprise", "Professional"] },
+    { "name": "OSArchitecture", "type": "string", "values": ["amd64"] },
+    { "name": "GlobalDeviceId", "type": "string", "values": ["g-00a1b2c3-d4e5-6f78-9a0b-c1d2e3f4a5b6", "g-11b2c3d4-e5f6-7890-ab1c-d2e3f4a5b6c7", "g-22c3d4e5-f678-9012-bc3d-e4f5a6b7c8d9", "g-33d4e5f6-7890-1234-cd5e-f6a7b8c9d0e1", "g-44e5f6a7-8901-2345-de6f-a7b8c9d0e1f2"] },
+    { "name": "AzureADTenantId", "type": "string", "values": ["72f988bf-86f1-41af-91ab-2d7cd011db47"] },
+    { "name": "LastCensusScanTime", "type": "datetime" },
+    { "name": "LastWUScanTime", "type": "datetime" },
+    { "name": "IsVirtualDevice", "type": "boolean", "values": [false, false, true, true, false] },
+    { "name": "OSFeatureUpdateComplianceStatus", "type": "string", "values": ["Compliant", "Compliant", "NotCompliant", "Unknown", "Compliant"] },
+    { "name": "OSQualityUpdateComplianceStatus", "type": "string", "values": ["Compliant", "NotCompliant", "Compliant", "Compliant", "Unknown"] }
+  ]
+}

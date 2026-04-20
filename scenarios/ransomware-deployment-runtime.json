@@ -1,0 +1,223 @@
+{
+  "name": "ransomware-deployment-runtime",
+  "description": "A compromised account (via phishing) is used to execute a malicious payload that encrypts files across the system and establishes registry persistence. Products: Okta (auth), Windows Security Events (endpoint).",
+  "mitreTactics": ["Initial Access", "Execution", "Impact", "Persistence", "Defense Evasion"],
+  "mitreIds": ["T1566.001", "T1059.001", "T1486", "T1547.001", "T1112", "T1070.004"],
+  "tables": {
+    "OktaV2_CL": {
+      "schema": "schemas/OktaV2_CL.json",
+      "rowCount": 40
+    },
+    "SecurityEvent": {
+      "schema": "schemas/SecurityEvent.json",
+      "rowCount": 310
+    }
+  },
+  "actors": {
+    "attacker": {
+      "ip": "external"
+    },
+    "victim": {
+      "ip": "internal",
+      "username": "random",
+      "upn": "random",
+      "device": "random",
+      "deviceFqdn": "random"
+    }
+  },
+  "timeline": [
+    {
+      "phase": "Phishing — Initial Compromise",
+      "description": "User authenticates to Okta, then opens a malicious email attachment",
+      "offsetMinutes": 0,
+      "durationMinutes": 5,
+      "table": "OktaV2_CL",
+      "count": 2,
+      "eventTemplate": {
+        "EventOriginalType": "user.session.start",
+        "EventMessage": "User login to Okta",
+        "EventResult": "Success",
+        "EventSeverity": "Informational",
+        "OriginalOutcomeResult": "SUCCESS",
+        "OriginalSeverity": "INFO",
+        "SrcIpAddr": "{{victim.ip}}",
+        "ActorUsername": "{{victim.upn}}",
+        "ActorUsernameType": "UPN",
+        "ActorUserType": "Regular",
+        "LogonMethod": "PASSWORD",
+        "LegacyEventType": "core.user_auth.login_success",
+        "DvcAction": "",
+        "SrcDeviceType": "Computer",
+        "OriginalClientDevice": "Computer",
+        "TransactionType": "WEB",
+        "EventProduct": "Okta",
+        "EventVendor": "Okta",
+        "EventSchema": "Authentication",
+        "EventSchemaVersion": "0.1.3",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Execution — Malicious Payload Launch",
+      "description": "User opens a macro-enabled document that spawns PowerShell to download and execute the ransomware payload",
+      "offsetMinutes": 8,
+      "durationMinutes": 3,
+      "table": "SecurityEvent",
+      "count": 5,
+      "eventTemplate": {
+        "EventID": 4688,
+        "Activity": "4688 - A new process has been created.",
+        "Account": "CONTOSO\\{{victim.username}}",
+        "AccountType": "User",
+        "AccountDomain": "CONTOSO",
+        "AccountName": "{{victim.username}}",
+        "SubjectUserName": "{{victim.username}}",
+        "SubjectDomainName": "CONTOSO",
+        "Computer": "{{victim.device}}",
+        "NewProcessName": ["C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe", "C:\\Windows\\System32\\cmd.exe", "C:\\Windows\\System32\\wscript.exe", "C:\\Windows\\System32\\mshta.exe", "C:\\Windows\\System32\\rundll32.exe"],
+        "CommandLine": [
+          "powershell.exe -ep bypass -e SQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0AA==",
+          "cmd.exe /c start /b payload.exe",
+          "wscript.exe C:\\Users\\Public\\update.vbs",
+          "mshta.exe javascript:a=new%20ActiveXObject('Wscript.Shell');a.Run('powershell -ep bypass',0)",
+          "rundll32.exe C:\\Users\\Public\\malware.dll,DllRegisterServer"
+        ],
+        "ParentProcessName": ["C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE", "C:\\Program Files\\Microsoft Office\\root\\Office16\\EXCEL.EXE", "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE"],
+        "Channel": "Security",
+        "EventSourceName": "Microsoft-Windows-Security-Auditing",
+        "MandatoryLabel": "S-1-16-8192",
+        "Level": "8",
+        "EventProduct": "Windows Security Events",
+        "EventVendor": "Microsoft",
+        "EventSchema": "ProcessEvent",
+        "EventSchemaVersion": "0.1.4",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Defense Evasion — Disable Recovery",
+      "description": "Ransomware deletes shadow copies and disables recovery options",
+      "offsetMinutes": 12,
+      "durationMinutes": 2,
+      "table": "SecurityEvent",
+      "count": 4,
+      "eventTemplate": {
+        "EventID": 4688,
+        "Activity": "4688 - A new process has been created.",
+        "Account": "CONTOSO\\{{victim.username}}",
+        "AccountType": "User",
+        "AccountDomain": "CONTOSO",
+        "AccountName": "{{victim.username}}",
+        "SubjectUserName": "{{victim.username}}",
+        "SubjectDomainName": "CONTOSO",
+        "Computer": "{{victim.device}}",
+        "NewProcessName": ["C:\\Windows\\System32\\vssadmin.exe", "C:\\Windows\\System32\\wbem\\WMIC.exe", "C:\\Windows\\System32\\bcdedit.exe", "C:\\Windows\\System32\\wbadmin.exe"],
+        "CommandLine": [
+          "vssadmin.exe delete shadows /all /quiet",
+          "wmic.exe shadowcopy delete",
+          "bcdedit.exe /set {default} recoveryenabled no",
+          "wbadmin.exe delete catalog -quiet"
+        ],
+        "ParentProcessName": "C:\\Windows\\System32\\cmd.exe",
+        "Channel": "Security",
+        "EventSourceName": "Microsoft-Windows-Security-Auditing",
+        "MandatoryLabel": "S-1-16-12288",
+        "Level": "8",
+        "EventProduct": "Windows Security Events",
+        "EventVendor": "Microsoft",
+        "EventSchema": "ProcessEvent",
+        "EventSchemaVersion": "0.1.4",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Impact — File Encryption",
+      "description": "Ransomware encrypts files across user directories and network shares",
+      "offsetMinutes": 15,
+      "durationMinutes": 30,
+      "table": "SecurityEvent",
+      "count": 120,
+      "eventTemplate": {
+        "EventID": [4663, 4656],
+        "Activity": ["4663 - An attempt was made to access an object.", "4656 - A handle to an object was requested."],
+        "Account": "CONTOSO\\{{victim.username}}",
+        "AccountType": "User",
+        "AccountDomain": "CONTOSO",
+        "AccountName": "{{victim.username}}",
+        "SubjectUserName": "{{victim.username}}",
+        "SubjectDomainName": "CONTOSO",
+        "Computer": "{{victim.device}}",
+        "ObjectType": "File",
+        "ObjectServer": "Security",
+        "ObjectName": [
+          "C:\\Users\\Public\\Documents\\report.docx.encrypted",
+          "C:\\Users\\Public\\Documents\\budget.xlsx.encrypted",
+          "C:\\Users\\Public\\Desktop\\presentation.pptx.encrypted",
+          "C:\\Users\\Public\\Pictures\\photo.jpg.encrypted",
+          "\\\\SRV-FILE01\\share\\finance\\Q4-results.xlsx.encrypted",
+          "\\\\SRV-FILE01\\share\\hr\\employee-list.csv.encrypted",
+          "\\\\SRV-FILE01\\share\\projects\\design.pdf.encrypted",
+          "C:\\Users\\Public\\Documents\\README-DECRYPT.txt"
+        ],
+        "AccessMask": ["0x2", "0x4", "0x100", "0x10"],
+        "ProcessName": "C:\\Users\\Public\\svchost.exe",
+        "Channel": "Security",
+        "EventSourceName": "Microsoft-Windows-Security-Auditing",
+        "Level": "8",
+        "EventProduct": "Windows Security Events",
+        "EventVendor": "Microsoft",
+        "EventSchema": "FileEvent",
+        "EventSchemaVersion": "0.2.1",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Persistence — Registry Run Key",
+      "description": "Ransomware adds registry run keys for persistence and modifies security settings",
+      "offsetMinutes": 14,
+      "durationMinutes": 2,
+      "table": "SecurityEvent",
+      "count": 6,
+      "eventTemplate": {
+        "EventID": 4657,
+        "Activity": "4657 - A registry value was modified.",
+        "Account": "CONTOSO\\{{victim.username}}",
+        "AccountType": "User",
+        "AccountDomain": "CONTOSO",
+        "AccountName": "{{victim.username}}",
+        "SubjectUserName": "{{victim.username}}",
+        "SubjectDomainName": "CONTOSO",
+        "Computer": "{{victim.device}}",
+        "ObjectType": "Key",
+        "ObjectServer": "Security",
+        "ObjectName": [
+          "\\REGISTRY\\MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+          "\\REGISTRY\\USER\\S-1-5-21-xxx\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+          "\\REGISTRY\\MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce",
+          "\\REGISTRY\\MACHINE\\SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\StandardProfile",
+          "\\REGISTRY\\MACHINE\\SOFTWARE\\Policies\\Microsoft\\Windows Defender",
+          "\\REGISTRY\\MACHINE\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
+        ],
+        "ObjectValueName": ["UpdateService", "SystemHelper", "RecoveryCheck", "EnableFirewall", "DisableAntiSpyware", "EnableLUA"],
+        "NewValue": [
+          "C:\\Users\\Public\\svchost.exe",
+          "C:\\ProgramData\\updater.exe",
+          "C:\\Users\\Public\\recovery.exe",
+          "0",
+          "1",
+          "0"
+        ],
+        "NewValueType": "%%1873",
+        "ProcessName": "C:\\Users\\Public\\svchost.exe",
+        "Channel": "Security",
+        "EventSourceName": "Microsoft-Windows-Security-Auditing",
+        "Level": "8",
+        "EventProduct": "Windows Security Events",
+        "EventVendor": "Microsoft",
+        "EventSchema": "RegistryEvent",
+        "EventSchemaVersion": "0.1.2",
+        "EventCount": 1
+      }
+    }
+  ]
+}

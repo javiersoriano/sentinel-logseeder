@@ -1,0 +1,88 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "clickTime", "type": "datetime" },
+    { "name": "sender", "type": "string", "values": [
+      "a1b2c3d4e5f6@evil-domain.com",
+      "9facbf452def@badguy.zz",
+      "xhash8827ab@phishmail.net",
+      "info@legitimate-vendor.com",
+      "noreply@service-update.com",
+      "billing@invoice-portal.net",
+      "support@helpdesk-contoso.com",
+      "hr@contoso.com",
+      "newsletter@marketing-promo.com",
+      "alerts@security-notify.com"
+    ]},
+    { "name": "senderIP", "type": "string" },
+    { "name": "recipient", "type": "string", "values": [
+      "jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com",
+      "lchen@contoso.com", "pjones@contoso.com", "rsingh@contoso.com",
+      "kbrown@contoso.com", "tnguyen@contoso.com", "admin@contoso.com",
+      "secops@contoso.com"
+    ]},
+    { "name": "clickIP", "type": "string" },
+    { "name": "url", "type": "string", "values": [
+      "https://login.contoso-secure.com/verify?token=abc123",
+      "http://malware-c2.example.com/beacon",
+      "https://docs.sharepoint-cdn.com/shared/Invoice_Q2.xlsx",
+      "http://evil-phish.example.com/login.html",
+      "https://portal.contoso.com/reset-password?id=7f8a2b",
+      "http://badsite.example.net/download/update.exe",
+      "https://secure-document.example.com/view/doc_9281",
+      "http://tracking.example.org/click?ref=promo2026",
+      "https://conference-reg.example.com/register",
+      "http://compromised-site.example.com/redir?to=payload",
+      "https://updates.contoso.com/check",
+      "http://phishing-kit.example.net/o365/login",
+      "https://app.fabrikam.net/shared-doc?id=x92kf",
+      "http://free-prize.example.com/claim-now",
+      "https://webmail.contoso.com/owa/attachment/view"
+    ]},
+    { "name": "GUID", "type": "string" },
+    { "name": "id", "type": "string" },
+    { "name": "messageID", "type": "string" },
+    { "name": "campaignId", "type": "string", "values": [
+      "46e01b8a-c899-404d-bcd9-189bb393d1a7",
+      "7b3e92f1-d4a8-4c12-b567-2a8f9e4d1c3b",
+      "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f",
+      "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d",
+      "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4b",
+      null, null
+    ]},
+    { "name": "classification", "type": "string", "values": [
+      "MALWARE", "PHISH", "PHISH", "PHISH", "SPAM", "MALWARE", "PHISH"
+    ]},
+    { "name": "threatID", "type": "string", "values": [
+      "2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca",
+      "61f7622167144dba5e3ae4480eeee78b23d66f7dfed970cfc3d086cc0dabdf50",
+      "a3c1f28e7d4b5c9a1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d",
+      "d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3",
+      "b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9",
+      "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4",
+      "f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5"
+    ]},
+    { "name": "threatTime", "type": "datetime" },
+    { "name": "threatURL", "type": "string", "values": [
+      "https://threatinsight.proofpoint.com/threat/u/2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca",
+      "https://threatinsight.proofpoint.com/threat/u/61f7622167144dba5e3ae4480eeee78b23d66f7dfed970cfc3d086cc0dabdf50",
+      "https://threatinsight.proofpoint.com/threat/u/a3c1f28e7d4b5c9a1e2f3a4b5c6d7e8f",
+      "https://threatinsight.proofpoint.com/threat/u/d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7",
+      "https://threatinsight.proofpoint.com/threat/u/b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3",
+      "https://threatinsight.proofpoint.com/threat/u/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8",
+      "https://threatinsight.proofpoint.com/threat/u/f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9"
+    ]},
+    { "name": "threatStatus", "type": "string", "values": [
+      "active", "active", "active", "active", "active", "cleared", "falsePositive"
+    ]},
+    { "name": "userAgent", "type": "string", "values": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2.1 Safari/605.1.15",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:121.0) Gecko/20100101 Firefox/121.0",
+      "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36 Edg/120.0.0.0"
+    ]}
+  ]
+}
+

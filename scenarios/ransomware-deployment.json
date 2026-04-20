@@ -1,0 +1,174 @@
+{
+  "name": "ransomware-deployment",
+  "description": "A compromised account (via phishing) is used to execute a malicious payload that encrypts files across the system and establishes registry persistence.",
+  "mitreTactics": ["Initial Access", "Execution", "Impact", "Persistence", "Defense Evasion"],
+  "mitreIds": ["T1566.001", "T1059.001", "T1486", "T1547.001", "T1112", "T1070.004"],
+  "tables": {
+    "Authentication": {
+      "schema": "schemas/Authentication.json",
+      "rowCount": 40
+    },
+    "ProcessEvent": {
+      "schema": "schemas/ProcessEvent.json",
+      "rowCount": 80
+    },
+    "FileEvent": {
+      "schema": "schemas/FileEvent.json",
+      "rowCount": 200
+    },
+    "RegistryEvent": {
+      "schema": "schemas/RegistryEvent.json",
+      "rowCount": 30
+    }
+  },
+  "actors": {
+    "attacker": {
+      "ip": "external"
+    },
+    "victim": {
+      "ip": "internal",
+      "username": "random",
+      "upn": "random",
+      "device": "random",
+      "deviceFqdn": "random"
+    }
+  },
+  "timeline": [
+    {
+      "phase": "Phishing — Initial Compromise",
+      "description": "User authenticates normally, then opens a malicious email attachment",
+      "offsetMinutes": 0,
+      "durationMinutes": 5,
+      "table": "Authentication",
+      "count": 2,
+      "eventTemplate": {
+        "EventType": "Logon",
+        "EventResult": "Success",
+        "EventSeverity": "Informational",
+        "SrcIpAddr": "{{victim.ip}}",
+        "TargetUsername": "{{victim.username}}",
+        "TargetUsernameType": "Simple",
+        "LogonMethod": "Interactive",
+        "DvcHostname": "{{victim.device}}",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Execution — Malicious Payload Launch",
+      "description": "User opens a macro-enabled document that spawns PowerShell to download and execute the ransomware payload",
+      "offsetMinutes": 8,
+      "durationMinutes": 3,
+      "table": "ProcessEvent",
+      "count": 5,
+      "eventTemplate": {
+        "EventType": "ProcessCreated",
+        "EventResult": "Success",
+        "EventSeverity": "Medium",
+        "ActorUsername": "{{victim.username}}",
+        "DvcHostname": "{{victim.device}}",
+        "TargetProcessName": ["powershell.exe", "cmd.exe", "wscript.exe", "mshta.exe", "rundll32.exe"],
+        "TargetProcessCommandLine": [
+          "powershell.exe -ep bypass -e SQBuAHYAbwBrAGUALQBXAGUAYgBSAGUAcQB1AGUAcwB0AA==",
+          "cmd.exe /c start /b payload.exe",
+          "wscript.exe C:\\Users\\Public\\update.vbs",
+          "mshta.exe javascript:a=new%20ActiveXObject('Wscript.Shell');a.Run('powershell -ep bypass',0)",
+          "rundll32.exe C:\\Users\\Public\\malware.dll,DllRegisterServer"
+        ],
+        "ActingProcessName": ["WINWORD.EXE", "EXCEL.EXE", "outlook.exe"],
+        "ParentProcessName": "explorer.exe",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Defense Evasion — Disable Recovery",
+      "description": "Ransomware deletes shadow copies and disables recovery options",
+      "offsetMinutes": 12,
+      "durationMinutes": 2,
+      "table": "ProcessEvent",
+      "count": 4,
+      "eventTemplate": {
+        "EventType": "ProcessCreated",
+        "EventResult": "Success",
+        "EventSeverity": "High",
+        "ActorUsername": "{{victim.username}}",
+        "DvcHostname": "{{victim.device}}",
+        "TargetProcessName": ["vssadmin.exe", "wmic.exe", "bcdedit.exe", "wbadmin.exe"],
+        "TargetProcessCommandLine": [
+          "vssadmin.exe delete shadows /all /quiet",
+          "wmic.exe shadowcopy delete",
+          "bcdedit.exe /set {default} recoveryenabled no",
+          "wbadmin.exe delete catalog -quiet"
+        ],
+        "ActingProcessName": "cmd.exe",
+        "ParentProcessName": "powershell.exe",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Impact — File Encryption",
+      "description": "Ransomware encrypts files across user directories and network shares",
+      "offsetMinutes": 15,
+      "durationMinutes": 30,
+      "table": "FileEvent",
+      "count": 120,
+      "eventTemplate": {
+        "EventType": ["FileModified", "FileRenamed", "FileCreated"],
+        "EventResult": "Success",
+        "EventSeverity": "High",
+        "ActorUsername": "{{victim.username}}",
+        "DvcHostname": "{{victim.device}}",
+        "TargetFilePath": [
+          "C:\\Users\\Public\\Documents\\report.docx.encrypted",
+          "C:\\Users\\Public\\Documents\\budget.xlsx.encrypted",
+          "C:\\Users\\Public\\Desktop\\presentation.pptx.encrypted",
+          "C:\\Users\\Public\\Pictures\\photo.jpg.encrypted",
+          "\\\\SRV-FILE01\\share\\finance\\Q4-results.xlsx.encrypted",
+          "\\\\SRV-FILE01\\share\\hr\\employee-list.csv.encrypted",
+          "\\\\SRV-FILE01\\share\\projects\\design.pdf.encrypted",
+          "C:\\Users\\Public\\Documents\\README-DECRYPT.txt"
+        ],
+        "TargetFileName": ["report.docx.encrypted", "budget.xlsx.encrypted", "presentation.pptx.encrypted", "photo.jpg.encrypted", "Q4-results.xlsx.encrypted", "employee-list.csv.encrypted", "design.pdf.encrypted", "README-DECRYPT.txt"],
+        "SrcFilePath": [
+          "C:\\Users\\Public\\Documents\\report.docx",
+          "C:\\Users\\Public\\Documents\\budget.xlsx",
+          "C:\\Users\\Public\\Desktop\\presentation.pptx",
+          "C:\\Users\\Public\\Pictures\\photo.jpg"
+        ],
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Persistence — Registry Run Key",
+      "description": "Ransomware adds registry run keys for persistence and modifies security settings",
+      "offsetMinutes": 14,
+      "durationMinutes": 2,
+      "table": "RegistryEvent",
+      "count": 6,
+      "eventTemplate": {
+        "EventType": ["RegistryValueSet", "RegistryKeyCreated"],
+        "EventResult": "Success",
+        "EventSeverity": "High",
+        "ActorUsername": "{{victim.username}}",
+        "DvcHostname": "{{victim.device}}",
+        "RegistryKey": [
+          "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+          "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run",
+          "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\RunOnce",
+          "HKLM\\SYSTEM\\CurrentControlSet\\Services\\SharedAccess\\Parameters\\FirewallPolicy\\StandardProfile",
+          "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender",
+          "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System"
+        ],
+        "RegistryValue": ["UpdateService", "SystemHelper", "RecoveryCheck", "EnableFirewall", "DisableAntiSpyware", "EnableLUA"],
+        "RegistryValueData": [
+          "C:\\Users\\Public\\svchost.exe",
+          "C:\\ProgramData\\updater.exe",
+          "C:\\Users\\Public\\recovery.exe",
+          "0",
+          "1",
+          "0"
+        ],
+        "EventCount": 1
+      }
+    }
+  ]
+}

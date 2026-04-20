@@ -1,0 +1,81 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "Action", "type": "string", "values": ["ALLOW", "BLOCK", "CAPTCHA", "Challenge", "COUNT"] },
+    { "name": "Args", "type": "string", "values": ["", "page=1&sort=asc", "id=12345", "q=test&limit=100", "action=login&user=jsmith"] },
+    { "name": "ClientIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "10.0.1.50", "10.0.1.51"] },
+    { "name": "Country", "type": "string", "values": ["US", "GB", "DE", "CN", "RU", "RO", "BR", "JP"] },
+    { "name": "FormatVersion", "type": "string", "values": ["1"] },
+    { "name": "HttpMethod", "type": "string", "values": ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH"] },
+    { "name": "HttpSourceId", "type": "string", "values": [
+      "arn:aws:elasticloadbalancing:us-east-1:123456789012:loadbalancer/app/contoso-alb/abc1234567890",
+      "arn:aws:cloudfront::123456789012:distribution/E1A2B3C4D5E6F7",
+      "arn:aws:apigateway:us-east-1::/restapis/abc123def4"
+    ] },
+    { "name": "HttpSourceName", "type": "string", "values": ["ALB", "CF", "APIGW"] },
+    { "name": "HttpVersion", "type": "string", "values": ["HTTP/1.1", "HTTP/2.0"] },
+    { "name": "Uri", "type": "string", "values": ["/", "/api/login", "/api/users", "/admin/dashboard", "/wp-login.php", "/api/v1/data", "/.env", "/actuator/health"] },
+    { "name": "RequestId", "type": "string" },
+    { "name": "ResponseCodeSent", "type": "int", "values": [200, 403, 405, 503, 302] },
+    { "name": "WebAclId", "type": "string", "values": [
+      "arn:aws:wafv2:us-east-1:123456789012:regional/webacl/contoso-waf-acl/a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+    ] },
+    { "name": "TerminatingRuleId", "type": "string", "values": ["Default_Action", "AWS-AWSManagedRulesCommonRuleSet", "rate-limit-rule", "ip-block-rule", "geo-block-rule", "sql-injection-rule"] },
+    { "name": "TerminatingRuleType", "type": "string", "values": ["REGULAR", "RATE_BASED", "MANAGED_RULE_GROUP", "GROUP", "IP_SET"] },
+    { "name": "TerminatingRule", "type": "dynamic", "values": [
+      {"ruleId": "AWS-AWSManagedRulesCommonRuleSet", "action": "BLOCK", "ruleMatchDetails": []},
+      {"ruleId": "rate-limit-rule", "action": "BLOCK", "ruleMatchDetails": []},
+      {"ruleId": "Default_Action", "action": "ALLOW", "ruleMatchDetails": []},
+      null
+    ] },
+    { "name": "TerminatingRuleMatchDetails", "type": "dynamic", "values": [
+      [{"conditionType": "SQL_INJECTION", "location": "QUERY_STRING", "matchedData": ["1' OR '1'='1"]}],
+      [{"conditionType": "XSS", "location": "BODY", "matchedData": ["<script>alert(1)</script>"]}],
+      []
+    ] },
+    { "name": "RuleGroupList", "type": "dynamic", "values": [
+      [{"ruleGroupId": "AWS#AWSManagedRulesCommonRuleSet", "terminatingRule": null, "nonTerminatingMatchingRules": [], "excludedRules": []}],
+      [{"ruleGroupId": "AWS#AWSManagedRulesSQLiRuleSet", "terminatingRule": {"ruleId": "SQLi_QUERYARGUMENTS", "action": "BLOCK"}, "nonTerminatingMatchingRules": [], "excludedRules": []}],
+      [{"ruleGroupId": "AWS#AWSManagedRulesKnownBadInputsRuleSet", "terminatingRule": null, "nonTerminatingMatchingRules": [{"ruleId": "Log4JRCE", "action": "COUNT"}], "excludedRules": []}]
+    ] },
+    { "name": "RuleGroupId", "type": "string", "values": ["AWS#AWSManagedRulesCommonRuleSet", "AWS#AWSManagedRulesSQLiRuleSet", "AWS#AWSManagedRulesKnownBadInputsRuleSet", ""] },
+    { "name": "NonTerminatingMatchingRules", "type": "dynamic", "values": [
+      [],
+      [{"ruleId": "AWS-AWSManagedRulesCommonRuleSet", "action": "COUNT"}]
+    ] },
+    { "name": "RateBasedRuleList", "type": "dynamic", "values": [
+      [],
+      [{"rateBasedRuleId": "rate-limit-rule", "limitKey": "IP", "maxRateAllowed": 2000}]
+    ] },
+    { "name": "Headers", "type": "dynamic", "values": [
+      [{"name": "Host", "value": "contoso.com"}, {"name": "User-Agent", "value": "Mozilla/5.0"}, {"name": "Accept", "value": "*/*"}],
+      [{"name": "Host", "value": "api.fabrikam.net"}, {"name": "User-Agent", "value": "python-requests/2.31.0"}, {"name": "Content-Type", "value": "application/json"}]
+    ] },
+    { "name": "HttpRequest", "type": "dynamic", "values": [
+      {"clientIp": "203.0.113.42", "country": "US", "headers": [{"name": "Host", "value": "contoso.com"}], "uri": "/api/login", "args": "", "httpVersion": "HTTP/2.0", "httpMethod": "POST", "requestId": "a1b2c3d4"},
+      {"clientIp": "198.51.100.17", "country": "CN", "headers": [{"name": "Host", "value": "contoso.com"}], "uri": "/wp-login.php", "args": "", "httpVersion": "HTTP/1.1", "httpMethod": "POST", "requestId": "e5f6a7b8"}
+    ] },
+    { "name": "Labels", "type": "dynamic", "values": [
+      [{"name": "awswaf:managed:aws:common-rule-set:NoUserAgent_HEADER"}],
+      [{"name": "awswaf:managed:aws:sql-database:SQLi_QUERYARGUMENTS"}],
+      []
+    ] },
+    { "name": "CaptchaResponse", "type": "dynamic", "values": [
+      {"responseCode": 405, "solveTimestamp": 0},
+      null
+    ] },
+    { "name": "ChallengeResponse", "type": "dynamic", "values": [
+      {"responseCode": 202, "solveTimestamp": 1705312200},
+      null
+    ] },
+    { "name": "ExcludedRules", "type": "dynamic", "values": [
+      [],
+      [{"exclusionType": "EXCLUDED_AS_COUNT", "ruleId": "SizeRestrictions_BODY"}]
+    ] },
+    { "name": "Ja3Fingerprint", "type": "string", "values": ["", "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6", "d4e5f6a7b8c9d0e1f2a3b4c5d6a7b8c9"] },
+    { "name": "OversizeFields", "type": "dynamic", "values": [null, {"requestBodySize": 16384}] },
+    { "name": "RequestHeadersInserted", "type": "dynamic", "values": [null, [{"name": "x-amzn-waf-action", "value": "allow"}]] },
+    { "name": "UserAgent", "type": "string", "values": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "python-requests/2.31.0", "curl/8.4.0", "Go-http-client/2.0", "Boto3/1.28.0", "sqlmap/1.7"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "CaseId", "type": "string" },
+    { "name": "Title", "type": "string", "values": [
+      "Ransomware incident on WS-PC01",
+      "Credential theft detected on SRV-DC01",
+      "Suspicious lateral movement activity",
+      "Malicious PowerShell execution chain",
+      "Phishing email delivered with malicious attachment",
+      "Cobalt Strike beacon identified on endpoint",
+      "Unauthorized admin account creation",
+      "Data exfiltration attempt via DNS tunneling",
+      "Brute force attack against VPN gateway",
+      "Supply chain compromise investigation"
+    ] },
+    { "name": "Description", "type": "string", "values": [
+      "Ransomware activity was detected encrypting files across the endpoint.",
+      "Mimikatz was used to dump credentials from LSASS on domain controller.",
+      "Lateral movement using PsExec and stolen domain admin credentials.",
+      "Multi-stage PowerShell attack chain downloading and executing payloads.",
+      "User received phishing email with macro-enabled document payload.",
+      "C2 beacon communicating with external infrastructure on port 443.",
+      "New admin user created via net.exe by compromised service account.",
+      "Large volume of DNS queries to suspicious domain consistent with tunneling.",
+      "Repeated failed VPN login attempts from external IP addresses.",
+      "Third-party software update package contained trojanized DLL."
+    ] },
+    { "name": "Status", "type": "string", "values": ["Open", "In Progress", "Closed", "On Hold", "Reopened"] },
+    { "name": "Priority", "type": "string", "values": ["Critical", "High", "Medium", "Low"] },
+    { "name": "AssignedTo", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "lchen@contoso.com", ""] },
+    { "name": "CreatedBy", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "admin@contoso.com"] },
+    { "name": "CreatedTime", "type": "datetime" },
+    { "name": "LastUpdatedTime", "type": "datetime" },
+    { "name": "ClosedTime", "type": "datetime" },
+    { "name": "DetectionIds", "type": "dynamic", "values": [
+      ["det:abc123:1001", "det:abc123:1002"],
+      ["det:def456:2001"],
+      ["det:ghi789:3001", "det:ghi789:3002", "det:ghi789:3003"],
+      []
+    ] },
+    { "name": "IncidentIds", "type": "dynamic", "values": [
+      ["inc:abc123:1"],
+      ["inc:def456:2", "inc:def456:3"],
+      [],
+      ["inc:ghi789:4"]
+    ] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      ["ransomware", "critical-asset"],
+      ["credential-theft", "domain-controller"],
+      ["lateral-movement", "investigation"],
+      ["phishing", "initial-access"]
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

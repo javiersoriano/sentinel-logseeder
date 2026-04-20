@@ -1,0 +1,149 @@
+{
+  "name": "brute-force-lateral-movement",
+  "description": "An external attacker performs a brute-force password attack against a user account, eventually succeeds, then moves laterally via RDP to an internal server and executes reconnaissance commands.",
+  "mitreTactics": ["Initial Access", "Credential Access", "Lateral Movement", "Execution", "Discovery"],
+  "mitreIds": ["T1110.001", "T1078", "T1021.001", "T1059.001", "T1082", "T1016"],
+  "tables": {
+    "Authentication": {
+      "schema": "schemas/Authentication.json",
+      "rowCount": 120
+    },
+    "NetworkSession": {
+      "schema": "schemas/NetworkSession.json",
+      "rowCount": 80
+    },
+    "ProcessEvent": {
+      "schema": "schemas/ProcessEvent.json",
+      "rowCount": 60
+    }
+  },
+  "actors": {
+    "attacker": {
+      "ip": "external",
+      "username": null
+    },
+    "victim": {
+      "ip": "internal",
+      "username": "random",
+      "upn": "random",
+      "device": "random"
+    },
+    "targetServer": {
+      "ip": "internal",
+      "device": "random",
+      "deviceFqdn": "random"
+    }
+  },
+  "timeline": [
+    {
+      "phase": "Brute Force — Failed Logons",
+      "description": "Rapid failed authentication attempts from the attacker IP against the victim account",
+      "offsetMinutes": 0,
+      "durationMinutes": 15,
+      "table": "Authentication",
+      "count": 35,
+      "eventTemplate": {
+        "EventType": "Logon",
+        "EventResult": "Failure",
+        "EventResultDetails": ["InvalidPassword", "NoSuchUser", "AccountLocked"],
+        "EventSeverity": "Low",
+        "SrcIpAddr": "{{attacker.ip}}",
+        "TargetUsername": "{{victim.username}}",
+        "TargetUsernameType": "Simple",
+        "LogonMethod": ["Remote", "Interactive"],
+        "LogonProtocol": "RDP",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Brute Force — Successful Logon",
+      "description": "Attacker successfully guesses the password",
+      "offsetMinutes": 16,
+      "durationMinutes": 1,
+      "table": "Authentication",
+      "count": 1,
+      "eventTemplate": {
+        "EventType": "Logon",
+        "EventResult": "Success",
+        "EventResultDetails": "",
+        "EventSeverity": "Informational",
+        "SrcIpAddr": "{{attacker.ip}}",
+        "TargetUsername": "{{victim.username}}",
+        "TargetUsernameType": "Simple",
+        "LogonMethod": "Remote",
+        "LogonProtocol": "RDP",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Lateral Movement — RDP to Internal Server",
+      "description": "Attacker initiates an RDP session from the compromised workstation to a sensitive server",
+      "offsetMinutes": 20,
+      "durationMinutes": 2,
+      "table": "NetworkSession",
+      "count": 3,
+      "eventTemplate": {
+        "EventType": "NetworkSession",
+        "EventResult": "Success",
+        "EventSeverity": "Informational",
+        "SrcIpAddr": "{{victim.ip}}",
+        "DstIpAddr": "{{targetServer.ip}}",
+        "DstPortNumber": 3389,
+        "NetworkProtocol": "TCP",
+        "NetworkDirection": "Outbound",
+        "DvcHostname": "{{victim.device}}",
+        "SrcUsername": "{{victim.username}}",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Lateral Movement — Auth on Target Server",
+      "description": "Victim credentials used to authenticate on the target server",
+      "offsetMinutes": 22,
+      "durationMinutes": 1,
+      "table": "Authentication",
+      "count": 1,
+      "eventTemplate": {
+        "EventType": "Logon",
+        "EventResult": "Success",
+        "EventSeverity": "Informational",
+        "SrcIpAddr": "{{victim.ip}}",
+        "TargetUsername": "{{victim.username}}",
+        "TargetUsernameType": "Simple",
+        "LogonMethod": "Remote",
+        "LogonProtocol": "RDP",
+        "DvcHostname": "{{targetServer.device}}",
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Discovery — Reconnaissance Commands",
+      "description": "Attacker runs system discovery commands on the target server",
+      "offsetMinutes": 25,
+      "durationMinutes": 10,
+      "table": "ProcessEvent",
+      "count": 8,
+      "eventTemplate": {
+        "EventType": "ProcessCreated",
+        "EventResult": "Success",
+        "EventSeverity": "Informational",
+        "ActorUsername": "{{victim.username}}",
+        "DvcHostname": "{{targetServer.device}}",
+        "TargetProcessName": ["cmd.exe", "powershell.exe", "whoami.exe", "net.exe", "ipconfig.exe", "systeminfo.exe", "nltest.exe", "quser.exe"],
+        "TargetProcessCommandLine": [
+          "whoami /all",
+          "net user",
+          "net localgroup administrators",
+          "ipconfig /all",
+          "systeminfo",
+          "nltest /dclist:contoso.local",
+          "quser",
+          "net share"
+        ],
+        "ActingProcessName": "cmd.exe",
+        "ParentProcessName": "explorer.exe",
+        "EventCount": 1
+      }
+    }
+  ]
+}

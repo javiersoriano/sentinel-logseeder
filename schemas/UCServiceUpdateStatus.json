@@ -1,0 +1,13 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "UpdateId", "type": "string", "values": ["b0f89b2a-1c3d-4e5f-a6b7-c8d9e0f1a2b3", "c1a2b3c4-2d3e-5f6a-b7c8-d9e0f1a2b3c4", "d2b3c4d5-3e4f-6a7b-c8d9-e0f1a2b3c4d5", "e3c4d5e6-4f5a-7b8c-d9e0-f1a2b3c4d5e6", "f4d5e6f7-5a6b-8c9d-e0f1-a2b3c4d5e6f7"] },
+    { "name": "UpdateTitle", "type": "string", "values": ["2024-01 Cumulative Update for Windows 11 Version 23H2 (KB5034123)", "2024-01 Security Update for Windows 10 Version 22H2 (KB5034122)", "2024-01 .NET Framework 4.8.1 Security Update (KB5033920)", "Windows Malicious Software Removal Tool x64 - v5.120 (KB890830)", "Feature Update to Windows 11 Version 23H2"] },
+    { "name": "UpdateCategory", "type": "string", "values": ["QualityUpdate", "QualityUpdate", "QualityUpdate", "QualityUpdate", "FeatureUpdate"] },
+    { "name": "UpdateClassification", "type": "string", "values": ["Security", "Critical", "Definition", "UpdateRollup", "FeaturePack"] },
+    { "name": "ServiceState", "type": "string", "values": ["OfferReady", "InService", "EndOfService", "Paused", "InService"] },
+    { "name": "ServiceSubstate", "type": "string", "values": ["", "Validation", "Gradual", "Broad", "Paused"] },
+    { "name": "TargetBuild", "type": "string", "values": ["10.0.22631.3007", "10.0.19045.3930", "10.0.22621.3007", "10.0.22631.2861", "10.0.22631.3007"] },
+    { "name": "TargetVersion", "type": "string", "values": ["23H2", "22H2", "22H2", "23H2", "23H2"] }
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "messageTime", "type": "datetime" },
+    { "name": "sender", "type": "string", "values": [
+      "a1b2c3d4e5f6@evil-domain.com",
+      "9facbf452def@badguy.zz",
+      "xhash8827ab@phishmail.net",
+      "info@legitimate-vendor.com",
+      "noreply@service-update.com",
+      "billing@invoice-portal.net",
+      "support@helpdesk-contoso.com",
+      "hr@contoso.com",
+      "newsletter@marketing-promo.com",
+      "alerts@security-notify.com"
+    ]},
+    { "name": "senderIP", "type": "string" },
+    { "name": "recipient", "type": "dynamic", "values": [
+      ["jsmith@contoso.com"],
+      ["agarcia@contoso.com"],
+      ["mwilson@contoso.com", "lchen@contoso.com"],
+      ["pjones@contoso.com"],
+      ["rsingh@contoso.com", "kbrown@contoso.com"],
+      ["tnguyen@contoso.com"],
+      ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com"],
+      ["lchen@contoso.com"],
+      ["kbrown@contoso.com"],
+      ["admin@contoso.com"]
+    ]},
+    { "name": "subject", "type": "string", "values": [
+      "Q2 Financial Report - Action Required",
+      "Meeting Notes from Today",
+      "Invoice #38291 Attached",
+      "Password Reset Confirmation",
+      "Re: Project Timeline Update",
+      "Urgent: Account Verification Needed",
+      "Weekly Status Report",
+      "Shipment Tracking Notification",
+      "Your Order Has Been Confirmed",
+      "Important: Security Policy Update",
+      "FW: Vendor Agreement Draft",
+      "Action Required: Review Document",
+      "Invitation: All Hands Meeting",
+      "RE: Budget Approval Request",
+      "Shared Document: Q2 Planning.xlsx",
+      "Please Review: Updated Contract",
+      "Voicemail from Unknown Caller",
+      "Wire Transfer Confirmation",
+      "New Sign-in from Unrecognized Device",
+      "Fax Delivery Notification"
+    ]},
+    { "name": "fromAddress", "type": "dynamic", "values": [
+      ["badguy@evil-domain.com"],
+      ["spammer@phishmail.net"],
+      ["billing@invoice-portal.net"],
+      ["hr@contoso.com"],
+      ["support@helpdesk-contoso.com"],
+      ["noreply@service-update.com"],
+      ["alerts@security-notify.com"],
+      ["newsletter@marketing-promo.com"],
+      ["info@legitimate-vendor.com"],
+      ["admin-noreply@contoso.com"]
+    ]},
+    { "name": "headerFrom", "type": "string", "values": [
+      "\"IT Support\" <support@helpdesk-contoso.com>",
+      "\"HR Department\" <hr@contoso.com>",
+      "\"Billing Team\" <billing@invoice-portal.net>",
+      "\"Security Alert\" <alerts@security-notify.com>",
+      "\"A. Badguy\" <badguy@evil-domain.com>",
+      "\"Microsoft 365\" <noreply@service-update.com>",
+      "\"John Smith\" <jsmith@contoso.com>",
+      "\"Vendor Support\" <info@legitimate-vendor.com>",
+      "\"Newsletter\" <newsletter@marketing-promo.com>",
+      "\"DocuSign\" <dse@docusign-notifications.com>"
+    ]},
+    { "name": "headerReplyTo", "type": "string", "values": [
+      null, null, null, null,
+      "\"Support\" <reply@evil-domain.com>",
+      "\"Billing\" <reply@invoice-portal.net>",
+      null, null
+    ]},
+    { "name": "toAddresses", "type": "dynamic", "values": [
+      ["jsmith@contoso.com"],
+      ["agarcia@contoso.com"],
+      ["mwilson@contoso.com", "lchen@contoso.com"],
+      ["pjones@contoso.com"],
+      ["rsingh@contoso.com"],
+      ["kbrown@contoso.com", "tnguyen@contoso.com"],
+      ["admin@contoso.com"],
+      ["secops@contoso.com"],
+      ["helpdesk@contoso.com"],
+      ["jsmith@contoso.com", "agarcia@contoso.com"]
+    ]},
+    { "name": "ccAddresses", "type": "dynamic", "values": [
+      [], [], [],
+      ["mwilson@contoso.com"],
+      ["secops@contoso.com"],
+      [], [],
+      ["admin@contoso.com"],
+      [], []
+    ]},
+    { "name": "replyToAddress", "type": "dynamic", "values": [
+      [], [], [],
+      ["reply@evil-domain.com"],
+      ["reply@invoice-portal.net"],
+      [], [], [], [], []
+    ]},
+    { "name": "messageID", "type": "string" },
+    { "name": "GUID", "type": "string" },
+    { "name": "id", "type": "string" },
+    { "name": "QID", "type": "string", "values": [
+      "r2FNwRHF004109", "k5GHtPQR007842", "m1XYzABC001234",
+      "j8KLmNOP005678", "p3QRsTUV009012", "w6DEfGHI003456",
+      "t9IJkLMN006789", "v4OPqRST008901", "n7UVwXYZ002345",
+      "s0ABcDEF004567"
+    ]},
+    { "name": "cluster", "type": "string", "values": [
+      "proofpoint-us1", "proofpoint-us2", "proofpoint-eu1"
+    ]},
+    { "name": "messageSize", "type": "int", "values": [
+      2453, 5891, 12048, 34219, 8742, 1205, 67432, 3891, 15234, 9876, 45123, 890, 23456, 4567, 78901
+    ]},
+    { "name": "malwareScore", "type": "int", "values": [0, 0, 0, 0, 0, 0, 0, 25, 50, 100] },
+    { "name": "phishScore", "type": "int", "values": [0, 0, 0, 0, 0, 0, 10, 25, 50, 75, 100] },
+    { "name": "spamScore", "type": "int", "values": [0, 0, 0, 0, 5, 10, 15, 25, 42, 60, 100] },
+    { "name": "impostorScore", "type": "int", "values": [0, 0, 0, 0, 0, 0, 0, 0, 25, 50] },
+    { "name": "completelyRewritten", "type": "boolean", "values": [false, false, false, false, false, false, true, true] },
+    { "name": "modulesRun", "type": "dynamic", "values": [
+      ["pdr", "sandbox", "spam", "urldefense"],
+      ["spam", "urldefense"],
+      ["pdr", "sandbox", "spam"],
+      ["spam", "pdr", "urldefense", "sandbox", "av"],
+      ["urldefense", "spam"],
+      ["pdr", "spam", "urldefense"],
+      ["sandbox", "spam", "urldefense", "pdr"],
+      ["spam", "av", "urldefense"]
+    ]},
+    { "name": "policyRoutes", "type": "dynamic", "values": [
+      ["default_inbound"],
+      ["default_inbound", "executives"],
+      ["default_inbound", "finance"],
+      ["default_inbound", "hr"],
+      ["default_inbound", "engineering"],
+      ["quarantine_review"],
+      ["default_inbound", "vip_protection"],
+      ["default_inbound"]
+    ]},
+    { "name": "quarantineFolder", "type": "string", "values": ["", "", "", "", "", "", "Phish", "Spam", "Malware", "Impostor"] },
+    { "name": "quarantineRule", "type": "string", "values": ["", "", "", "", "", "", "phish_quarantine", "spam_quarantine", "malware_quarantine", "impostor_quarantine"] },
+    { "name": "messageParts", "type": "dynamic", "values": [
+      [{"contentType": "text/plain", "disposition": "inline", "filename": "text.txt", "md5": "008c5926ca861023c1d2a36653fd88e2", "oContentType": "text/plain", "sandboxStatus": "unsupported", "sha256": "85738f8f9a7f1b04b5329c590ebcb9e425925c6d0984089c43a022de4f19c281"}],
+      [{"contentType": "text/html", "disposition": "inline", "filename": "text.html", "md5": "a3c1f28e7d4b5c9a1234567890abcdef", "oContentType": "text/html", "sandboxStatus": "unsupported", "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"}],
+      [{"contentType": "text/plain", "disposition": "inline", "filename": "text.txt", "md5": "b2c4d6e8f0a1b3c5d7e9f0a1b2c3d4e5", "oContentType": "text/plain", "sandboxStatus": "unsupported", "sha256": "a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2"}, {"contentType": "application/pdf", "disposition": "attached", "filename": "Invoice_Q2_2026.pdf", "md5": "5873c7d37608e0d49bcaa6f32b6c731f", "oContentType": "application/pdf", "sandboxStatus": "threat", "sha256": "2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca"}],
+      [{"contentType": "text/html", "disposition": "inline", "filename": "text.html", "md5": "d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9", "oContentType": "text/html", "sandboxStatus": "unsupported", "sha256": "f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1"}, {"contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "disposition": "attached", "filename": "Financial_Report.xlsx", "md5": "1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d", "oContentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "sandboxStatus": "clean", "sha256": "b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1"}],
+      [{"contentType": "text/plain", "disposition": "inline", "filename": "text.txt", "md5": "9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f", "oContentType": "text/plain", "sandboxStatus": "unsupported", "sha256": "c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6c7d8e9f0a1b2"}, {"contentType": "application/zip", "disposition": "attached", "filename": "documents.zip", "md5": "7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b", "oContentType": "application/zip", "sandboxStatus": "threat", "sha256": "d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3"}],
+      [{"contentType": "text/html", "disposition": "inline", "filename": "text.html", "md5": "3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d", "oContentType": "text/html", "sandboxStatus": "unsupported", "sha256": "e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4"}, {"contentType": "application/msword", "disposition": "attached", "filename": "Contract_Draft_v3.doc", "md5": "5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d", "oContentType": "application/msword", "sandboxStatus": "clean", "sha256": "f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5"}],
+      [{"contentType": "text/plain", "disposition": "inline", "filename": "text.txt", "md5": "1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f", "oContentType": "text/plain", "sandboxStatus": "unsupported", "sha256": "a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6"}],
+      [{"contentType": "text/html", "disposition": "inline", "filename": "text.html", "md5": "8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a", "oContentType": "text/html", "sandboxStatus": "unsupported", "sha256": "b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7"}, {"contentType": "application/x-msdownload", "disposition": "attached", "filename": "update_patch.exe", "md5": "0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c", "oContentType": "application/octet-stream", "sandboxStatus": "threat", "sha256": "c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8"}]
+    ]},
+    { "name": "threatsInfoMap", "type": "dynamic", "values": [
+      [{"campaignId": "46e01b8a-c899-404d-bcd9-189bb393d1a7", "classification": "MALWARE", "threat": "2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca", "threatId": "2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca", "threatStatus": "active", "threatTime": "2026-04-19T10:15:30.000Z", "threatType": "ATTACHMENT", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/2fab740f143fc1aa4c1cd0146d334c5593b1428f6d062b2c406e5efe8abe95ca"}],
+      [{"campaignId": "7b3e92f1-d4a8-4c12-b567-2a8f9e4d1c3b", "classification": "PHISH", "threat": "http://evil-phish.example.com/login.html", "threatId": "61f7622167144dba5e3ae4480eeee78b23d66f7dfed970cfc3d086cc0dabdf50", "threatStatus": "active", "threatTime": "2026-04-19T08:22:14.000Z", "threatType": "URL", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/61f7622167144dba5e3ae4480eeee78b23d66f7dfed970cfc3d086cc0dabdf50"}],
+      [{"campaignId": "", "classification": "SPAM", "threat": "http://spam-link.example.com/promo", "threatId": "a3c1f28e7d4b5c9a1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d", "threatStatus": "active", "threatTime": "2026-04-19T06:45:00.000Z", "threatType": "URL", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/a3c1f28e7d4b5c9a1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d"}],
+      [{"campaignId": "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f", "classification": "MALWARE", "threat": "d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3", "threatId": "d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3", "threatStatus": "active", "threatTime": "2026-04-18T22:30:00.000Z", "threatType": "ATTACHMENT", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3"}, {"campaignId": "c8d9e0f1-a2b3-4c5d-6e7f-8a9b0c1d2e3f", "classification": "MALWARE", "threat": "http://malware-c2.example.com/beacon", "threatId": "f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5", "threatStatus": "active", "threatTime": "2026-04-18T22:30:05.000Z", "threatType": "URL", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5"}],
+      [{"campaignId": "1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d", "classification": "PHISH", "threat": "http://credential-harvest.example.com/signin", "threatId": "b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9", "threatStatus": "cleared", "threatTime": "2026-04-19T03:10:00.000Z", "threatType": "URL", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9"}],
+      [{"campaignId": "", "classification": "IMPOSTOR", "threat": "ceo@contoso-lookalike.com", "threatId": "e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0", "threatStatus": "active", "threatTime": "2026-04-19T14:05:00.000Z", "threatType": "MESSAGE", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0"}],
+      [],
+      [{"campaignId": "9e0f1a2b-3c4d-5e6f-7a8b-9c0d1e2f3a4b", "classification": "PHISH", "threat": "http://phishing-kit.example.net/o365/login", "threatId": "c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4", "threatStatus": "active", "threatTime": "2026-04-19T11:45:00.000Z", "threatType": "URL", "threatUrl": "https://threatinsight.proofpoint.com/threat/u/c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4"}]
+    ]},
+    { "name": "xmailer", "type": "dynamic", "values": [
+      null, null, null,
+      "Spambot v2.5",
+      "Microsoft Outlook 16.0",
+      "Thunderbird 115.6.0",
+      null,
+      "Apple Mail",
+      null,
+      "PHPMailer 6.8.0"
+    ]}
+  ]
+}
+

@@ -1,0 +1,15 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AlertId", "type": "string", "values": ["u1b2c3d4-1111-4000-8000-000000000001", "u1b2c3d4-2222-4000-8000-000000000002", "u1b2c3d4-3333-4000-8000-000000000003", "u1b2c3d4-4444-4000-8000-000000000004", "u1b2c3d4-5555-4000-8000-000000000005"] },
+    { "name": "AlertType", "type": "string", "values": ["DeploymentPaused", "ServiceEndOfLife", "KnownIssue", "SafeguardHold", "OfferNotReady"] },
+    { "name": "AlertSubtype", "type": "string", "values": ["AdminPaused", "EndOfService", "CompatibilityIssue", "DriverBlock", "PrerequisiteNotMet"] },
+    { "name": "AlertStatus", "type": "string", "values": ["Active", "Resolved"] },
+    { "name": "AlertClassification", "type": "string", "values": ["Error", "Warning", "Informational"] },
+    { "name": "UpdateId", "type": "string", "values": ["b0f89b2a-1c3d-4e5f-a6b7-c8d9e0f1a2b3", "c1a2b3c4-2d3e-5f6a-b7c8-d9e0f1a2b3c4", "d2b3c4d5-3e4f-6a7b-c8d9-e0f1a2b3c4d5", "e3c4d5e6-4f5a-7b8c-d9e0-f1a2b3c4d5e6", "f4d5e6f7-5a6b-8c9d-e0f1-a2b3c4d5e6f7"] },
+    { "name": "UpdateTitle", "type": "string", "values": ["2024-01 Cumulative Update for Windows 11 Version 23H2 (KB5034123)", "2024-01 Security Update for Windows 10 Version 22H2 (KB5034122)", "Feature Update to Windows 11 Version 23H2", "2024-01 .NET Framework 4.8.1 Security Update (KB5033920)", "Windows Malicious Software Removal Tool x64 - v5.120 (KB890830)"] },
+    { "name": "Description", "type": "string", "values": ["Update deployment has been paused by an administrator", "This update has reached end of service and is no longer supported", "A known compatibility issue has been identified with this update", "A safeguard hold is in place due to a driver compatibility issue", "Prerequisites for this update have not been met on some devices"] },
+    { "name": "Recommendation", "type": "string", "values": ["Review the pause policy and resume deployment when ready", "Plan to upgrade affected devices to a supported OS version", "Review the known issue documentation and apply the recommended workaround", "Update the incompatible driver before deploying this update", "Ensure all prerequisite updates are installed before retrying"] },
+    { "name": "URL", "type": "string", "values": ["https://learn.microsoft.com/windows/deployment/update/wufb-reports-overview", "https://learn.microsoft.com/windows/release-health/release-information", "https://learn.microsoft.com/windows/release-health/windows-message-center", "https://learn.microsoft.com/windows/deployment/update/safeguard-holds", "https://learn.microsoft.com/windows/deployment/update/windows-update-troubleshooting"] }
+  ]
+}

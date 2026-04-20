@@ -1,0 +1,17 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "User", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "admin", "SAP*", "DDIC"] },
+    { "name": "Client", "type": "string", "values": ["100", "200", "300"] },
+    { "name": "AuthorizationObject", "type": "string", "values": ["S_TCODE", "S_RFC", "S_USER_GRP", "S_DEVELOP", "S_PROGRAM", "S_CTS_ADMI"] },
+    { "name": "AuthorizationField", "type": "string", "values": ["TCD", "RFC_TYPE", "CLASS", "DEVCLASS", "P_ACTION", "CTS_ADMFCT"] },
+    { "name": "AuthorizationFieldValue", "type": "string", "values": ["SM37", "FUGR", "SUPER", "Z_CUSTOM_DEV", "SUBMIT", "TABL", "SE38", "*", "SYST", "IMPA"] },
+    { "name": "ProfileName", "type": "string", "values": ["SAP_ALL", "SAP_NEW", "S_A.SYSTEM", "T-SU01", "T-SM37", "T-SE38", ""] },
+    { "name": "RoleName", "type": "string", "values": ["SAP_BC_BASIS_ADMIN", "SAP_BC_USER_ADMIN", "Z_CUSTOM_ROLE_01", "Z_DEVELOPER_ROLE", "SAP_BC_TRANSPORT_ADMIN", "Z_REPORTING_ROLE"] },
+    { "name": "CompositeRoleName", "type": "string", "values": ["", "Z_COMP_BASIS_ADMIN", "Z_COMP_DEVELOPER", "Z_COMP_REPORTING", "Z_COMP_USER_ADMIN"] },
+    { "name": "ValidFrom", "type": "datetime" },
+    { "name": "ValidTo", "type": "datetime" },
+    { "name": "IsActive", "type": "boolean", "values": [true, true, true, false, true] },
+    { "name": "AuthorizationType", "type": "string", "values": ["Single", "Composite", "Derived"] }
+  ]
+}

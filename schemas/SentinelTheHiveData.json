@@ -1,0 +1,35 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ObjectType", "type": "string", "values": ["case", "case", "alert", "alert", "task", "task", "observable", "log"] },
+    { "name": "Title", "type": "string", "values": ["Suspicious PowerShell Execution on SRV-DC01", "Brute Force Login Attempts from 203.0.113.42", "Phishing Email with Malicious Attachment", "Lateral Movement Detected via SMB", "Investigate compromised host WS-PC01", "Block malicious IP 203.0.113.42", "Review firewall logs for data exfiltration", "Collect forensic artifacts from SRV-WEB01", "Malware sample submitted for analysis", "Unauthorized admin account creation"] },
+    { "name": "Description", "type": "string", "values": ["Multiple encoded PowerShell commands detected executing on domain controller SRV-DC01 by user jsmith", "Over 500 failed login attempts detected from external IP 203.0.113.42 targeting multiple accounts", "User agarcia received phishing email with macro-enabled document attachment", "SMB lateral movement detected from WS-PC01 to SRV-WEB01 using compromised credentials", "Investigate the scope of compromise on workstation WS-PC01", "Add 203.0.113.42 to the blocklist on perimeter firewall", "Analyze outbound traffic patterns for potential data exfiltration indicators", "Acquire memory dump and disk image from SRV-WEB01 for forensic analysis"] },
+    { "name": "Severity", "type": "int", "values": [1, 2, 3, 4, 3, 2, 4, 3] },
+    { "name": "Status", "type": "string", "values": ["New", "New", "InProgress", "InProgress", "Resolved", "Closed", "InProgress", "New"] },
+    { "name": "Owner", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "jsmith", "agarcia", "", "mwilson"] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      "[\"powershell\",\"defense-evasion\",\"T1059.001\"]",
+      "[\"brute-force\",\"credential-access\",\"T1110\"]",
+      "[\"phishing\",\"initial-access\",\"T1566.001\"]",
+      "[\"lateral-movement\",\"smb\",\"T1021.002\"]",
+      "[\"malware\",\"execution\",\"incident-response\"]",
+      "[\"exfiltration\",\"data-theft\",\"T1041\"]"
+    ] },
+    { "name": "Observables", "type": "dynamic", "values": [
+      "[{\"dataType\":\"ip\",\"data\":\"203.0.113.42\",\"ioc\":true,\"tags\":[\"malicious\",\"external\"]},{\"dataType\":\"hostname\",\"data\":\"SRV-DC01\",\"ioc\":false,\"tags\":[\"internal\"]}]",
+      "[{\"dataType\":\"ip\",\"data\":\"10.0.1.50\",\"ioc\":false,\"tags\":[\"internal\"]},{\"dataType\":\"mail\",\"data\":\"agarcia@contoso.com\",\"ioc\":false,\"tags\":[\"victim\"]}]",
+      "[{\"dataType\":\"hash\",\"data\":\"a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2\",\"ioc\":true,\"tags\":[\"malware\",\"sha256\"]},{\"dataType\":\"domain\",\"data\":\"evil-c2.example.com\",\"ioc\":true,\"tags\":[\"c2\",\"malicious\"]}]",
+      "[{\"dataType\":\"hostname\",\"data\":\"WS-PC01\",\"ioc\":false,\"tags\":[\"compromised\"]},{\"dataType\":\"username\",\"data\":\"jsmith\",\"ioc\":false,\"tags\":[\"compromised-account\"]}]"
+    ] },
+    { "name": "TLP", "type": "int", "values": [0, 1, 2, 3, 4, 2, 2] },
+    { "name": "PAP", "type": "int", "values": [0, 1, 2, 3, 2, 2] },
+    { "name": "CustomFields", "type": "dynamic", "values": [
+      "{\"incidentCategory\":\"Malware\",\"businessImpact\":\"High\",\"affectedAssets\":2,\"containmentStatus\":\"Not Contained\"}",
+      "{\"incidentCategory\":\"Credential Access\",\"businessImpact\":\"Medium\",\"affectedAssets\":1,\"containmentStatus\":\"Contained\"}",
+      "{\"incidentCategory\":\"Phishing\",\"businessImpact\":\"Low\",\"affectedAssets\":1,\"containmentStatus\":\"Contained\"}",
+      "{\"incidentCategory\":\"Lateral Movement\",\"businessImpact\":\"Critical\",\"affectedAssets\":3,\"containmentStatus\":\"Not Contained\"}",
+      "{\"incidentCategory\":\"Data Exfiltration\",\"businessImpact\":\"Critical\",\"affectedAssets\":5,\"containmentStatus\":\"Investigating\"}"
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

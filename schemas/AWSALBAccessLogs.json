@@ -1,0 +1,53 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ALBType", "type": "string", "values": ["http", "https", "h2", "grpcs", "ws", "wss"] },
+    { "name": "Alb", "type": "string", "values": [
+      "arn:aws:elasticloadbalancing:us-east-1:123456789012:loadbalancer/app/contoso-alb/abc1234567890",
+      "arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/fabrikam-alb/def4567890123"
+    ] },
+    { "name": "ClientIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "10.0.1.50", "10.0.1.51"] },
+    { "name": "ClientPort", "type": "int" },
+    { "name": "TargetIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100"] },
+    { "name": "TargetPort", "type": "int", "values": [80, 443, 8080, 8443, 3000, 5000] },
+    { "name": "RequestProcessingTime", "type": "string", "values": ["0.001", "0.003", "0.005", "0.010", "0.050", "-1"] },
+    { "name": "TargetProcessingTime", "type": "string", "values": ["0.012", "0.045", "0.102", "0.250", "0.500", "1.200", "-1"] },
+    { "name": "ResponseProcessingTime", "type": "string", "values": ["0.000", "0.001", "0.002", "0.005", "-1"] },
+    { "name": "ElbStatusCode", "type": "int", "values": [200, 201, 301, 302, 400, 401, 403, 404, 500, 502, 503, 504] },
+    { "name": "TargetStatusCode", "type": "string", "values": ["200", "201", "301", "400", "401", "403", "404", "500", "502", "-"] },
+    { "name": "ReceivedBytes", "type": "long" },
+    { "name": "SentBytes", "type": "long" },
+    { "name": "RequestRaw", "type": "string", "values": [
+      "GET https://contoso.com:443/api/health HTTP/2.0",
+      "POST https://contoso.com:443/api/login HTTP/2.0",
+      "GET https://contoso.com:443/api/users HTTP/2.0",
+      "PUT https://contoso.com:443/api/v1/data HTTP/2.0",
+      "DELETE https://contoso.com:443/api/v1/resources/123 HTTP/2.0",
+      "GET https://contoso.com:443/ HTTP/1.1"
+    ] },
+    { "name": "UserAgent", "type": "string", "values": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "python-requests/2.31.0", "curl/8.4.0", "ELB-HealthChecker/2.0", "Go-http-client/2.0", "Boto3/1.28.0"] },
+    { "name": "SslCipher", "type": "string", "values": ["ECDHE-RSA-AES128-GCM-SHA256", "ECDHE-RSA-AES256-GCM-SHA384", "-"] },
+    { "name": "SslProtocol", "type": "string", "values": ["TLSv1.2", "TLSv1.3", "-"] },
+    { "name": "TargetGroupArn", "type": "string", "values": [
+      "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/contoso-web-tg/abc1234567890",
+      "arn:aws:elasticloadbalancing:us-east-1:123456789012:targetgroup/contoso-api-tg/def4567890123"
+    ] },
+    { "name": "TraceId", "type": "string" },
+    { "name": "DomainName", "type": "string", "values": ["contoso.com", "api.contoso.com", "fabrikam.net", "woodgrove.com", "-"] },
+    { "name": "ChosenCertArn", "type": "string", "values": [
+      "arn:aws:acm:us-east-1:123456789012:certificate/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "-"
+    ] },
+    { "name": "MatchedRulePriority", "type": "string", "values": ["0", "1", "2", "999", "default"] },
+    { "name": "RequestCreationTime", "type": "string" },
+    { "name": "ActionsExecuted", "type": "string", "values": ["forward", "fixed-response", "redirect", "waf,forward", "waf,fixed-response"] },
+    { "name": "RedirectUrl", "type": "string", "values": ["", "https://contoso.com/login", "https://contoso.com/"] },
+    { "name": "LambdaErrorReason", "type": "string", "values": ["", "-"] },
+    { "name": "TargetPortList", "type": "string", "values": ["10.0.1.50:80", "10.0.2.10:8080 10.0.2.20:8080", "-"] },
+    { "name": "TargetStatusCodeList", "type": "string", "values": ["200", "200 200", "502", "-"] },
+    { "name": "Classification", "type": "string", "values": ["", "Desync", "Acceptable", "-"] },
+    { "name": "ClassificationReason", "type": "string", "values": ["", "AmbiguousUri", "-"] },
+    { "name": "ConnTraceId", "type": "string" },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "NLBType", "type": "string", "values": ["tls", "tcp", "udp"] },
+    { "name": "Nlb", "type": "string", "values": [
+      "net/contoso-nlb/abc1234567890",
+      "net/fabrikam-nlb/def4567890123"
+    ] },
+    { "name": "Listener", "type": "string", "values": [
+      "net/contoso-nlb/abc1234567890/a1b2c3d4e5f6a7b8",
+      "net/fabrikam-nlb/def4567890123/b2c3d4e5f6a7b8c9"
+    ] },
+    { "name": "ClientIPPort", "type": "string", "values": ["203.0.113.42:44312", "198.51.100.17:52341", "100.21.55.130:38920", "52.168.112.66:61234", "10.0.1.50:45678"] },
+    { "name": "TargetIPPort", "type": "string", "values": ["10.0.1.50:443", "10.0.1.51:443", "10.0.2.10:80", "10.0.2.20:8080", "172.16.0.100:3306"] },
+    { "name": "ReceivedBytes", "type": "string" },
+    { "name": "SentBytes", "type": "string" },
+    { "name": "ConnectionTime", "type": "string", "values": ["1", "5", "15", "30", "60", "120", "300", "-1"] },
+    { "name": "TLSProtocolVersion", "type": "string", "values": ["tlsv12", "tlsv13", "-"] },
+    { "name": "TLSCipher", "type": "string", "values": ["ECDHE-RSA-AES128-GCM-SHA256", "ECDHE-RSA-AES256-GCM-SHA384", "AES256-SHA256", "-"] },
+    { "name": "TLSConnectionCreationTime", "type": "string" },
+    { "name": "TlsHandshakeTime", "type": "string", "values": ["2", "5", "10", "25", "50", "-"] },
+    { "name": "TLSNamedGroup", "type": "string", "values": ["x25519", "secp256r1", "secp384r1", "-"] },
+    { "name": "DomainName", "type": "string", "values": ["contoso.com", "api.contoso.com", "fabrikam.net", "woodgrove.com", "-"] },
+    { "name": "ChosenCertArn", "type": "string", "values": [
+      "arn:aws:acm:us-east-1:123456789012:certificate/a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "-"
+    ] },
+    { "name": "ChosenCertSerial", "type": "string", "values": ["a1b2c3d4e5f6a7b8c9d0", "-"] },
+    { "name": "ALPNFEProtocol", "type": "string", "values": ["h2", "http/1.1", "-"] },
+    { "name": "ALPNBEProtocol", "type": "string", "values": ["h2", "http/1.1", "-"] },
+    { "name": "ALPNClientPrefList", "type": "string", "values": ["h2,http/1.1", "http/1.1", "-"] },
+    { "name": "IncomingTLSAlert", "type": "string", "values": ["", "-"] },
+    { "name": "Version", "type": "string", "values": ["2.0"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

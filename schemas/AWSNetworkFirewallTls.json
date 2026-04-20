@@ -1,0 +1,18 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "EventTimestamp", "type": "datetime" },
+    { "name": "FirewallName", "type": "string", "values": ["contoso-network-fw", "fabrikam-network-fw", "woodgrove-network-fw"] },
+    { "name": "AvailabilityZone", "type": "string", "values": ["us-east-1a", "us-east-1b", "us-west-2a", "us-west-2b", "eu-west-1a"] },
+    { "name": "SrcIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "10.0.1.50", "10.0.1.51"] },
+    { "name": "SrcPort", "type": "string" },
+    { "name": "DestIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100"] },
+    { "name": "DestPort", "type": "string", "values": ["443", "8443", "993", "636", "465"] },
+    { "name": "Sni", "type": "string", "values": ["contoso.com", "api.contoso.com", "fabrikam.net", "woodgrove.com", "login.microsoftonline.com", "malicious-c2.evil.com", ""] },
+    { "name": "Action", "type": "string", "values": ["allowed", "dropped", "inspected", "blocked"] },
+    { "name": "Status", "type": "string", "values": ["success", "failure", "error"] },
+    { "name": "LeafCertificateFingerprint", "type": "string" },
+    { "name": "ErrorMessage", "type": "string", "values": ["", "TLS handshake failed", "Certificate validation error", "Unsupported protocol version"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

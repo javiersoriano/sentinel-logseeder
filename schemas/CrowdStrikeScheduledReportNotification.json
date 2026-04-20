@@ -1,0 +1,53 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "NotificationId", "type": "string" },
+    { "name": "ReportId", "type": "string" },
+    { "name": "ReportName", "type": "string", "values": [
+      "Weekly Detection Summary",
+      "Daily Host Compliance Report",
+      "Monthly Vulnerability Assessment",
+      "Incident Response Summary",
+      "Sensor Health Report",
+      "IOC Match Summary",
+      "Prevention Policy Effectiveness",
+      "Threat Landscape Overview"
+    ] },
+    { "name": "ReportType", "type": "string", "values": [
+      "detection_summary",
+      "host_compliance",
+      "vulnerability_assessment",
+      "incident_summary",
+      "sensor_health",
+      "ioc_activity",
+      "policy_effectiveness",
+      "threat_overview"
+    ] },
+    { "name": "Schedule", "type": "string", "values": ["daily", "weekly", "monthly", "quarterly"] },
+    { "name": "Status", "type": "string", "values": ["completed", "completed", "completed", "failed", "partial"] },
+    { "name": "ResultCount", "type": "int", "values": [0, 5, 12, 42, 87, 156, 310] },
+    { "name": "ReportUrl", "type": "string", "values": [
+      "https://falcon.crowdstrike.com/reports/scheduled/rpt-abc123",
+      "https://falcon.crowdstrike.com/reports/scheduled/rpt-def456",
+      "https://falcon.crowdstrike.com/reports/scheduled/rpt-ghi789"
+    ] },
+    { "name": "Recipients", "type": "dynamic", "values": [
+      ["jsmith@contoso.com", "agarcia@contoso.com"],
+      ["mwilson@contoso.com"],
+      ["admin@contoso.com", "lchen@contoso.com", "pjones@contoso.com"],
+      ["jsmith@contoso.com"]
+    ] },
+    { "name": "CreatedBy", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "admin@contoso.com"] },
+    { "name": "ExecutionTime", "type": "datetime" },
+    { "name": "ExecutionDurationSeconds", "type": "int", "values": [5, 12, 30, 60, 120, 300] },
+    { "name": "ReportFilters", "type": "dynamic", "values": [
+      {"severity": ["Critical", "High"], "dateRange": "last_7_days"},
+      {"hostGroups": ["Production"], "status": "non_compliant"},
+      {"cveSeverity": ["Critical", "High"], "dateRange": "last_30_days"},
+      {"incidentStatus": ["Open", "In Progress"]},
+      {"sensorStatus": ["reduced_functionality", "contained"]}
+    ] },
+    { "name": "ErrorMessage", "type": "string", "values": ["", "", "", "Query timeout exceeded", "Partial results due to data volume"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

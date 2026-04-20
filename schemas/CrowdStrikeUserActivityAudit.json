@@ -1,0 +1,62 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AuditId", "type": "string" },
+    { "name": "OperationName", "type": "string", "values": [
+      "createUser",
+      "deleteUser",
+      "updateUserRole",
+      "enableUser",
+      "disableUser",
+      "resetPassword",
+      "updatePreventionPolicy",
+      "createHostGroup",
+      "deleteHostGroup",
+      "updateHostGroup",
+      "containHost",
+      "liftContainment",
+      "createIOC",
+      "deleteIOC",
+      "updateIOC",
+      "createExclusion",
+      "deleteExclusion",
+      "updateSensorPolicy",
+      "approveInstallToken",
+      "revokeInstallToken"
+    ] },
+    { "name": "ActionTarget", "type": "string", "values": [
+      "jsmith@contoso.com",
+      "agarcia@contoso.com",
+      "mwilson@contoso.com",
+      "lchen@contoso.com",
+      "pjones@contoso.com",
+      "WS-PC01",
+      "SRV-DC01",
+      "Production-Prevention",
+      "Workstations-Group",
+      "Server-Group"
+    ] },
+    { "name": "ActionTargetType", "type": "string", "values": ["user", "host", "policy", "host_group", "ioc", "exclusion", "sensor_policy", "install_token"] },
+    { "name": "UserId", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "admin@contoso.com"] },
+    { "name": "UserName", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "admin"] },
+    { "name": "SourceIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "203.0.113.42"] },
+    { "name": "Result", "type": "string", "values": ["Success", "Success", "Success", "Failure", "PartialSuccess"] },
+    { "name": "ResultDescription", "type": "string", "values": [
+      "Operation completed successfully.",
+      "User role updated to Falcon Administrator.",
+      "Host containment initiated.",
+      "Permission denied - insufficient role.",
+      "IOC created and applied to all host groups.",
+      "Exclusion created for specified path.",
+      "Host group membership updated."
+    ] },
+    { "name": "ChangeDetails", "type": "dynamic", "values": [
+      {"field": "role", "oldValue": "Falcon Analyst", "newValue": "Falcon Administrator"},
+      {"field": "status", "oldValue": "enabled", "newValue": "disabled"},
+      {"field": "containment", "oldValue": "not_contained", "newValue": "contained"},
+      {"field": "members", "added": ["WS-PC01"], "removed": []},
+      {"field": "severity", "oldValue": "Medium", "newValue": "Critical"}
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "DnsServer", "type": "string" },
+    { "name": "EventId", "type": "int", "values": [256, 257, 258, 259, 260, 261, 262, 263, 264, 265, 280, 281] },
+    { "name": "EventSubType", "type": "string", "values": ["QUERY_RECEIVED", "RESPONSE_SUCCESS", "RESPONSE_FAILURE", "RECURSIVE_QUERY_OUT", "RECURSIVE_RESPONSE_IN", "DYN_UPDATE_RECV", "DYN_UPDATE_RESPONSE", "ZONE_XFER_RECV"] },
+    { "name": "EventResult", "type": "string", "values": ["Success", "Success", "Success", "Failure"] },
+    { "name": "EventResultDetails", "type": "string", "values": ["NOERROR", "NOERROR", "NXDOMAIN", "SERVFAIL", "REFUSED", "FORMERR"] },
+    { "name": "ClientSubnetAddress", "type": "string" },
+    { "name": "ClientSubnetPrefix", "type": "int", "values": [24, 16, 32] },
+    { "name": "DnsQueryName", "type": "string", "values": ["portal.contoso.com", "mail.contoso.com", "login.microsoftonline.com", "www.google.com", "api.fabrikam.net", "malware-c2.example.com", "autodiscover.contoso.com", "updates.contoso.com", "_ldap._tcp.contoso.local", "8.8.8.8.in-addr.arpa"] },
+    { "name": "DnsQueryType", "type": "string", "values": ["A", "A", "AAAA", "CNAME", "MX", "NS", "PTR", "TXT", "SRV", "SOA"] },
+    { "name": "DnsServerIpAddress", "type": "string" },
+    { "name": "DnsServerPort", "type": "int", "values": [53] },
+    { "name": "DnsSourceIpAddress", "type": "string" },
+    { "name": "DnsSourcePort", "type": "int" },
+    { "name": "TaskCategory", "type": "string", "values": ["Query", "Response", "DynamicUpdate", "ZoneTransfer", "RecursiveQuery"] },
+    { "name": "AdditionalData", "type": "dynamic", "values": [
+      {"QNAME": "portal.contoso.com", "QTYPE": "A", "RCODE": "NOERROR", "AA": true, "AD": false},
+      {"QNAME": "login.microsoftonline.com", "QTYPE": "A", "RCODE": "NOERROR", "AA": false, "AD": true},
+      {"QNAME": "malware-c2.example.com", "QTYPE": "A", "RCODE": "NXDOMAIN", "AA": false},
+      {}
+    ]},
+    { "name": "SourceSystem", "type": "string", "values": ["OpsManager"] }
+  ]
+}

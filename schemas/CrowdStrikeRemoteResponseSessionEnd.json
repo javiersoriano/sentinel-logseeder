@@ -1,0 +1,34 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "SessionId", "type": "string" },
+    { "name": "DeviceId", "type": "string" },
+    { "name": "ComputerName", "type": "string", "values": ["WS-PC01", "SRV-DC01", "SRV-WEB01", "LNX-APP01"] },
+    { "name": "UserName", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "admin@contoso.com"] },
+    { "name": "SessionStartTime", "type": "datetime" },
+    { "name": "SessionEndTime", "type": "datetime" },
+    { "name": "DurationSeconds", "type": "int", "values": [120, 300, 600, 900, 1800, 3600, 45, 15] },
+    { "name": "EndReason", "type": "string", "values": [
+      "UserDisconnected",
+      "SessionTimeout",
+      "AdminTerminated",
+      "NetworkError",
+      "TaskCompleted",
+      "PolicyViolation"
+    ] },
+    { "name": "CommandsRun", "type": "int", "values": [1, 3, 5, 8, 12, 20, 0] },
+    { "name": "FilesUploaded", "type": "int", "values": [0, 0, 1, 2, 0] },
+    { "name": "FilesDownloaded", "type": "int", "values": [0, 1, 2, 3, 0] },
+    { "name": "ScriptsExecuted", "type": "int", "values": [0, 0, 1, 2, 0] },
+    { "name": "SourceIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10"] },
+    { "name": "SessionType", "type": "string", "values": ["active_responder", "read_only", "admin"] },
+    { "name": "CommandHistory", "type": "dynamic", "values": [
+      ["ls", "ps", "netstat"],
+      ["reg query HKLM\\Software", "get C:\\Users\\jsmith\\Desktop\\evidence.zip"],
+      ["filehash C:\\Windows\\Temp\\suspicious.exe", "memdump", "kill 1234"],
+      ["cat /var/log/syslog", "ps aux", "netstat -tulnp", "ls -la /tmp"],
+      []
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

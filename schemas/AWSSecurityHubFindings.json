@@ -1,0 +1,106 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AwsAccountId", "type": "string", "values": ["123456789012", "987654321098"] },
+    { "name": "AwsRegion", "type": "string", "values": ["us-east-1", "us-west-2", "eu-west-1", "ap-southeast-1"] },
+    { "name": "AwsSecurityFindingCreatedAt", "type": "datetime" },
+    { "name": "AwsSecurityFindingDescription", "type": "string", "values": [
+      "Security group sg-0abcdef1234567890 allows unrestricted SSH access (0.0.0.0/0 on port 22).",
+      "S3 bucket contoso-data-lake does not have server-side encryption enabled.",
+      "IAM user jsmith has not rotated access keys in over 90 days.",
+      "RDS instance contoso-db is publicly accessible.",
+      "CloudTrail logging is not enabled in all regions.",
+      "Root account MFA is not enabled.",
+      "GuardDuty detected unauthorized access from IP 203.0.113.42."
+    ] },
+    { "name": "AwsSecurityFindingFirstObservedAt", "type": "datetime" },
+    { "name": "AwsSecurityFindingGeneratorId", "type": "string", "values": [
+      "aws-foundational-security-best-practices/v/1.0.0/EC2.18",
+      "aws-foundational-security-best-practices/v/1.0.0/S3.4",
+      "aws-foundational-security-best-practices/v/1.0.0/IAM.3",
+      "arn:aws:securityhub:::ruleset/cis-aws-foundations-benchmark/v/1.2.0/rule/1.1",
+      "security-control/IAM.4",
+      "security-control/S3.1",
+      "arn:aws:guardduty:us-east-1:123456789012:detector/d1b2c3d4e5"
+    ] },
+    { "name": "AwsSecurityFindingId", "type": "string" },
+    { "name": "AwsSecurityFindingLastObservedAt", "type": "datetime" },
+    { "name": "AwsSecurityFindingProcessedAt", "type": "datetime" },
+    { "name": "AwsSecurityFindingProductArn", "type": "string", "values": [
+      "arn:aws:securityhub:us-east-1::product/aws/securityhub",
+      "arn:aws:securityhub:us-east-1::product/aws/guardduty",
+      "arn:aws:securityhub:us-east-1::product/aws/inspector",
+      "arn:aws:securityhub:us-east-1::product/aws/macie"
+    ] },
+    { "name": "AwsSecurityFindingProductFields", "type": "dynamic", "values": [
+      {"StandardsArn": "arn:aws:securityhub:::standards/aws-foundational-security-best-practices/v/1.0.0", "StandardsControlArn": "arn:aws:securityhub:us-east-1:123456789012:control/aws-foundational-security-best-practices/v/1.0.0/EC2.18", "aws/securityhub/ProductName": "Security Hub", "aws/securityhub/FindingId": "arn:aws:securityhub:us-east-1:123456789012:subscription/aws-foundational-security-best-practices/v/1.0.0/EC2.18/finding/abc123"},
+      {"aws/securityhub/ProductName": "GuardDuty", "detectorId": "d1b2c3d4e5", "aws/guardduty/serviceRole": "arn:aws:iam::123456789012:role/aws-service-role/guardduty.amazonaws.com/AWSServiceRoleForAmazonGuardDuty"},
+      {"aws/securityhub/ProductName": "Inspector", "aws/inspector/FindingStatus": "ACTIVE"}
+    ] },
+    { "name": "AwsSecurityFindingProductName", "type": "string", "values": ["Security Hub", "GuardDuty", "Inspector", "Macie"] },
+    { "name": "AwsSecurityFindingSeverity", "type": "dynamic", "values": [
+      {"Label": "CRITICAL", "Normalized": 90},
+      {"Label": "HIGH", "Normalized": 70},
+      {"Label": "MEDIUM", "Normalized": 40},
+      {"Label": "LOW", "Normalized": 10},
+      {"Label": "INFORMATIONAL", "Normalized": 0}
+    ] },
+    { "name": "AwsSecurityFindingTitle", "type": "string", "values": [
+      "EC2.18 Security groups should only allow unrestricted incoming traffic for authorized ports",
+      "S3.4 S3 buckets should have server-side encryption enabled",
+      "IAM.3 IAM users' access keys should be rotated every 90 days or less",
+      "1.1 Avoid the use of the root account",
+      "IAM.4 IAM root user access key should not exist",
+      "S3.1 S3 Block Public Access setting should be enabled",
+      "Unauthorized access attempt from malicious IP"
+    ] },
+    { "name": "AwsSecurityFindingTypes", "type": "dynamic", "values": [
+      ["Software and Configuration Checks/Industry and Regulatory Standards/AWS-Foundational-Security-Best-Practices"],
+      ["TTPs/Initial Access/UnauthorizedAccess:IAMUser-ConsoleLoginSuccess.B"],
+      ["Effects/Data Exposure/Exfiltration:S3-AnomalousBehavior"],
+      ["Software and Configuration Checks/Industry and Regulatory Standards/CIS AWS Foundations Benchmark"],
+      ["Software and Configuration Checks/Vulnerabilities/CVE"]
+    ] },
+    { "name": "AwsSecurityFindingUpdatedAt", "type": "datetime" },
+    { "name": "ComplianceAssociatedStandards", "type": "dynamic", "values": [
+      [{"StandardsId": "standards/aws-foundational-security-best-practices/v/1.0.0"}],
+      [{"StandardsId": "ruleset/cis-aws-foundations-benchmark/v/1.2.0"}],
+      [{"StandardsId": "standards/pci-dss/v/3.2.1"}]
+    ] },
+    { "name": "ComplianceRelatedRequirements", "type": "dynamic", "values": [
+      ["PCI DSS 1.2.1", "PCI DSS 1.3.1"],
+      ["CIS AWS Foundations 1.1"],
+      ["NIST.800-53.r5 AC-3", "NIST.800-53.r5 AC-6"]
+    ] },
+    { "name": "ComplianceSecurityControlId", "type": "string", "values": ["EC2.18", "S3.4", "IAM.3", "IAM.4", "S3.1", "CloudTrail.1", ""] },
+    { "name": "ComplianceSecurityControlParameters", "type": "dynamic", "values": [
+      [{"ValueType": "DEFAULT", "Name": "authorizedPorts", "Value": "[80, 443]"}],
+      [],
+      [{"ValueType": "CUSTOM", "Name": "maxAccessKeyAge", "Value": "90"}]
+    ] },
+    { "name": "ComplianceStatus", "type": "string", "values": ["PASSED", "FAILED", "WARNING", "NOT_AVAILABLE"] },
+    { "name": "ComplianceStatusReasons", "type": "dynamic", "values": [
+      [{"ReasonCode": "SECURITY_GROUP_ALLOWS_UNRESTRICTED_ACCESS", "Description": "Security group allows inbound traffic from 0.0.0.0/0."}],
+      [{"ReasonCode": "S3_BUCKET_NOT_ENCRYPTED", "Description": "Server-side encryption is not configured."}],
+      [{"ReasonCode": "CIS_CHECK_PASSED", "Description": "The control is compliant."}]
+    ] },
+    { "name": "RawData", "type": "dynamic", "values": [
+      {"SchemaVersion": "2018-10-08", "ProductArn": "arn:aws:securityhub:us-east-1::product/aws/securityhub"},
+      {}
+    ] },
+    { "name": "RecordState", "type": "string", "values": ["ACTIVE", "ARCHIVED"] },
+    { "name": "Remediation", "type": "dynamic", "values": [
+      {"Recommendation": {"Text": "Remove unrestricted SSH access from the security group.", "Url": "https://docs.aws.amazon.com/console/securityhub/EC2.18/remediation"}},
+      {"Recommendation": {"Text": "Enable server-side encryption on the S3 bucket.", "Url": "https://docs.aws.amazon.com/console/securityhub/S3.4/remediation"}},
+      {"Recommendation": {"Text": "Rotate the IAM user's access keys.", "Url": "https://docs.aws.amazon.com/console/securityhub/IAM.3/remediation"}}
+    ] },
+    { "name": "Resources", "type": "dynamic", "values": [
+      [{"Type": "AwsEc2SecurityGroup", "Id": "arn:aws:ec2:us-east-1:123456789012:security-group/sg-0abcdef1234567890", "Region": "us-east-1"}],
+      [{"Type": "AwsS3Bucket", "Id": "arn:aws:s3:::contoso-data-lake", "Region": "us-east-1"}],
+      [{"Type": "AwsIamUser", "Id": "arn:aws:iam::123456789012:user/jsmith", "Region": "us-east-1"}]
+    ] },
+    { "name": "SchemaVersion", "type": "string", "values": ["2018-10-08"] },
+    { "name": "WorkflowState", "type": "string", "values": ["NEW", "NOTIFIED", "RESOLVED", "SUPPRESSED"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

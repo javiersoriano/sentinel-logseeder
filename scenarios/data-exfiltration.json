@@ -1,0 +1,169 @@
+{
+  "name": "data-exfiltration",
+  "description": "An insider or compromised privileged account accesses sensitive audit data, performs bulk file reads from file shares, transfers large volumes of data to an external endpoint, and uses DNS tunneling for command-and-control communication.",
+  "mitreTactics": ["Collection", "Exfiltration", "Command and Control", "Discovery"],
+  "mitreIds": ["T1530", "T1039", "T1048.001", "T1071.004", "T1083", "T1087"],
+  "tables": {
+    "AuditEvent": {
+      "schema": "schemas/AuditEvent.json",
+      "rowCount": 60
+    },
+    "FileEvent": {
+      "schema": "schemas/FileEvent.json",
+      "rowCount": 100
+    },
+    "NetworkSession": {
+      "schema": "schemas/NetworkSession.json",
+      "rowCount": 80
+    },
+    "Dns": {
+      "schema": "schemas/Dns.json",
+      "rowCount": 100
+    }
+  },
+  "actors": {
+    "insider": {
+      "ip": "internal",
+      "username": "random",
+      "upn": "random",
+      "device": "random"
+    },
+    "c2Server": {
+      "ip": "external"
+    },
+    "fileServer": {
+      "ip": "internal",
+      "device": "random",
+      "deviceFqdn": "random"
+    }
+  },
+  "timeline": [
+    {
+      "phase": "Discovery — Privileged Audit Access",
+      "description": "Compromised/insider account queries sensitive audit logs and accesses admin consoles",
+      "offsetMinutes": 0,
+      "durationMinutes": 15,
+      "table": "AuditEvent",
+      "count": 15,
+      "eventTemplate": {
+        "EventType": ["Read", "Execute", "List"],
+        "EventResult": "Success",
+        "EventSeverity": "Informational",
+        "ActorUsername": "{{insider.username}}",
+        "SrcIpAddr": "{{insider.ip}}",
+        "DvcHostname": "{{insider.device}}",
+        "Object": [
+          "UserManagement/AllUsers",
+          "SecuritySettings/ConditionalAccess",
+          "AuditLogs/SignIns",
+          "Directory/RoleAssignments",
+          "Applications/ServicePrincipals",
+          "KeyVault/Secrets",
+          "Storage/BlobContainers",
+          "Subscriptions/ResourceGroups"
+        ],
+        "Operation": [
+          "List users",
+          "Read conditional access policies",
+          "Export sign-in logs",
+          "List role assignments",
+          "List service principals",
+          "List Key Vault secrets",
+          "List storage containers",
+          "List resource groups"
+        ],
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Collection — Bulk File Reads",
+      "description": "Actor accesses many files from a sensitive file share in rapid succession",
+      "offsetMinutes": 20,
+      "durationMinutes": 25,
+      "table": "FileEvent",
+      "count": 60,
+      "eventTemplate": {
+        "EventType": "FileAccessed",
+        "EventResult": "Success",
+        "EventSeverity": "Informational",
+        "ActorUsername": "{{insider.username}}",
+        "DvcHostname": "{{insider.device}}",
+        "SrcIpAddr": "{{insider.ip}}",
+        "TargetFilePath": [
+          "\\\\SRV-FILE01\\confidential\\finance\\Q1-revenue.xlsx",
+          "\\\\SRV-FILE01\\confidential\\finance\\Q2-revenue.xlsx",
+          "\\\\SRV-FILE01\\confidential\\finance\\Q3-revenue.xlsx",
+          "\\\\SRV-FILE01\\confidential\\finance\\Q4-revenue.xlsx",
+          "\\\\SRV-FILE01\\confidential\\hr\\salary-data.csv",
+          "\\\\SRV-FILE01\\confidential\\hr\\employee-ssn.xlsx",
+          "\\\\SRV-FILE01\\confidential\\legal\\contracts\\vendor-agreement.pdf",
+          "\\\\SRV-FILE01\\confidential\\legal\\contracts\\nda-template.docx",
+          "\\\\SRV-FILE01\\confidential\\engineering\\source-code.zip",
+          "\\\\SRV-FILE01\\confidential\\engineering\\architecture.vsdx",
+          "\\\\SRV-FILE01\\confidential\\board\\strategy-2026.pptx",
+          "\\\\SRV-FILE01\\confidential\\board\\acquisition-targets.xlsx"
+        ],
+        "TargetFileName": [
+          "Q1-revenue.xlsx", "Q2-revenue.xlsx", "Q3-revenue.xlsx", "Q4-revenue.xlsx",
+          "salary-data.csv", "employee-ssn.xlsx",
+          "vendor-agreement.pdf", "nda-template.docx",
+          "source-code.zip", "architecture.vsdx",
+          "strategy-2026.pptx", "acquisition-targets.xlsx"
+        ],
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "Exfiltration — Large Outbound Transfers",
+      "description": "Compressed data is uploaded to an external endpoint over HTTPS",
+      "offsetMinutes": 50,
+      "durationMinutes": 20,
+      "table": "NetworkSession",
+      "count": 15,
+      "eventTemplate": {
+        "EventType": "NetworkSession",
+        "EventResult": "Success",
+        "EventSeverity": "Medium",
+        "SrcIpAddr": "{{insider.ip}}",
+        "DstIpAddr": "{{c2Server.ip}}",
+        "DstPortNumber": 443,
+        "NetworkProtocol": "TCP",
+        "NetworkDirection": "Outbound",
+        "DvcHostname": "{{insider.device}}",
+        "SrcUsername": "{{insider.username}}",
+        "SrcBytes": [52428800, 104857600, 209715200, 31457280, 78643200, 157286400],
+        "DstBytes": [1024, 2048, 4096, 512, 1500, 3000],
+        "EventCount": 1
+      }
+    },
+    {
+      "phase": "C2 — DNS Tunneling",
+      "description": "Data exfiltrated via encoded DNS queries to an attacker-controlled domain",
+      "offsetMinutes": 55,
+      "durationMinutes": 30,
+      "table": "Dns",
+      "count": 40,
+      "eventTemplate": {
+        "EventType": "Query",
+        "EventResult": "Success",
+        "EventSeverity": "Low",
+        "SrcIpAddr": "{{insider.ip}}",
+        "DvcHostname": "{{insider.device}}",
+        "DnsQuery": [
+          "aGVsbG8gd29ybGQ.data.evil-c2-domain.example.com",
+          "dXBsb2FkIGRhdGE.data.evil-c2-domain.example.com",
+          "ZXhmaWx0cmF0ZQ.data.evil-c2-domain.example.com",
+          "Y29tbWFuZCBhbmQ.data.evil-c2-domain.example.com",
+          "c2VuZCBmaWxlcw.data.evil-c2-domain.example.com",
+          "bmV4dCBjaHVuaw.data.evil-c2-domain.example.com",
+          "ZmluYWwgcGF5bG9hZA.data.evil-c2-domain.example.com",
+          "Y29uZmlybSByZWNlaXB0.data.evil-c2-domain.example.com"
+        ],
+        "DnsQueryType": "TXT",
+        "DnsResponseName": ["127.0.0.1", "0.0.0.0"],
+        "DnsResponseCodeName": "NOERROR",
+        "EventCount": 1
+      }
+    }
+  ]
+}

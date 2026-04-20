@@ -1,0 +1,41 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "ClusterName", "type": "string", "values": ["gke-prod-01", "gke-prod-02", "gke-dev-01", "gke-staging-01"] },
+    { "name": "ClusterLocation", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "Verb", "type": "string", "values": ["get", "list", "watch", "create", "update", "patch", "delete", "deletecollection", "proxy", "exec"] },
+    { "name": "Resource", "type": "string", "values": ["pods", "deployments", "services", "configmaps", "secrets", "namespaces", "nodes", "persistentvolumeclaims", "serviceaccounts", "roles", "rolebindings", "clusterroles", "clusterrolebindings", "ingresses", "networkpolicies", "daemonsets", "statefulsets", "jobs", "cronjobs"] },
+    { "name": "Subresource", "type": "string", "values": ["", "status", "log", "exec", "scale", "binding", "token", "portforward"] },
+    { "name": "ResourceNamespace", "type": "string", "values": ["default", "kube-system", "kube-public", "production", "staging", "monitoring", "ingress-nginx", "cert-manager", "istio-system", ""] },
+    { "name": "ResourceName", "type": "string", "values": ["nginx-deployment", "api-gateway-pod-abc12", "redis-master-0", "frontend-service", "db-credentials", "app-config", "coredns", "metrics-server", ""] },
+    { "name": "UserName", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "system:serviceaccount:kube-system:default", "system:serviceaccount:production:api-gateway", "system:node:gke-prod-01-pool-1-abc123", "system:kube-scheduler", "system:kube-controller-manager", "system:anonymous"] },
+    { "name": "UserGroups", "type": "dynamic", "values": [
+      ["system:authenticated"],
+      ["system:masters", "system:authenticated"],
+      ["system:serviceaccounts", "system:serviceaccounts:kube-system", "system:authenticated"],
+      ["system:nodes", "system:authenticated"],
+      ["system:unauthenticated"]
+    ] },
+    { "name": "ResponseStatusCode", "type": "int", "values": [200, 201, 204, 400, 401, 403, 404, 409, 422, 500, 503] },
+    { "name": "ResponseStatusReason", "type": "string", "values": ["OK", "Created", "NoContent", "BadRequest", "Unauthorized", "Forbidden", "NotFound", "AlreadyExists", "Conflict", "InternalError", "ServiceUnavailable"] },
+    { "name": "SourceIp", "type": "string", "values": ["10.0.1.50", "10.0.2.10", "203.0.113.42", "10.128.0.2", "10.128.0.3", "127.0.0.1", "::1"] },
+    { "name": "UserAgent", "type": "string", "values": ["kubectl/v1.28.0 (linux/amd64)", "kube-controller-manager/v1.28.0", "kube-scheduler/v1.28.0", "kubelet/v1.28.0", "argocd/v2.9.0", "helm/v3.13.0", "Mozilla/5.0"] },
+    { "name": "ObjectRef", "type": "dynamic", "values": [
+      {"resource": "pods", "namespace": "production", "name": "api-gateway-pod-abc12", "apiVersion": "v1"},
+      {"resource": "deployments", "namespace": "production", "name": "nginx-deployment", "apiGroup": "apps", "apiVersion": "v1"},
+      {"resource": "secrets", "namespace": "production", "name": "db-credentials", "apiVersion": "v1"},
+      {"resource": "clusterrolebindings", "name": "cluster-admin-binding", "apiGroup": "rbac.authorization.k8s.io", "apiVersion": "v1"},
+      {"resource": "nodes", "name": "gke-prod-01-pool-1-abc123", "apiVersion": "v1"}
+    ] },
+    { "name": "RequestObject", "type": "dynamic", "values": [
+      {"apiVersion": "apps/v1", "kind": "Deployment", "metadata": {"name": "nginx-deployment", "namespace": "production"}, "spec": {"replicas": 3}},
+      {"apiVersion": "v1", "kind": "ConfigMap", "metadata": {"name": "app-config", "namespace": "production"}, "data": {"APP_ENV": "production"}},
+      {}
+    ] },
+    { "name": "AuditLevel", "type": "string", "values": ["None", "Metadata", "Request", "RequestResponse"] },
+    { "name": "Stage", "type": "string", "values": ["RequestReceived", "ResponseStarted", "ResponseComplete", "Panic"] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

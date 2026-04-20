@@ -1,0 +1,29 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AssetId", "type": "string", "values": ["asset-a1b2c3d4-e5f6-7890-abcd-ef1234567890", "asset-f0e1d2c3-b4a5-6789-0123-456789abcdef", "asset-11223344-5566-7788-99aa-bbccddeeff00", "asset-aabbccdd-eeff-0011-2233-445566778899"] },
+    { "name": "AssetName", "type": "string", "values": ["WS-PC01", "SRV-DC01", "SRV-WEB01", "ip-10-0-1-50.ec2.internal", "web-prod-vm-01", "db-prod-vm-02", "app-staging-vm-01"] },
+    { "name": "IpAddress", "type": "string", "values": ["10.0.1.50", "10.0.2.10", "10.0.2.20", "172.16.0.100", "203.0.113.42", "192.168.1.15"] },
+    { "name": "OsName", "type": "string", "values": ["Windows 11 Enterprise", "Windows Server 2022", "Ubuntu", "Amazon Linux 2", "Red Hat Enterprise Linux", "CentOS Stream"] },
+    { "name": "OsVersion", "type": "string", "values": ["23H2", "21H2", "22.04 LTS", "2.0.20240131", "9.3", "9"] },
+    { "name": "CloudProvider", "type": "string", "values": ["Azure", "AWS", "GCP", "Azure", "AWS"] },
+    { "name": "CloudRegion", "type": "string", "values": ["eastus", "us-east-1", "us-central1", "westus2", "eu-west-1", "asia-southeast1"] },
+    { "name": "CloudAccountId", "type": "string", "values": ["sub-a1b2c3d4-e5f6-7890-abcd-ef1234567890", "123456789012", "contoso-prod-project", "sub-f0e1d2c3-b4a5-6789-0123-456789abcdef", "987654321098"] },
+    { "name": "Tags", "type": "dynamic", "values": [
+      "{\"environment\":\"production\",\"team\":\"infrastructure\",\"owner\":\"jsmith\"}",
+      "{\"environment\":\"production\",\"team\":\"security\",\"owner\":\"agarcia\"}",
+      "{\"environment\":\"staging\",\"team\":\"development\",\"owner\":\"mwilson\"}",
+      "{\"environment\":\"production\",\"team\":\"database\",\"owner\":\"jsmith\",\"compliance\":\"pci\"}"
+    ] },
+    { "name": "Vulnerabilities", "type": "dynamic", "values": [
+      "{\"count\":47,\"critical\":3,\"high\":8,\"medium\":21,\"low\":15}",
+      "{\"count\":12,\"critical\":0,\"high\":2,\"medium\":6,\"low\":4}",
+      "{\"count\":83,\"critical\":7,\"high\":15,\"medium\":38,\"low\":23}",
+      "{\"count\":5,\"critical\":0,\"high\":1,\"medium\":2,\"low\":2}",
+      "{\"count\":29,\"critical\":2,\"high\":5,\"medium\":14,\"low\":8}"
+    ] },
+    { "name": "LastAssessed", "type": "datetime" },
+    { "name": "RiskScore", "type": "real", "values": [847.5, 234.1, 1523.8, 98.3, 612.7, 45.2, 1102.4] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

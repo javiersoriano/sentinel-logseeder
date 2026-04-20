@@ -1,0 +1,26 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "BackendServiceName", "type": "string", "values": ["backend-web-prod", "backend-api-prod", "backend-static-assets", "backend-media-cdn"] },
+    { "name": "CacheHit", "type": "boolean", "values": [true, false] },
+    { "name": "CacheLookup", "type": "boolean", "values": [true, false] },
+    { "name": "CacheFillBytes", "type": "long", "values": [0, 1024, 4096, 16384, 65536, 262144] },
+    { "name": "CacheId", "type": "string", "values": ["IAD-1234", "ORD-5678", "SFO-9012", "LHR-3456", "NRT-7890"] },
+    { "name": "StatusCode", "type": "int", "values": [200, 206, 301, 302, 304, 400, 403, 404, 500, 502, 503] },
+    { "name": "RequestMethod", "type": "string", "values": ["GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS"] },
+    { "name": "RequestUrl", "type": "string", "values": ["https://cdn.contoso.com/assets/js/app.min.js", "https://cdn.contoso.com/assets/css/styles.css", "https://cdn.contoso.com/images/logo.png", "https://cdn.contoso.com/api/v1/products", "https://cdn.contoso.com/media/video/intro.mp4", "https://cdn.contoso.com/fonts/roboto-regular.woff2"] },
+    { "name": "RequestSize", "type": "long", "values": [128, 256, 512, 1024, 2048] },
+    { "name": "ResponseSize", "type": "long", "values": [1024, 4096, 16384, 65536, 262144, 1048576] },
+    { "name": "BackendLatencyMs", "type": "real", "values": [0.5, 1.2, 5.8, 12.3, 45.7, 120.5, 250.0] },
+    { "name": "TotalLatencyMs", "type": "real", "values": [1.0, 3.5, 8.2, 15.6, 50.3, 135.8, 280.0] },
+    { "name": "ClientIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "10.0.1.50", "100.21.55.130", "52.168.112.66"] },
+    { "name": "ClientCity", "type": "string", "values": ["Seattle", "New York", "London", "Tokyo", "Sydney", ""] },
+    { "name": "ClientCountry", "type": "string", "values": ["US", "GB", "JP", "AU", "DE", ""] },
+    { "name": "UserAgent", "type": "string", "values": ["Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)", "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0)", "curl/8.1.0", "python-requests/2.31.0"] },
+    { "name": "Protocol", "type": "string", "values": ["HTTP/1.1", "HTTP/2", "HTTP/3", "h2"] },
+    { "name": "TlsVersion", "type": "string", "values": ["TLS 1.2", "TLS 1.3"] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

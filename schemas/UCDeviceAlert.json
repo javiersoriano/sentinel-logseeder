@@ -1,0 +1,15 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AlertId", "type": "string", "values": ["a1b2c3d4-1111-4000-8000-000000000001", "a1b2c3d4-2222-4000-8000-000000000002", "a1b2c3d4-3333-4000-8000-000000000003", "a1b2c3d4-4444-4000-8000-000000000004", "a1b2c3d4-5555-4000-8000-000000000005"] },
+    { "name": "AlertType", "type": "string", "values": ["ClientNotConnected", "UpdateFailure", "EndOfService", "ConfigurationError", "PolicyConflict"] },
+    { "name": "AlertSubtype", "type": "string", "values": ["DeviceOffline", "DownloadError", "InstallError", "WUServiceDisabled", "GPOConflict"] },
+    { "name": "AlertStatus", "type": "string", "values": ["Active", "Resolved"] },
+    { "name": "AlertClassification", "type": "string", "values": ["Error", "Warning", "Informational"] },
+    { "name": "AzureADDeviceId", "type": "string", "values": ["d1a2b3c4-0001-4000-8000-000000000001", "d1a2b3c4-0002-4000-8000-000000000002", "d1a2b3c4-0003-4000-8000-000000000003", "d1a2b3c4-0004-4000-8000-000000000004", "d1a2b3c4-0008-4000-8000-000000000008"] },
+    { "name": "DeviceName", "type": "string", "values": ["WS-PC01", "WS-PC02", "SRV-DC01", "SRV-WEB01", "WS-LAPTOP03"] },
+    { "name": "Description", "type": "string", "values": ["Device has not connected to Windows Update service in over 28 days", "Update installation failed with error 0x80070002", "Device is running an OS version that has reached end of service", "Windows Update service is disabled on this device", "Group Policy conflicts detected with Windows Update for Business policies"] },
+    { "name": "Recommendation", "type": "string", "values": ["Verify the device has internet connectivity and can reach Windows Update endpoints", "Check the Windows Update log for details and retry the update", "Upgrade the device to a supported OS version", "Enable the Windows Update service and set startup type to Automatic", "Review and resolve conflicting Group Policy and Intune policies"] },
+    { "name": "URL", "type": "string", "values": ["https://learn.microsoft.com/windows/deployment/update/windows-update-troubleshooting", "https://learn.microsoft.com/windows/deployment/update/windows-update-errors", "https://learn.microsoft.com/windows/release-health/release-information", "https://learn.microsoft.com/windows/deployment/update/waas-wu-settings", "https://learn.microsoft.com/windows/deployment/update/wufb-reports-overview"] }
+  ]
+}

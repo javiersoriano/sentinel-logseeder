@@ -1,0 +1,66 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AuditId", "type": "string" },
+    { "name": "OperationName", "type": "string", "values": [
+      "createAPIClient",
+      "deleteAPIClient",
+      "updateAPIClient",
+      "revokeAPIToken",
+      "getDevices",
+      "getDetections",
+      "createIOC",
+      "deleteIOC",
+      "updatePolicy",
+      "containHost",
+      "liftContainment",
+      "batchInitSession",
+      "runCommand",
+      "getReport",
+      "streamStarted",
+      "streamStopped"
+    ] },
+    { "name": "ServiceName", "type": "string", "values": [
+      "oauth2",
+      "hosts",
+      "detects",
+      "iocs",
+      "prevention-policies",
+      "real-time-response",
+      "reports",
+      "event-streams",
+      "incidents",
+      "device-control-policies"
+    ] },
+    { "name": "Result", "type": "string", "values": ["Success", "Success", "Success", "Failure", "PartialSuccess", "Unauthorized", "RateLimited"] },
+    { "name": "ResultDescription", "type": "string", "values": [
+      "Operation completed successfully.",
+      "Request was unauthorized due to insufficient scopes.",
+      "Rate limit exceeded for this API client.",
+      "Partial success - some resources were not found.",
+      "API client credentials were invalid.",
+      "Operation completed with warnings."
+    ] },
+    { "name": "UserId", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "svc-crowdstrike@contoso.com", "admin@contoso.com"] },
+    { "name": "ClientId", "type": "string" },
+    { "name": "SourceIP", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "203.0.113.42", "198.51.100.17"] },
+    { "name": "UserAgent", "type": "string", "values": [
+      "crowdstrike-falcon-api/1.0",
+      "PSFalcon/2.2.6",
+      "python-requests/2.31.0",
+      "FalconPy/1.3.4",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    ] },
+    { "name": "HTTPMethod", "type": "string", "values": ["GET", "POST", "PATCH", "DELETE", "PUT"] },
+    { "name": "HTTPStatusCode", "type": "int", "values": [200, 201, 204, 400, 401, 403, 404, 429, 500] },
+    { "name": "ResourceId", "type": "string" },
+    { "name": "Scopes", "type": "dynamic", "values": [
+      ["hosts:read", "hosts:write"],
+      ["detects:read", "detects:write"],
+      ["iocs:read", "iocs:write"],
+      ["prevention-policies:read", "prevention-policies:write"],
+      ["real-time-response:read", "real-time-response:write", "real-time-response-admin:write"]
+    ] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

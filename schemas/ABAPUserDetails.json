@@ -1,0 +1,21 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "User", "type": "string", "values": ["jsmith", "agarcia", "mwilson", "admin", "SAP*", "DDIC", "svc_rfc01", "svc_batch01"] },
+    { "name": "Client", "type": "string", "values": ["100", "200", "300"] },
+    { "name": "UserType", "type": "string", "values": ["Dialog", "System", "Communication", "Service", "Reference"] },
+    { "name": "FirstName", "type": "string", "values": ["John", "Ana", "Michael", "Local", "SAP", "Data Dict", "RFC Service", "Batch Service"] },
+    { "name": "LastName", "type": "string", "values": ["Smith", "Garcia", "Wilson", "Admin", "Default", "Admin", "Account", "Account"] },
+    { "name": "EmailAddress", "type": "string", "values": ["jsmith@contoso.com", "agarcia@contoso.com", "mwilson@contoso.com", "admin@contoso.com", "", "", "", ""] },
+    { "name": "Department", "type": "string", "values": ["IT Operations", "Finance", "Engineering", "IT Security", "Basis", "Development", "Integration", "Scheduling"] },
+    { "name": "LockStatus", "type": "string", "values": ["Unlocked", "Locked", "LockedByAdmin", "LockedByFailedLogon", "Unlocked"] },
+    { "name": "ValidFrom", "type": "datetime" },
+    { "name": "ValidTo", "type": "datetime" },
+    { "name": "LastLogonDate", "type": "datetime" },
+    { "name": "UserGroup", "type": "string", "values": ["SUPER", "BASIS", "DEVELOP", "ENDUSER", "SERVICE", "EXTERNAL"] },
+    { "name": "SecurityPolicy", "type": "string", "values": ["DEFAULT", "ADMIN_POLICY", "SERVICE_POLICY", "STRICT_POLICY", ""] },
+    { "name": "AccountNumber", "type": "string", "values": ["1001", "1002", "1003", "1004", "9000", "9001", "8001", "8002"] },
+    { "name": "Roles", "type": "dynamic", "values": [["SAP_BC_BASIS_ADMIN", "Z_CUSTOM_ROLE_01"], ["SAP_BC_USER_ADMIN", "Z_REPORTING_ROLE"], ["Z_DEVELOPER_ROLE", "SAP_BC_TRANSPORT_ADMIN"], ["SAP_ALL"], ["SAP_BC_BASIS_ADMIN", "Z_CUSTOM_ROLE_01", "Z_DEVELOPER_ROLE"]] },
+    { "name": "Profiles", "type": "dynamic", "values": [["SAP_ALL", "SAP_NEW"], ["T-SU01", "T-SM37"], ["S_A.SYSTEM"], ["SAP_ALL", "SAP_NEW", "S_A.SYSTEM"], ["T-SE38", "T-SM37"]] }
+  ]
+}

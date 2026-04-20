@@ -1,0 +1,21 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "AccountId", "type": "string", "values": ["123456789012", "987654321098"] },
+    { "name": "Action", "type": "string", "values": ["ACCEPT", "REJECT"] },
+    { "name": "Bytes", "type": "string" },
+    { "name": "SourceAddress", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "10.0.1.50", "10.0.1.51", "10.0.2.10"] },
+    { "name": "SourcePort", "type": "string" },
+    { "name": "DestinationAddress", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.2.10", "10.0.2.20", "172.16.0.100", "203.0.113.42", "198.51.100.17"] },
+    { "name": "DestinationPort", "type": "string", "values": ["80", "443", "22", "3389", "53", "8080", "3306", "5432"] },
+    { "name": "Protocol", "type": "string", "values": ["6", "17", "1"] },
+    { "name": "Packets", "type": "string" },
+    { "name": "InterfaceId", "type": "string", "values": ["eni-0abcdef1234567890", "eni-0fedcba0987654321", "eni-0a1b2c3d4e5f67890"] },
+    { "name": "SStartTime", "type": "datetime" },
+    { "name": "EndTime", "type": "datetime" },
+    { "name": "LogStatus", "type": "string", "values": ["OK", "NODATA", "SKIPDATA"] },
+    { "name": "LogType", "type": "string", "values": ["VPCFlowLog", "TransitGatewayFlowLog"] },
+    { "name": "Version", "type": "string", "values": ["2", "3", "5"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

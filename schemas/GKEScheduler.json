@@ -1,0 +1,44 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "ClusterName", "type": "string", "values": ["gke-prod-01", "gke-prod-02", "gke-dev-01"] },
+    { "name": "ClusterLocation", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "PodName", "type": "string", "values": ["api-gateway-7b8c9d-abc12", "web-frontend-5f6g7h-def34", "auth-service-3d4e5f-ghi56", "redis-master-0", "postgres-primary-0", "batch-job-xyz89-12345", "nginx-deployment-abc12-67890"] },
+    { "name": "Namespace", "type": "string", "values": ["default", "production", "staging", "monitoring", "kube-system"] },
+    { "name": "NodeName", "type": "string", "values": ["gke-prod-01-pool-1-abc123", "gke-prod-01-pool-1-def456", "gke-prod-01-pool-2-ghi789", "gke-prod-01-pool-highmem-jkl012", ""] },
+    { "name": "SchedulingDecision", "type": "string", "values": ["Scheduled", "FailedScheduling", "Preempted", "Nominated"] },
+    { "name": "Message", "type": "string", "values": [
+      "Successfully assigned production/api-gateway-7b8c9d-abc12 to gke-prod-01-pool-1-abc123",
+      "Successfully assigned production/web-frontend-5f6g7h-def34 to gke-prod-01-pool-1-def456",
+      "0/5 nodes are available: 3 Insufficient cpu, 2 Insufficient memory",
+      "0/5 nodes are available: 5 node(s) didn't match Pod's node affinity/selector",
+      "0/5 nodes are available: 3 node(s) had taint {node.kubernetes.io/not-ready: }, that the pod didn't tolerate",
+      "Preempting pod production/low-priority-job-abc12 on node gke-prod-01-pool-1-abc123",
+      "Nominated node gke-prod-01-pool-1-def456 for pod production/api-gateway-7b8c9d-abc12",
+      "Pod production/batch-job-xyz89-12345 is unschedulable: insufficient resources"
+    ] },
+    { "name": "Reason", "type": "string", "values": ["Scheduled", "FailedScheduling", "Preempted", "Nominated", "Unschedulable"] },
+    { "name": "SchedulerName", "type": "string", "values": ["default-scheduler", "custom-scheduler"] },
+    { "name": "PriorityClassName", "type": "string", "values": ["system-cluster-critical", "system-node-critical", "high-priority", "low-priority", ""] },
+    { "name": "Priority", "type": "int", "values": [-100, 0, 100, 1000, 2000000000, 2000001000] },
+    { "name": "RequestedCpuCores", "type": "real", "values": [0.1, 0.25, 0.5, 1.0, 2.0, 4.0] },
+    { "name": "RequestedMemoryBytes", "type": "long", "values": [67108864, 134217728, 268435456, 536870912, 1073741824, 2147483648] },
+    { "name": "NodeScores", "type": "dynamic", "values": [
+      [{"nodeName": "gke-prod-01-pool-1-abc123", "score": 85}, {"nodeName": "gke-prod-01-pool-1-def456", "score": 72}, {"nodeName": "gke-prod-01-pool-2-ghi789", "score": 60}],
+      [{"nodeName": "gke-prod-01-pool-1-abc123", "score": 45}, {"nodeName": "gke-prod-01-pool-1-def456", "score": 90}],
+      []
+    ] },
+    { "name": "FailedPredicates", "type": "dynamic", "values": [
+      [],
+      ["Insufficient cpu", "Insufficient memory"],
+      ["NodeAffinity", "PodToleratesNodeTaints"],
+      ["Insufficient nvidia.com/gpu"],
+      ["PodAntiAffinityConflict"]
+    ] },
+    { "name": "SchedulingLatencyMs", "type": "real", "values": [0.5, 1.2, 3.5, 8.0, 15.0, 50.0, 120.0] },
+    { "name": "AttemptCount", "type": "int", "values": [1, 2, 3, 5, 10] },
+    { "name": "Severity", "type": "string", "values": ["INFO", "WARNING", "ERROR"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}

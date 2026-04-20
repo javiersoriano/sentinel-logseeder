@@ -1,0 +1,42 @@
+{
+  "columns": [
+    { "name": "TimeGenerated", "type": "datetime" },
+    { "name": "ProjectId", "type": "string", "values": ["contoso-prod-123", "contoso-dev-456"] },
+    { "name": "ClusterName", "type": "string", "values": ["gke-prod-01", "gke-prod-02", "gke-dev-01"] },
+    { "name": "ClusterLocation", "type": "string", "values": ["us-central1", "us-east1", "europe-west1"] },
+    { "name": "Namespace", "type": "string", "values": ["default", "production", "staging", "monitoring", "kube-system", "ingress-nginx", "cert-manager"] },
+    { "name": "PodName", "type": "string", "values": ["api-gateway-7b8c9d-abc12", "web-frontend-5f6g7h-def34", "auth-service-3d4e5f-ghi56", "redis-master-0", "postgres-primary-0", "nginx-ingress-controller-abc12", "coredns-5d78c9-xyz89"] },
+    { "name": "ContainerName", "type": "string", "values": ["api-gateway", "web-frontend", "auth-service", "redis", "postgres", "nginx-ingress-controller", "coredns", "istio-proxy", "fluentbit"] },
+    { "name": "ContainerImage", "type": "string", "values": ["gcr.io/contoso-prod-123/api-gateway:v2.1.0", "gcr.io/contoso-prod-123/web-frontend:v1.8.3", "gcr.io/contoso-prod-123/auth-service:v3.0.1", "redis:7.2-alpine", "postgres:15.4", "registry.k8s.io/ingress-nginx/controller:v1.9.4"] },
+    { "name": "NodeName", "type": "string", "values": ["gke-prod-01-pool-1-abc123", "gke-prod-01-pool-1-def456", "gke-prod-01-pool-2-ghi789", "gke-prod-01-pool-highmem-jkl012"] },
+    { "name": "LogLevel", "type": "string", "values": ["DEBUG", "INFO", "WARN", "ERROR", "FATAL", "TRACE"] },
+    { "name": "LogMessage", "type": "string", "values": [
+      "Server started on port 8080",
+      "Request processed successfully in 45ms",
+      "Database connection pool initialized with 10 connections",
+      "Authentication token validated for user jsmith@contoso.com",
+      "Cache miss for key: user:12345:profile",
+      "Connection refused to downstream service auth-service:8443",
+      "Out of memory: container memory limit reached",
+      "Readiness probe failed: HTTP 503",
+      "Liveness probe failed: connection refused",
+      "Pod restarting due to CrashLoopBackOff",
+      "SSL certificate renewal completed",
+      "Rate limit exceeded for client 203.0.113.42"
+    ] },
+    { "name": "StreamType", "type": "string", "values": ["stdout", "stderr"] },
+    { "name": "Labels", "type": "dynamic", "values": [
+      {"app": "api-gateway", "version": "v2.1.0", "tier": "backend", "team": "platform"},
+      {"app": "web-frontend", "version": "v1.8.3", "tier": "frontend", "team": "web"},
+      {"app": "auth-service", "version": "v3.0.1", "tier": "backend", "team": "security"},
+      {"app": "redis", "role": "master", "tier": "cache"},
+      {"app": "postgres", "role": "primary", "tier": "database"}
+    ] },
+    { "name": "RestartCount", "type": "int", "values": [0, 1, 2, 3, 5, 10] },
+    { "name": "ContainerStatus", "type": "string", "values": ["Running", "Waiting", "Terminated", "CrashLoopBackOff", "ImagePullBackOff", "OOMKilled"] },
+    { "name": "CpuUsageCores", "type": "real", "values": [0.01, 0.05, 0.15, 0.30, 0.50, 0.80, 1.0, 2.0] },
+    { "name": "MemoryUsageBytes", "type": "long", "values": [16777216, 33554432, 67108864, 134217728, 268435456, 536870912, 1073741824] },
+    { "name": "Severity", "type": "string", "values": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"] },
+    { "name": "SourceSystem", "type": "string", "values": ["RestAPI"] }
+  ]
+}
