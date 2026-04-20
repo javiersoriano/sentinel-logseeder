@@ -10,7 +10,7 @@
     { "name": "CurrentValue", "type": "real", "values": [0.55, 0.82, 0.88, 0.92, 0.97, 6.5, 120.0, 650.0, 1500.0] },
     { "name": "ComparisonType", "type": "string", "values": ["COMPARISON_GT", "COMPARISON_GE", "COMPARISON_LT", "COMPARISON_LE"] },
     { "name": "Duration", "type": "string", "values": ["60s", "120s", "300s", "600s", "900s", "1800s"] },
-    { "name": "ResourceType", "type": "string", "values": ["gce_instance", "gke_container", "cloud_run_revision", "cloudsql_database", "https_lb_rule", "uptime_url", "global"] },
+    { "name": "GCPResourceType", "type": "string", "values": ["gce_instance", "gke_container", "cloud_run_revision", "cloudsql_database", "https_lb_rule", "uptime_url", "global"] },
     { "name": "ResourceLabel", "type": "string", "values": ["vm-web-01", "vm-db-01", "api-gateway", "sql-prod-primary", "gke-prod-01", "https://contoso.com", ""] },
     { "name": "State", "type": "string", "values": ["OPEN", "ACKNOWLEDGED", "CLOSED"] },
     { "name": "IncidentId", "type": "string" },
