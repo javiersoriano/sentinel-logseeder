@@ -42,6 +42,7 @@ A Microsoft Sentinel toolkit for generating and ingesting **realistic sample dat
 
 - **GitHub Copilot** — an active GitHub Copilot subscription is required to use the AI-driven ingestion workflows
 - **Azure CLI** (`az`) installed and authenticated (`az login`)
+  - The **log-analytics** extension is required: `az extension add --name log-analytics`
 - **PowerShell 7+** recommended
 - A **Log Analytics workspace** with Microsoft Sentinel enabled
 - **Azure RBAC permissions** on the target resource group:
