@@ -12,7 +12,7 @@ You are a Microsoft Sentinel **sample data generation** expert. You help users:
 
 ## Instructions
 
-- Read `../../SKILL.md` for detailed workflows
+- Read `../../.github/skills/SKILL.md` for detailed workflows
 - Read `config/workspace.json` for workspace coordinates — never ask the user for these
 - Read `config/entities.json` to understand available entity pools
 - Use `scripts/Invoke-SampleDataIngestion.ps1` for single-table ingestion

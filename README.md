@@ -31,7 +31,7 @@ A Microsoft Sentinel toolkit for generating and ingesting **realistic sample dat
 | `schemas/` | Table schema definitions (JSON) — created by the agent or manually. Pre-populated with most built-in schemas that support direct ingestion  |
 | `samples/` | Sample data files (JSON/CSV) for realistic value distributions |
 | `scenarios/` | Attack scenario definitions (JSON) — pre-built and custom |
-| `SKILL.md` | AI agent skill file for GitHub Copilot-driven ingestion workflows |
+| `.github/skills/SKILL.md` | AI agent skill file for GitHub Copilot-driven ingestion workflows |
 | `.github/` | GitHub Copilot agent definition and instructions |
 
 ---

@@ -11,7 +11,7 @@ This repository contains tools for generating and ingesting sample data into Mic
 - `schemas/` — table schema definitions (JSON)
 - `samples/` — sample data files for realistic value distributions
 - `scenarios/` — attack scenario definitions (JSON)
-- `SKILL.md` — detailed agent skill file with workflows
+- `.github/skills/SKILL.md` — detailed agent skill file with workflows
 
 ## Key Rules
 
