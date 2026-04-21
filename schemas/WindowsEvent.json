@@ -1,7 +1,7 @@
 {
   "columns": [
     { "name": "TimeGenerated", "type": "datetime" },
-    { "name": "Computer", "type": "string" },
+    { "name": "Computer", "type": "string", "values": ["WS-PC01.contoso.local", "WS-PC02.contoso.local", "WS-PC03.contoso.local", "WS-PC04.contoso.local", "WS-LAPTOP03.contoso.local", "WS-LAPTOP04.contoso.local", "SRV-DC01.contoso.local", "SRV-DC02.contoso.local", "SRV-WEB01.contoso.local", "SRV-DB01.contoso.local", "SRV-MAIL01.contoso.local", "SRV-FILE01.contoso.local"] },
     { "name": "TimeCreated", "type": "datetime" },
     { "name": "EventID", "type": "int", "values": [4688, 4663, 4657, 4656, 4658, 4624, 4625, 4634, 4672, 4720, 4732, 4728, 4648, 4768, 4769, 4776, 1102, 4698, 4697, 5156, 5140, 4771, 4104] },
     { "name": "Channel", "type": "string", "values": ["Security", "Security", "Microsoft-Windows-PowerShell/Operational", "Microsoft-Windows-Sysmon/Operational", "System"] },

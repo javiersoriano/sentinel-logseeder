@@ -31,7 +31,7 @@
     { "name": "AgentFQDN", "type": "string" },
     { "name": "AgentOSType", "type": "string", "values": ["AGENT_OS_WINDOWS", "AGENT_OS_WINDOWS", "AGENT_OS_LINUX", "AGENT_OS_MAC", "AGENT_OS_WINDOWS"] },
     { "name": "AgentDataCollectionStatus", "type": "boolean", "values": [true, true, true, false, true] },
-    { "name": "MacAddress", "type": "string" },
+    { "name": "MacAddress", "type": "string", "values": ["00:50:56:C0:00:01", "00:50:56:C0:00:02", "00:50:56:C0:00:03", "00:0C:29:A1:B2:C3", "00:0C:29:D4:E5:F6", "00:0C:29:7A:8B:9C", "DC:A6:32:12:34:56", "AC:DE:48:78:9A:BC", "48:2C:6A:1E:59:3D", "F4:5C:89:B2:71:E0"] },
     { "name": "AlertId", "type": "string" },
     { "name": "DetectionTimestamp", "type": "datetime" },
     { "name": "Name", "type": "string", "values": [
@@ -60,8 +60,8 @@
       "DLL side-loading attempt detected via a legitimate signed binary.",
       "Large volume data transfer to an external endpoint was detected."
     ] },
-    { "name": "HostIp", "type": "string" },
-    { "name": "HostName", "type": "string" },
+    { "name": "HostIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.1.52", "10.0.2.10", "10.0.2.20", "10.0.3.10", "10.0.4.100", "172.16.0.100", "192.168.1.200"] },
+    { "name": "HostName", "type": "string", "values": ["WS-PC01", "WS-PC02", "WS-PC03", "WS-PC04", "WS-LAPTOP03", "WS-LAPTOP04", "WS-LAPTOP05", "SRV-DC01", "SRV-WEB01", "SRV-DB01", "SRV-FILE01", "LNX-APP01", "LNX-APP02"] },
     { "name": "Source", "type": "string", "values": ["XDR Agent", "XDR Analytics", "XDR BIOC", "Correlation", "IOC", "XDR Analytics BIOC", "Cloud"] },
     { "name": "Action", "type": "string", "values": ["BLOCKED", "DETECTED", "REPORTED", "PREVENTED", "QUARANTINED", "ALLOWED", "BLOCKED"] },
     { "name": "ActionPretty", "type": "string", "values": ["Blocked", "Detected (Reported)", "Prevented (Quarantined)", "Allowed", "Blocked", "Detected (Reported)"] },
@@ -131,10 +131,10 @@
     { "name": "ActorProcessSignatureStatus", "type": "string", "values": ["SIGNED", "SIGNED", "SIGNED", "UNSIGNED", "N/A"] },
     { "name": "ActorProcessSignatureVendor", "type": "string", "values": ["Microsoft Corporation", "Microsoft Corporation", "", "", ""] },
     { "name": "ActorThreadThreadId", "type": "string" },
-    { "name": "ActionLocalIp", "type": "string" },
+    { "name": "ActionLocalIp", "type": "string", "values": ["10.0.1.50", "10.0.1.51", "10.0.1.52", "10.0.2.10", "10.0.2.20", "10.0.3.10", "172.16.0.100", "192.168.1.200"] },
     { "name": "ActionLocalIpV6", "type": "string", "values": ["", ""] },
     { "name": "ActionLocalPort", "type": "int", "values": [49152, 50123, 51234, 52345, 53456, 54567, 55678] },
-    { "name": "ActionRemoteIp", "type": "string" },
+    { "name": "ActionRemoteIp", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "100.21.55.130", "52.168.112.66", "40.76.215.91", "185.220.101.34", "91.234.99.42", "45.33.32.156", "178.62.55.120", "23.94.168.73", "13.107.42.14"] },
     { "name": "ActionRemoteIpV6", "type": "string", "values": ["", ""] },
     { "name": "ActionRemotePort", "type": "int", "values": [443, 80, 8080, 4444, 8443, 22, 445, 135, 3389, 53] },
     { "name": "ModuleId", "type": "string", "values": ["", ""] },
@@ -145,7 +145,7 @@
     { "name": "OsActorProcessImageSha256", "type": "string" },
     { "name": "OsActorProcessSignatureStatus", "type": "string", "values": ["SIGNED", "SIGNED", "N/A", "SIGNED"] },
     { "name": "OsActorProcessSignatureVendor", "type": "string", "values": ["Microsoft Corporation", "Microsoft Corporation", "", ""] },
-    { "name": "OsActorEffectiveUsername", "type": "string" },
+    { "name": "OsActorEffectiveUsername", "type": "string", "values": ["CONTOSO\\jsmith", "CONTOSO\\agarcia", "CONTOSO\\mwilson", "CONTOSO\\admin", "CONTOSO\\dkim", "CONTOSO\\svc_backup", "NT AUTHORITY\\SYSTEM", "root"] },
     { "name": "ActionProcessSignatureStatus", "type": "string", "values": ["SIGNED", "UNSIGNED", "N/A", "SIGNED"] },
     { "name": "ActionProcessSignatureVendor", "type": "string", "values": ["Microsoft Corporation", "", "", ""] },
     { "name": "ActionRegistryData", "type": "dynamic", "values": [
@@ -186,6 +186,6 @@
     { "name": "EventId", "type": "string" },
     { "name": "EventTimestamp", "type": "datetime" },
     { "name": "UserAgent", "type": "string", "values": ["", "Mozilla/5.0 (Windows NT 10.0; Win64; x64)", "curl/7.88.1", ""] },
-    { "name": "UserName", "type": "string" }
+    { "name": "UserName", "type": "string", "values": ["CONTOSO\\jsmith", "CONTOSO\\agarcia", "CONTOSO\\mwilson", "CONTOSO\\admin", "CONTOSO\\dkim", "CONTOSO\\svc_backup", "NT AUTHORITY\\SYSTEM", "root", ""] }
   ]
 }

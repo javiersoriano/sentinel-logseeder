@@ -1,8 +1,8 @@
 {
   "columns": [
     { "name": "TimeGenerated", "type": "datetime" },
-    { "name": "Computer", "type": "string" },
-    { "name": "HostName", "type": "string" },
+    { "name": "Computer", "type": "string", "values": ["LNX-APP01.contoso.local", "LNX-APP02.contoso.local", "LNX-DOCKER01.contoso.local", "SRV-WEB01.contoso.local", "SRV-WEB02.contoso.local", "SRV-DB02.contoso.local", "SRV-SIEM01.contoso.local", "FW-EDGE01.contoso.local", "FW-EDGE02.contoso.local"] },
+    { "name": "HostName", "type": "string", "values": ["LNX-APP01", "LNX-APP02", "LNX-DOCKER01", "SRV-WEB01", "SRV-WEB02", "SRV-DB02", "SRV-SIEM01", "FW-EDGE01", "FW-EDGE02"] },
     { "name": "HostIP", "type": "string" },
     { "name": "Facility", "type": "string", "values": ["auth", "authpriv", "cron", "daemon", "kern", "local0", "local1", "local2", "local3", "local4", "local5", "local6", "local7", "mail", "syslog", "user"] },
     { "name": "SeverityLevel", "type": "string", "values": ["emerg", "alert", "crit", "err", "warning", "notice", "info", "debug"] },
@@ -11,6 +11,6 @@
     { "name": "SyslogMessage", "type": "string", "values": ["Accepted publickey for jsmith from 10.0.1.50 port 52431 ssh2", "Failed password for invalid user root from 203.0.113.42 port 22 ssh2", "pam_unix(sshd:session): session opened for user jsmith(uid=1000) by (uid=0)", "pam_unix(sshd:session): session closed for user jsmith", "COMMAND=/usr/bin/apt-get update", "jsmith : TTY=pts/0 ; PWD=/home/jsmith ; USER=root ; COMMAND=/usr/bin/systemctl restart nginx", "Connection from 198.51.100.17 port 55123 on 10.0.1.50 port 22", "Started Session 42 of user agarcia", "New session 42 of user agarcia", "CRON[12345]: (root) CMD (/usr/lib/apt/apt.systemd.daily)", "kernel: [UFW BLOCK] IN=eth0 OUT= SRC=203.0.113.42 DST=10.0.1.50 LEN=44 TOS=0x00 TTL=43 PROTO=TCP SPT=54321 DPT=22 SYN", "New group: name=developers, GID=1001", "new user: name=newuser, UID=1002, GID=1002, home=/home/newuser, shell=/bin/bash", "password changed for user jsmith", "Authentication failure for root from 198.51.100.17", "segfault at 0 ip 00007f1234567890 sp 00007f9876543210 error 4 in libc.so.6"] },
     { "name": "EventTime", "type": "datetime" },
     { "name": "SourceSystem", "type": "string", "values": ["Linux"] },
-    { "name": "CollectorHostName", "type": "string" }
+    { "name": "CollectorHostName", "type": "string", "values": ["SRV-SIEM01.contoso.local", "LNX-APP01.contoso.local", "SRV-WEB01.contoso.local"] }
   ]
 }

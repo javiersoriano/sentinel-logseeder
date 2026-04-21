@@ -15,7 +15,7 @@
     { "name": "EmailSenderAddress", "type": "string", "values": ["", "phisher@evil-domain.example.org", "support@fakemicrosoft.example.com", "invoice@scam.example.net"] },
     { "name": "EmailSenderName", "type": "string", "values": ["", "Microsoft Support", "IT Admin", "Invoice Payment", "HR Department"] },
     { "name": "EmailSourceDomain", "type": "string", "values": ["", "evil-domain.example.org", "fakemicrosoft.example.com", "scam.example.net"] },
-    { "name": "EmailSourceIpAddress", "type": "string" },
+    { "name": "EmailSourceIpAddress", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "185.220.101.34", "91.234.99.42", "45.33.32.156", "178.62.55.120", ""] },
     { "name": "EmailSubject", "type": "string", "values": ["", "Urgent: Verify Your Account", "Invoice #12345 Payment Due", "Password Reset Required", "Important Security Update"] },
     { "name": "ExpirationDateTime", "type": "datetime" },
     { "name": "ExternalIndicatorId", "type": "string" },
@@ -39,8 +39,8 @@
     { "name": "NetworkCidrBlock", "type": "string", "values": ["", "203.0.113.0/24", "198.51.100.0/24", "192.0.2.0/24"] },
     { "name": "NetworkDestinationAsn", "type": "int" },
     { "name": "NetworkDestinationCidrBlock", "type": "string" },
-    { "name": "NetworkDestinationIPv4", "type": "string" },
-    { "name": "NetworkDestinationIPv6", "type": "string" },
+    { "name": "NetworkDestinationIPv4", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "185.220.101.34", "91.234.99.42", "45.33.32.156", "178.62.55.120", "23.94.168.73", ""] },
+    { "name": "NetworkDestinationIPv6", "type": "string", "values": [""] },
     { "name": "NetworkDestinationPort", "type": "int", "values": [0, 80, 443, 4444, 8080, 8443] },
     { "name": "NetworkIP", "type": "string" },
     { "name": "NetworkIPv4", "type": "string" },
@@ -49,8 +49,8 @@
     { "name": "NetworkProtocol", "type": "int", "values": [6, 17] },
     { "name": "NetworkSourceAsn", "type": "int" },
     { "name": "NetworkSourceCidrBlock", "type": "string" },
-    { "name": "NetworkSourceIPv4", "type": "string" },
-    { "name": "NetworkSourceIPv6", "type": "string" },
+    { "name": "NetworkSourceIPv4", "type": "string", "values": ["203.0.113.42", "198.51.100.17", "185.220.101.34", "91.234.99.42", "45.33.32.156", ""] },
+    { "name": "NetworkSourceIPv6", "type": "string", "values": [""] },
     { "name": "NetworkSourcePort", "type": "int" },
     { "name": "PassiveOnly", "type": "boolean" },
     { "name": "PatternTypeKey", "type": "string", "values": ["ipv4-addr", "domain-name", "url", "file", "email-addr", "ipv6-addr"] },
@@ -60,6 +60,6 @@
     { "name": "ThreatSeverity", "type": "real" },
     { "name": "ThreatType", "type": "string", "values": ["Malware", "Phishing", "Botnet", "C2", "Exploit", "WatchList", "MaliciousUrl", "MaliciousIP"] },
     { "name": "TrafficLightProtocolLevel", "type": "string", "values": ["white", "green", "amber", "red"] },
-    { "name": "Url", "type": "string" }
+    { "name": "Url", "type": "string", "values": ["http://malware-c2.example.com/beacon", "http://malware-c2.example.com/exfil?d=1", "https://paste.ee/r/suspicious-payload", "https://phishing-site.example.net/login", "https://evil-domain.example.org/download", ""] }
   ]
 }
