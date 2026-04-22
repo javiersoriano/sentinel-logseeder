@@ -43,6 +43,7 @@ Workspace coordinates are stored in **`config/workspace.json`** at the project r
 ### Entity Configuration
 
 Entity pools are stored in **`config/entities.json`** at the project root. Read this file to understand what users, IPs, devices, domains, URLs, and email addresses are available for seeding sample data.
+For users always use the UPN format.
 
 ---
 
@@ -180,6 +181,7 @@ Before running or creating any attack scenario, the agent **must always ask the 
 1. **Read the scenario template** to identify the table categories involved (e.g., Authentication, ProcessEvent, FileEvent)
 2. **Present product options for each table category** — show the user common products and ask them to choose one per category
 3. **Use the selected products** to determine: table names, schema fields, and product-specific event metadata
+4. **Use consistent entities across events** - When creating events for the scenario, ensure that related events (e.g., an authentication event followed by a process event on the same device) use consistent entity values (same username, IP address, device name) to maintain realism and correlation.
 
 #### Product Catalog Reference
 

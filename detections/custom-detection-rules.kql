@@ -1,0 +1,762 @@
+// =============================================================================
+// Custom Analytics Rules — Microsoft Sentinel
+// Target workspace: sh-Sentinel-ws02
+// Scope: brute-force -> lateral movement, credential theft -> priv-esc,
+//        ransomware deployment, data exfiltration
+// Tables in scope: ASimAuthenticationEventLogs, ASimNetworkSessionLogs,
+//        ASimProcessEventLogs, ASimUserManagementActivityLogs,
+//        ASimFileEventLogs, ASimDnsActivityLogs, ASimAuditEventLogs,
+//        OktaV2_CL, SecurityEvent
+//
+// Each rule block provides: name, description, query, frequency, lookback,
+// severity, single MITRE tactic + techniques, recommended actions, entity
+// mapping, alert title and alert description (max 3 parameters each).
+// =============================================================================
+
+
+// =============================================================================
+// D01 — Brute Force: High-rate authentication failures from a single source
+// =============================================================================
+// Detection name   : Brute Force - High Rate of Failed Logons from Single Source
+// Description      : Detects a single source IP generating a high volume of
+//                    failed logons in a short window, potentially targeting
+//                    one or many accounts. Uses ASIM Authentication for
+//                    vendor-agnostic coverage (Windows, Okta, AAD, Linux).
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : Medium  (elevate to High when DistinctUsers >= 5)
+// MITRE Tactic     : Credential Access
+// MITRE Techniques : T1110.001 (Password Guessing), T1110.003 (Password Spraying)
+// Recommended actions:
+//   1. Verify whether SrcIpAddr is a known service (VPN, NAT, scanner).
+//   2. Correlate with D02 to check for a subsequent successful logon.
+//   3. Block SrcIpAddr at the edge / conditional-access policy; isolate host if internal.
+//   4. Force password reset + MFA for targeted users.
+//   5. Verify account lockout / smart lockout is enforced.
+// Entity mapping   :
+//   - IP       -> SrcIpAddr
+//   - Account  -> TargetUsername (Name)
+//   - Host     -> TargetHostName
+// Alert title      : "Brute force: {{FailedAttempts}} failed logons from {{SrcIpAddr}} ({{DistinctUsers}} users)"
+// Alert description: "{{SrcIpAddr}} produced {{FailedAttempts}} failed logons against {{DistinctUsers}} user(s) in 15 minutes."
+ASimAuthenticationEventLogs
+| where TimeGenerated > ago(1h)
+| where EventType == "Logon" and EventResult == "Failure"
+| summarize
+    FailedAttempts   = count(),
+    DistinctUsers    = dcount(TargetUsername),
+    TargetedUsers    = make_set(TargetUsername, 10),
+    FirstSeen        = min(TimeGenerated),
+    LastSeen         = max(TimeGenerated),
+    FailureReasons   = make_set(EventResultDetails, 5),
+    TargetHostName   = any(DvcHostname),
+    TargetUsername   = any(TargetUsername)
+    by SrcIpAddr, bin(TimeGenerated, 15m)
+| where FailedAttempts >= 10
+| extend AlertSeverity = iff(DistinctUsers >= 5, "High", "Medium")
+| project TimeGenerated, SrcIpAddr, TargetUsername, TargetHostName,
+          FailedAttempts, DistinctUsers, TargetedUsers, FailureReasons,
+          FirstSeen, LastSeen, AlertSeverity
+
+
+
+// =============================================================================
+// D02 — Brute-force burst followed by a successful logon from the same source
+// =============================================================================
+// Detection name   : Successful Logon Following Brute Force from Same Source
+// Description      : High-fidelity compromise signal — correlates a burst of
+//                    failed logons (>=10) with a successful logon from the
+//                    same SrcIpAddr within 30 minutes. Works across any
+//                    ASIM-normalized auth source.
+// Frequency        : every 30 minutes
+// Lookback         : 2 hours
+// Severity         : High
+// MITRE Tactic     : Initial Access
+// MITRE Techniques : T1078 (Valid Accounts)
+// Recommended actions:
+//   1. Treat the successful logon as compromised until proven otherwise.
+//   2. Disable CompromisedUser; revoke sessions/tokens; force password reset + MFA.
+//   3. Search for follow-on activity (lateral movement, process exec, data access).
+//   4. Block SrcIpAddr at perimeter.
+// Entity mapping   :
+//   - IP       -> SrcIpAddr
+//   - Account  -> CompromisedUser (Name)
+//   - Host     -> TargetHostName
+// Alert title      : "Brute-force success: {{CompromisedUser}} from {{SrcIpAddr}} after {{FailedAttempts}} failures"
+// Alert description: "{{SrcIpAddr}} produced {{FailedAttempts}} failed logons then successfully authenticated as '{{CompromisedUser}}'."
+let FailedBursts =
+    ASimAuthenticationEventLogs
+    | where TimeGenerated > ago(2h)
+    | where EventType == "Logon" and EventResult == "Failure"
+    | summarize
+        FailedAttempts = count(),
+        FailedStart    = min(TimeGenerated),
+        FailedEnd      = max(TimeGenerated)
+        by SrcIpAddr
+    | where FailedAttempts >= 10;
+let Successes =
+    ASimAuthenticationEventLogs
+    | where TimeGenerated > ago(2h)
+    | where EventType == "Logon" and EventResult == "Success"
+    | project SuccessTime = TimeGenerated, SrcIpAddr,
+              CompromisedUser = TargetUsername,
+              LogonMethod, LogonProtocol, TargetAppName,
+              TargetHostName = DvcHostname;
+FailedBursts
+| join kind=inner Successes on SrcIpAddr
+| where SuccessTime between (FailedStart .. (FailedEnd + 30m))
+| project SuccessTime, SrcIpAddr, CompromisedUser, TargetHostName,
+          LogonMethod, LogonProtocol, TargetAppName,
+          FailedAttempts, FailedStart, FailedEnd
+
+
+
+// =============================================================================
+// D03 — Lateral Movement: Internal RDP Session
+// =============================================================================
+// Detection name   : Internal RDP Lateral Movement
+// Description      : Outbound RDP (3389/tcp) sessions where both source and
+//                    destination are private (RFC1918). Strong lateral-movement
+//                    signal — tune with an allow-list of admin jump hosts.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : Medium
+// MITRE Tactic     : Lateral Movement
+// MITRE Techniques : T1021.001 (Remote Desktop Protocol)
+// Recommended actions:
+//   1. Validate whether SrcIpAddr is an authorized admin jump-host.
+//   2. Correlate with an authentication event on DstIpAddr in the same window.
+//   3. Check process activity on DstIpAddr for recon/credential dumping.
+//   4. Isolate both endpoints if unauthorized.
+// Entity mapping   :
+//   - IP      -> SrcIpAddr
+//   - IP      -> DstIpAddr
+//   - Host    -> DvcHostname
+//   - Account -> SrcUsername
+// Alert title      : "Internal RDP {{SrcIpAddr}} -> {{DstIpAddr}} by {{SrcUsername}}"
+// Alert description: "Outbound RDP from {{SrcIpAddr}} to {{DstIpAddr}} by '{{SrcUsername}}'."
+ASimNetworkSessionLogs
+| where TimeGenerated > ago(1h)
+| where DstPortNumber == 3389 and NetworkDirection == "Outbound"
+| where ipv4_is_private(SrcIpAddr) and ipv4_is_private(DstIpAddr)
+| project TimeGenerated, SrcIpAddr, DstIpAddr, SrcUsername, DvcHostname,
+          NetworkProtocol, EventProduct
+
+
+
+// =============================================================================
+// D04 — Discovery: Reconnaissance Command Cluster on Endpoint
+// =============================================================================
+// Detection name   : Reconnaissance Command Cluster on Endpoint
+// Description      : Single user/host runs multiple distinct Windows recon
+//                    utilities (whoami, net, ipconfig, systeminfo, nltest,
+//                    quser, arp) in a short interval. Classic hands-on-keyboard
+//                    pattern after initial compromise.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : Medium
+// MITRE Tactic     : Discovery
+// MITRE Techniques : T1082, T1016, T1087, T1033
+// Recommended actions:
+//   1. Review the full process tree rooted at ActorUsername on DvcHostname.
+//   2. Check whether ActorUsername recently signed in from a new SrcIpAddr.
+//   3. Isolate host and initiate forensic triage if unexplained.
+// Entity mapping   :
+//   - Host    -> DvcHostname
+//   - Account -> ActorUsername
+// Alert title      : "Recon cluster on {{DvcHostname}} by {{ActorUsername}} ({{DistinctBinaries}} tools)"
+// Alert description: "{{ActorUsername}} on {{DvcHostname}} executed {{ReconCount}} recon commands within 15 minutes."
+let ReconProcesses = dynamic([
+    "whoami.exe", "net.exe", "net1.exe", "ipconfig.exe",
+    "systeminfo.exe", "nltest.exe", "quser.exe", "hostname.exe",
+    "arp.exe", "netstat.exe", "route.exe", "tasklist.exe"
+]);
+let ReconCmdPatterns = dynamic([
+    "whoami", "net user", "net localgroup", "net share", "net group",
+    "ipconfig", "systeminfo", "nltest", "quser", "netstat"
+]);
+ASimProcessEventLogs
+| where TimeGenerated > ago(1h)
+| where EventType == "ProcessCreated"
+| where TargetProcessName in~ (ReconProcesses)
+     or TargetProcessCommandLine has_any (ReconCmdPatterns)
+| summarize
+    ReconCount       = count(),
+    DistinctBinaries = dcount(TargetProcessName),
+    Binaries         = make_set(TargetProcessName, 15),
+    Commands         = make_set(TargetProcessCommandLine, 15),
+    FirstSeen        = min(TimeGenerated),
+    LastSeen         = max(TimeGenerated)
+    by DvcHostname, ActorUsername, bin(TimeGenerated, 15m)
+| where ReconCount >= 4 and DistinctBinaries >= 3
+| project TimeGenerated, DvcHostname, ActorUsername,
+          ReconCount, DistinctBinaries, Binaries, Commands, FirstSeen, LastSeen
+
+
+
+// =============================================================================
+// D05 — Credential Access: LSASS Memory Dumping Indicators
+// =============================================================================
+// Detection name   : LSASS Credential Dumping Indicators
+// Description      : Tools and command-lines used to dump credentials from
+//                    LSASS memory — mimikatz, procdump, comsvcs.dll MiniDump,
+//                    taskmgr /create-dump, rundll32 against comsvcs.
+// Frequency        : every 10 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Credential Access
+// MITRE Techniques : T1003.001 (LSASS Memory)
+// Recommended actions:
+//   1. Isolate DvcHostname immediately.
+//   2. Consider every account with a recent interactive logon as potentially
+//      compromised — rotate credentials and Kerberos tickets.
+//   3. Collect LSASS memory + full disk image before remediation.
+//   4. Hunt for TargetProcessCommandLine across the environment.
+// Entity mapping   :
+//   - Host    -> DvcHostname
+//   - Account -> ActorUsername
+//   - Process -> TargetProcessName (CommandLine: TargetProcessCommandLine)
+// Alert title      : "LSASS dumping on {{DvcHostname}} by {{ActorUsername}} ({{TargetProcessName}})"
+// Alert description: "{{TargetProcessName}} launched by {{ActorUsername}} on {{DvcHostname}} exhibits LSASS dumping behavior."
+ASimProcessEventLogs
+| where TimeGenerated > ago(1h)
+| where EventType == "ProcessCreated"
+| where (TargetProcessCommandLine has "lsass"
+            and TargetProcessCommandLine has_any ("MiniDump", "-ma", "dump", "/create-dump"))
+     or TargetProcessCommandLine has "sekurlsa::logonpasswords"
+     or TargetProcessCommandLine has "privilege::debug"
+     or TargetProcessName has_any ("mimikatz.exe", "procdump.exe", "procdump64.exe")
+     or (TargetProcessName =~ "rundll32.exe"
+            and TargetProcessCommandLine has "comsvcs.dll"
+            and TargetProcessCommandLine has "MiniDump")
+| project TimeGenerated, DvcHostname, ActorUsername,
+          TargetProcessName, TargetProcessCommandLine,
+          ActingProcessName, ParentProcessName
+
+
+
+// =============================================================================
+// D06 — Persistence: Local/Domain Admin Account Created
+// =============================================================================
+// Detection name   : Local or Domain Administrator Account Created
+// Description      : A new user account was created OR an existing account
+//                    was added to a privileged group (Administrators, Domain
+//                    Admins, Enterprise Admins, etc.). Common persistence /
+//                    priv-esc pattern after credential theft.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Persistence
+// MITRE Techniques : T1136.001 (Local Account), T1098 (Account Manipulation)
+// Recommended actions:
+//   1. Validate change ticket / PAM approval.
+//   2. If unauthorized, disable TargetUsername and audit its activity.
+//   3. Review ActorUsername's recent activity (likely attacker).
+//   4. Inspect DvcHostname for secondary persistence (services, run keys).
+// Entity mapping   :
+//   - Account -> ActorUsername  (initiator)
+//   - Account -> TargetUsername (new / modified)
+//   - Host    -> DvcHostname
+// Alert title      : "Admin account change: {{ActorUsername}} -> {{TargetUsername}} on {{DvcHostname}}"
+// Alert description: "{{ActorUsername}} modified privileged account '{{TargetUsername}}' on {{DvcHostname}}."
+ASimUserManagementActivityLogs
+| where TimeGenerated > ago(1h)
+| where EventResult == "Success"
+| where EventType in ("UserCreated", "UserAddedToGroup")
+     or EventOriginalType in ("4720", "4728", "4732", "4756")
+| where EventType == "UserCreated"
+     or GroupName has_any ("Administrators", "Domain Admins", "Enterprise Admins",
+                           "Schema Admins", "Backup Operators", "Account Operators")
+| project TimeGenerated, EventType, EventOriginalType,
+          ActorUsername, TargetUsername, GroupName,
+          DvcHostname, EventProduct
+
+
+
+// =============================================================================
+// D07 — Privilege Escalation via net.exe (command-line admin-group manipulation)
+// =============================================================================
+// Detection name   : net.exe Used to Create User or Add to Admin Group
+// Description      : net.exe / net1.exe used to create a user account or add
+//                    it to local Administrators / Domain Admins — classic
+//                    post-exploitation TTP.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Privilege Escalation
+// MITRE Techniques : T1098 (Account Manipulation)
+// Recommended actions:
+//   1. Correlate with D06 (admin account created in AD).
+//   2. Inspect parent chain — is it launched from a legitimate admin tool?
+//   3. Remove the account from the admin group; rotate its credentials.
+// Entity mapping   :
+//   - Host    -> DvcHostname
+//   - Account -> ActorUsername
+//   - Process -> TargetProcessName (CommandLine: TargetProcessCommandLine)
+// Alert title      : "net.exe admin-group change on {{DvcHostname}} by {{ActorUsername}}"
+// Alert description: "{{ActorUsername}} ran '{{TargetProcessCommandLine}}' on {{DvcHostname}}."
+ASimProcessEventLogs
+| where TimeGenerated > ago(1h)
+| where EventType == "ProcessCreated"
+| where TargetProcessName in~ ("net.exe", "net1.exe")
+| where TargetProcessCommandLine has_any ("user ", "localgroup")
+| where TargetProcessCommandLine has_any ("/add", "administrators", "domain admins")
+| project TimeGenerated, DvcHostname, ActorUsername,
+          TargetProcessName, TargetProcessCommandLine,
+          ActingProcessName, ParentProcessName
+
+
+
+// =============================================================================
+// D08 — Persistence: Suspicious Windows Service Installation
+// =============================================================================
+// Detection name   : Suspicious Service Creation or Auto-Start Configuration
+// Description      : A service is created / reconfigured to auto-start with a
+//                    binary in a user-writeable path (ProgramData, Public,
+//                    Temp) — common malware / backdoor persistence.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : Medium (High when binPath in user-writeable dir)
+// MITRE Tactic     : Persistence
+// MITRE Techniques : T1543.003 (Windows Service)
+// Recommended actions:
+//   1. Inspect the service name and binPath; determine legitimacy.
+//   2. If suspicious, stop + delete the service on DvcHostname.
+//   3. Hash/submit the binary; hunt across the fleet.
+//   4. Look for associated scheduled tasks / run keys.
+// Entity mapping   :
+//   - Host    -> DvcHostname
+//   - Account -> ActorUsername
+//   - Process -> TargetProcessName (CommandLine: TargetProcessCommandLine)
+// Alert title      : "Suspicious service install on {{DvcHostname}} by {{ActorUsername}}"
+// Alert description: "{{ActorUsername}} executed '{{TargetProcessCommandLine}}' on {{DvcHostname}}."
+ASimProcessEventLogs
+| where TimeGenerated > ago(1h)
+| where EventType == "ProcessCreated"
+| where TargetProcessCommandLine has_any (
+        "sc.exe create", "sc create",
+        "sc.exe start", "sc start",
+        "sc.exe config", "sc config",
+        "binPath=", "binpath=",
+        "Set-Service", "New-Service")
+| where TargetProcessCommandLine has_any (
+        "StartupType Automatic", "start= auto", "start=auto",
+        "ProgramData\\", "\\Users\\Public\\", "AppData\\Local\\Temp",
+        "C:\\Temp\\", "C:\\Windows\\Temp\\", "svchost.exe")
+| extend AlertSeverity = iff(TargetProcessCommandLine has_any (
+        "ProgramData\\", "\\Users\\Public\\", "AppData\\Local\\Temp",
+        "C:\\Temp\\", "C:\\Windows\\Temp\\"), "High", "Medium")
+| project TimeGenerated, DvcHostname, ActorUsername,
+          TargetProcessName, TargetProcessCommandLine,
+          ActingProcessName, ParentProcessName, AlertSeverity
+
+
+
+// =============================================================================
+// D09 — Execution: Office Application Spawns Script Interpreter / LOLBin
+// =============================================================================
+// Detection name   : Office Application Spawning Script Interpreter
+// Description      : Office process (Word/Excel/PowerPoint/Outlook) spawns a
+//                    script interpreter or LOLBin (powershell, cmd, mshta,
+//                    wscript, rundll32, regsvr32, certutil). High-fidelity
+//                    malicious-macro / phishing payload indicator.
+// Frequency        : every 10 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Execution
+// MITRE Techniques : T1059.001 (PowerShell), T1059.003 (Windows Command Shell)
+// Recommended actions:
+//   1. Retrieve the triggering email/attachment from the user's mailbox.
+//   2. Isolate Computer; run EDR full scan.
+//   3. Review CommandLine for download/encoded-payload indicators.
+//   4. Reset password for Account; block the sender and attachment hash.
+// Entity mapping   :
+//   - Host    -> Computer
+//   - Account -> Account
+//   - Process -> NewProcessName  (CommandLine: CommandLine)
+//   - Process -> ParentProcessName (parent)
+// Alert title      : "Office macro exec on {{Computer}}: {{ParentProcessName}} -> {{NewProcessName}}"
+// Alert description: "{{Account}} on {{Computer}} ran '{{NewProcessName}}' spawned by Office."
+let OfficeParents = dynamic([
+    "winword.exe", "excel.exe", "powerpnt.exe", "outlook.exe",
+    "onenote.exe", "msaccess.exe", "mspub.exe", "visio.exe"
+]);
+let SuspiciousChildren = dynamic([
+    "powershell.exe", "pwsh.exe", "cmd.exe",
+    "wscript.exe", "cscript.exe", "mshta.exe",
+    "rundll32.exe", "regsvr32.exe", "certutil.exe",
+    "bitsadmin.exe", "installutil.exe"
+]);
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4688
+| extend ParentLeaf = tolower(tostring(split(ParentProcessName, "\\")[-1]))
+| extend ChildLeaf  = tolower(tostring(split(NewProcessName,    "\\")[-1]))
+| where ParentLeaf in (OfficeParents) and ChildLeaf in (SuspiciousChildren)
+| project TimeGenerated, Computer, Account,
+          ParentProcessName, NewProcessName, CommandLine
+
+
+
+// =============================================================================
+// D10 — Impact: Shadow Copy / Backup Deletion (ransomware anti-recovery)
+// =============================================================================
+// Detection name   : Shadow Copy or Backup Catalog Deletion
+// Description      : Deletion of Volume Shadow Copies, disabling Windows
+//                    recovery, or deleting the backup catalog — a staple of
+//                    ransomware anti-recovery activity.
+// Frequency        : every 5 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Impact
+// MITRE Techniques : T1490 (Inhibit System Recovery)
+// Recommended actions:
+//   1. Treat Computer as actively compromised; invoke ransomware playbook.
+//   2. Isolate immediately and stop the parent process chain.
+//   3. Verify off-host backups are intact; plan recovery.
+// Entity mapping   :
+//   - Host    -> Computer
+//   - Account -> Account
+//   - Process -> NewProcessName (CommandLine: CommandLine)
+// Alert title      : "Ransomware anti-recovery on {{Computer}}: {{NewProcessName}}"
+// Alert description: "{{Account}} on {{Computer}} executed '{{CommandLine}}' to destroy backups."
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4688
+| extend Cmd = tolower(CommandLine)
+| where (Cmd has "vssadmin"   and Cmd has "delete"    and Cmd has "shadows")
+     or (Cmd has "wmic"       and Cmd has "shadowcopy" and Cmd has "delete")
+     or (Cmd has "wbadmin"    and Cmd has "delete")
+     or (Cmd has "bcdedit"    and (Cmd has "recoveryenabled no"
+                                   or Cmd has "bootstatuspolicy ignoreallfailures"))
+     or (Cmd has "powershell" and Cmd has "delete-vsscopy")
+| project TimeGenerated, Computer, Account,
+          NewProcessName, CommandLine, ParentProcessName
+
+
+
+// =============================================================================
+// D11 — Impact: Mass File Encryption / Ransom Note Drop
+// =============================================================================
+// Detection name   : Mass File Encryption or Ransom Note Creation
+// Description      : Correlates a burst of file-access events whose target
+//                    names carry a ransomware extension OR creation of a
+//                    ransom-note file (README-DECRYPT, HOW_TO_DECRYPT, ...).
+// Frequency        : every 10 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Impact
+// MITRE Techniques : T1486 (Data Encrypted for Impact)
+// Recommended actions:
+//   1. Isolate Computer immediately and invoke the ransomware playbook.
+//   2. Preserve memory and relevant artefacts.
+//   3. Enumerate file shares accessed from Computer to scope blast radius.
+//   4. Correlate with D10 (shadow-copy deletion) to confirm ransomware.
+// Entity mapping   :
+//   - Host    -> Computer
+//   - Account -> Account
+//   - File    -> SampleFiles (first item as File entity)
+// Alert title      : "Mass encryption on {{Computer}} by {{Account}} ({{EncryptedCount}} files)"
+// Alert description: "{{Account}} on {{Computer}} encrypted {{EncryptedCount}} files in 15 minutes."
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID in (4663, 4656)
+| where ObjectType == "File"
+| extend IsEncrypted  = ObjectName endswith ".encrypted"
+                    or ObjectName endswith ".locked"
+                    or ObjectName endswith ".crypted"
+                    or ObjectName endswith ".enc"
+| extend IsRansomNote = ObjectName has_any (
+        "README-DECRYPT", "HOW_TO_DECRYPT", "DECRYPT_INSTRUCTIONS",
+        "_readme.txt", "!!!READ_ME!!!", "RESTORE_FILES")
+| where IsEncrypted or IsRansomNote
+| summarize
+    EncryptedCount  = countif(IsEncrypted),
+    RansomNoteCount = countif(IsRansomNote),
+    AffectedFiles   = dcount(ObjectName),
+    SampleFiles     = make_set(ObjectName, 20),
+    FirstSeen       = min(TimeGenerated),
+    LastSeen        = max(TimeGenerated)
+    by Computer, Account, bin(TimeGenerated, 15m)
+| where EncryptedCount >= 20 or RansomNoteCount >= 1
+| project TimeGenerated, Computer, Account,
+          EncryptedCount, RansomNoteCount, AffectedFiles,
+          SampleFiles, FirstSeen, LastSeen
+
+
+
+// =============================================================================
+// D12 — Persistence: Run Key or Security Policy Registry Tampering
+// =============================================================================
+// Detection name   : Registry Run Key or Security Policy Tampering
+// Description      : Modification of Run/RunOnce registry keys (auto-start
+//                    persistence) or of firewall/Defender policy keys
+//                    (weakening host defences).
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : Medium (High when Defender/Firewall policies modified)
+// MITRE Tactic     : Persistence
+// MITRE Techniques : T1547.001 (Registry Run Keys / Startup Folder)
+// Recommended actions:
+//   1. Review the value set in ObjectName and the resulting binary/command.
+//   2. If Run-key persistence — remove value and locate/remove the binary.
+//   3. If Defender/firewall weakened — restore policy and scan the host.
+//   4. Correlate with recent process-creation events on Computer.
+// Entity mapping   :
+//   - Host         -> Computer
+//   - Account      -> Account
+//   - RegistryKey  -> ObjectName
+//   - Process      -> ProcessName
+// Alert title      : "Registry persistence/policy change on {{Computer}}: {{ObjectName}}"
+// Alert description: "{{Account}} on {{Computer}} modified registry key '{{ObjectName}}'."
+SecurityEvent
+| where TimeGenerated > ago(1h)
+| where EventID == 4657
+| where ObjectType == "Key"
+| where ObjectName has_any (
+        "\\CurrentVersion\\Run",
+        "\\CurrentVersion\\RunOnce",
+        "\\Policies\\Microsoft\\Windows Defender",
+        "\\Policies\\System",
+        "\\SharedAccess\\Parameters\\FirewallPolicy")
+| extend AlertSeverity = iff(ObjectName has_any
+        ("Windows Defender", "FirewallPolicy"), "High", "Medium")
+| project TimeGenerated, Computer, Account, ObjectName, ProcessName, EventID, AlertSeverity
+
+
+
+// =============================================================================
+// D13 — Correlation: Okta sign-in followed by suspicious endpoint execution
+// =============================================================================
+// Detection name   : Okta Sign-in Followed by Suspicious Endpoint Execution
+// Description      : Correlates a successful Okta sign-in with a suspicious
+//                    process (powershell/cmd/mshta/rundll32/wscript) carrying
+//                    attacker-like command-line arguments on any endpoint
+//                    within 30 minutes. Surfaces post-phishing payload
+//                    execution following SSO compromise.
+// Frequency        : every 30 minutes
+// Lookback         : 2 hours
+// Severity         : High
+// MITRE Tactic     : Initial Access
+// MITRE Techniques : T1566 (Phishing), T1078.004 (Valid Cloud Accounts)
+// Recommended actions:
+//   1. Verify whether OktaSrcIp is expected for OktaUser (geo, ASN, device).
+//   2. Pivot on Computer: process tree, parent, loaded modules.
+//   3. Revoke Okta sessions/refresh tokens for OktaUser; force MFA re-enrol.
+//   4. Hunt for lateral-movement / credential-access follow-on activity.
+// Entity mapping   :
+//   - Account -> OktaUser
+//   - IP      -> OktaSrcIp
+//   - Host    -> Computer
+//   - Process -> NewProcessName (CommandLine: CommandLine)
+// Alert title      : "Okta login + suspicious exec: {{OktaUser}} / {{NewProcessName}}"
+// Alert description: "Okta user '{{OktaUser}}' signed in from {{OktaSrcIp}}; '{{NewProcessName}}' executed within 30 minutes."
+let OktaLogins =
+    OktaV2_CL
+    | where TimeGenerated > ago(2h)
+    | where EventResult == "Success"
+    | where LegacyEventType has "login_success" or EventOriginalType == "user.session.start"
+    | project OktaTime = TimeGenerated, OktaUser = ActorUsername, OktaSrcIp = SrcIpAddr;
+let SuspiciousExec =
+    SecurityEvent
+    | where TimeGenerated > ago(2h)
+    | where EventID == 4688
+    | extend ChildLeaf = tolower(tostring(split(NewProcessName, "\\")[-1]))
+    | where ChildLeaf in ("powershell.exe", "pwsh.exe", "cmd.exe",
+                          "mshta.exe", "rundll32.exe", "wscript.exe", "cscript.exe")
+    | where CommandLine has_any (
+                "-ep bypass", "-executionpolicy bypass", "-enc", " -e ",
+                "downloadstring", "invoke-webrequest", "iex",
+                "frombase64string", "hidden", "payload", "bypass")
+    | project ExecTime = TimeGenerated, ExecUser = AccountName, Computer,
+              NewProcessName, CommandLine, ParentProcessName;
+OktaLogins
+| extend _k = 1
+| join kind=inner (SuspiciousExec | extend _k = 1) on _k
+| where ExecTime between (OktaTime .. (OktaTime + 30m))
+| project OktaTime, ExecTime, OktaUser, OktaSrcIp, ExecUser, Computer,
+          NewProcessName, CommandLine, ParentProcessName
+
+
+
+// =============================================================================
+// D14 — Discovery: Privileged directory / audit-enumeration burst
+// =============================================================================
+// Detection name   : Privileged Directory and Audit Enumeration Burst
+// Description      : Single identity performs a burst of privileged-audit /
+//                    directory-enumeration operations (roles, service
+//                    principals, conditional access, sign-in logs, Key Vault).
+//                    Reconnaissance pattern preceding insider exfiltration or
+//                    cloud takeover.
+// Frequency        : every 30 minutes
+// Lookback         : 2 hours
+// Severity         : Medium (High when SrcIpAddr is external)
+// MITRE Tactic     : Discovery
+// MITRE Techniques : T1087, T1526, T1069
+// Recommended actions:
+//   1. Verify whether ActorUsername is an admin doing legitimate inventory.
+//   2. Review ObjectsTouched for sensitive targets (KeyVault, Roles).
+//   3. If unexplained, revoke sessions and check for follow-on changes
+//      (role assignments, MFA disable, secret reads).
+// Entity mapping   :
+//   - Account -> ActorUsername
+//   - IP      -> SrcIpAddr
+// Alert title      : "Admin enumeration burst by {{ActorUsername}} from {{SrcIpAddr}}"
+// Alert description: "{{ActorUsername}} from {{SrcIpAddr}} performed {{AccessCount}} privileged reads."
+let SensitiveObjects = dynamic([
+    "UserManagement", "ConditionalAccess", "RoleAssignments",
+    "ServicePrincipals", "KeyVault", "AuditLogs", "SignIns",
+    "Storage", "Subscriptions", "Directory"
+]);
+ASimAuditEventLogs
+| where TimeGenerated > ago(2h)
+| where EventResult == "Success"
+| where Object has_any (SensitiveObjects)
+     or Operation has_any (
+        "Export sign-in", "List role assignments", "List Key Vault secrets",
+        "Read conditional access", "List users", "List service principals")
+| summarize
+    AccessCount     = count(),
+    DistinctObjects = dcount(Object),
+    ObjectsTouched  = make_set(Object, 15),
+    Operations      = make_set(Operation, 15),
+    FirstSeen       = min(TimeGenerated),
+    LastSeen        = max(TimeGenerated)
+    by ActorUsername, SrcIpAddr, bin(TimeGenerated, 30m)
+| where AccessCount >= 8 and DistinctObjects >= 3
+| extend AlertSeverity = iff(not(ipv4_is_private(SrcIpAddr)), "High", "Medium")
+| project TimeGenerated, ActorUsername, SrcIpAddr,
+          AccessCount, DistinctObjects, ObjectsTouched, Operations,
+          FirstSeen, LastSeen, AlertSeverity
+
+
+
+// =============================================================================
+// D15 — Collection: Bulk access to confidential file share
+// =============================================================================
+// Detection name   : Bulk Access to Confidential File Share
+// Description      : Single user accesses many distinct files under
+//                    confidential/finance/hr/legal/board paths within a short
+//                    window — collection pattern preceding exfiltration.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : Medium
+// MITRE Tactic     : Collection
+// MITRE Techniques : T1039 (Data from Network Shared Drive),
+//                    T1530 (Data from Cloud Storage)
+// Recommended actions:
+//   1. Confirm business justification for ActorUsername accessing these paths.
+//   2. Check for large-volume outbound traffic (rule D16) from DvcHostname.
+//   3. Revoke access to the confidential shares; preserve audit logs.
+// Entity mapping   :
+//   - Account -> ActorUsername
+//   - Host    -> DvcHostname
+//   - IP      -> SrcIpAddr
+// Alert title      : "Bulk confidential-share access by {{ActorUsername}} ({{DistinctFiles}} files)"
+// Alert description: "{{ActorUsername}} accessed {{FileAccessCount}} files ({{DistinctFiles}} distinct) under confidential paths."
+ASimFileEventLogs
+| where TimeGenerated > ago(1h)
+| where EventType == "FileAccessed"
+| where TargetFilePath has_any (
+        "\\confidential\\", "\\finance\\", "\\hr\\",
+        "\\legal\\", "\\board\\", "\\executive\\", "\\secrets\\")
+| summarize
+    FileAccessCount = count(),
+    DistinctFiles   = dcount(TargetFilePath),
+    SampleFiles     = make_set(TargetFilePath, 25),
+    FirstSeen       = min(TimeGenerated),
+    LastSeen        = max(TimeGenerated)
+    by ActorUsername, DvcHostname, SrcIpAddr, bin(TimeGenerated, 15m)
+| where FileAccessCount >= 20 and DistinctFiles >= 10
+| project TimeGenerated, ActorUsername, DvcHostname, SrcIpAddr,
+          FileAccessCount, DistinctFiles, SampleFiles, FirstSeen, LastSeen
+
+
+
+// =============================================================================
+// D16 — Exfiltration: Large-volume outbound transfer to external IP
+// =============================================================================
+// Detection name   : Large Outbound Data Transfer to External Destination
+// Description      : Sums outbound bytes (SrcBytes) per 15-minute window and
+//                    flags any internal -> external flow exceeding 100 MB.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Exfiltration
+// MITRE Techniques : T1048 (Exfil Over Alternative Protocol), T1041 (Exfil Over C2)
+// Recommended actions:
+//   1. Resolve DstIpAddr — unknown/uncategorised destinations are higher risk.
+//   2. Review processes active on DvcHostname at the time.
+//   3. Block DstIpAddr at the egress proxy/firewall pending triage.
+//   4. If data loss confirmed — invoke DLP/legal playbook.
+// Entity mapping   :
+//   - Account -> SrcUsername
+//   - Host    -> DvcHostname
+//   - IP      -> SrcIpAddr (source)
+//   - IP      -> DstIpAddr (destination)
+// Alert title      : "Outbound exfil: {{TotalMBOut}} MB from {{DvcHostname}} -> {{DstIpAddr}}"
+// Alert description: "{{DvcHostname}} transferred {{TotalMBOut}} MB to external {{DstIpAddr}}."
+ASimNetworkSessionLogs
+| where TimeGenerated > ago(1h)
+| where NetworkDirection == "Outbound"
+| where ipv4_is_private(SrcIpAddr) and not(ipv4_is_private(DstIpAddr))
+| summarize
+    TotalBytesOut = sum(toreal(SrcBytes)),
+    SessionCount  = count(),
+    FirstSeen     = min(TimeGenerated),
+    LastSeen      = max(TimeGenerated),
+    DstPorts      = make_set(DstPortNumber, 10)
+    by SrcUsername, SrcIpAddr, DstIpAddr, DvcHostname, bin(TimeGenerated, 15m)
+| where TotalBytesOut >= 104857600   // >= 100 MB per 15m bin
+| extend TotalMBOut = round(TotalBytesOut / 1048576.0, 2)
+| project TimeGenerated, SrcUsername, DvcHostname, SrcIpAddr, DstIpAddr,
+          DstPorts, SessionCount, TotalMBOut, FirstSeen, LastSeen
+
+
+
+// =============================================================================
+// D17 — Command & Control: DNS tunneling indicators
+// =============================================================================
+// Detection name   : DNS Tunneling to Suspicious Parent Domain
+// Description      : Many unique subdomain queries with long first labels
+//                    and/or TXT records to a single parent domain — hallmark
+//                    of DNS tunneling for C2 or exfiltration.
+// Frequency        : every 15 minutes
+// Lookback         : 1 hour
+// Severity         : High
+// MITRE Tactic     : Command and Control
+// MITRE Techniques : T1071.004 (DNS)
+// Recommended actions:
+//   1. Categorise ParentDomain; if not benign, block at DNS/proxy.
+//   2. Identify the process initiating DNS on DvcHostname (Sysmon/EDR DNS).
+//   3. Isolate DvcHostname; scope blast radius.
+//   4. Add ParentDomain to threat intel; hunt across the fleet.
+// Entity mapping   :
+//   - IP     -> SrcIpAddr
+//   - Host   -> DvcHostname
+//   - DNS    -> ParentDomain (Domain/Dns entity)
+// Alert title      : "DNS tunneling: {{QueryCount}} queries to {{ParentDomain}} from {{DvcHostname}}"
+// Alert description: "{{DvcHostname}} issued {{QueryCount}} DNS queries to '{{ParentDomain}}'."
+ASimDnsActivityLogs
+| where TimeGenerated > ago(1h)
+| where isnotempty(DnsQuery)
+| extend Labels        = split(DnsQuery, ".")
+| extend FirstLabel    = tostring(Labels[0])
+| extend ParentDomain  = iff(array_length(Labels) >= 2,
+                             strcat(tostring(Labels[-2]), ".", tostring(Labels[-1])),
+                             DnsQuery)
+| extend FirstLabelLen = strlen(FirstLabel)
+| summarize
+    QueryCount       = count(),
+    UniqueSubdomains = dcount(DnsQuery),
+    MaxLabelLen      = max(FirstLabelLen),
+    AvgLabelLen      = avg(FirstLabelLen),
+    TxtQueries       = countif(DnsQueryTypeName =~ "TXT" or DnsQueryType == 16),
+    SampleQueries    = make_set(DnsQuery, 10)
+    by SrcIpAddr, DvcHostname, ParentDomain, bin(TimeGenerated, 15m)
+| where QueryCount >= 15
+    and MaxLabelLen >= 15
+    and (TxtQueries >= 1 or UniqueSubdomains >= 5)
+| project TimeGenerated, SrcIpAddr, DvcHostname, ParentDomain,
+          QueryCount, UniqueSubdomains, TxtQueries, MaxLabelLen, AvgLabelLen,
+          SampleQueries
