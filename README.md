@@ -67,7 +67,7 @@ code .
 Or open with the **GitHub Copilot CLI**:
 
 ```bash
-gh copilot explain .
+copilot
 ```
 
 > **Tip:** Once open in VS Code, GitHub Copilot agent mode will automatically pick up the instructions in `.github/copilot-instructions.md`.
