@@ -51,7 +51,28 @@ A Microsoft Sentinel toolkit for generating and ingesting **realistic sample dat
 
 > The agent handles creating the DCE, DCR, and custom tables, and assigns the `Monitoring Metrics Publisher` role automatically.
 
-### 1. Configure your workspace
+### 1. Clone the repo and open in VS Code or GitHub Copilot
+
+```bash
+git clone https://github.com/your-org/sentinel-logseeder.git
+cd sentinel-logseeder
+```
+
+Then open in **VS Code**:
+
+```bash
+code .
+```
+
+Or open with the **GitHub Copilot CLI**:
+
+```bash
+gh copilot explain .
+```
+
+> **Tip:** Once open in VS Code, GitHub Copilot agent mode will automatically pick up the instructions in `.github/copilot-instructions.md`.
+
+### 2. Configure your workspace
 
 Rename `config/workspace.json.template` to `config/workspace.json`
 
@@ -69,7 +90,7 @@ Then edit `config/workspace.json` with your values:
 
 > **Note:** `config/workspace.json` is in `.gitignore` and will never be committed.
 
-### 2. Ingest sample data for a single table
+### 3. Ingest sample data for a single table
 
 Sample GitHub Copilot prompts:
 
@@ -79,7 +100,7 @@ Sample GitHub Copilot prompts:
 
 > *"Ingest this sample file into Sentinel"* (attach or reference a JSON/CSV file with log records)
 
-### 3. Ingest an attack scenario
+### 4. Ingest an attack scenario
 
 Sample GitHub Copilot prompts:
 
