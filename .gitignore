@@ -31,3 +31,4 @@ node_modules/
 *.pfx
 *.key
 config/workspace.json.template
+scenarios/*runtime.json
