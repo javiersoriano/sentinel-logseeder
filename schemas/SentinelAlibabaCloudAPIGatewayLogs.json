@@ -7,16 +7,16 @@
     { "name": "StageName", "type": "string", "values": ["RELEASE", "RELEASE", "RELEASE", "TEST", "TEST"] },
     { "name": "HttpMethod", "type": "string", "values": ["GET", "POST", "PUT", "DELETE", "PATCH", "GET", "GET", "POST"] },
     { "name": "Path", "type": "string", "values": ["/api/v1/users/profile", "/api/v1/orders", "/api/v1/products", "/api/v1/inventory/update", "/api/v1/auth/login", "/api/v1/payments/status", "/api/v1/documents/upload", "/api/v1/catalog/search"] },
-    { "name": "StatusCode", "type": "int", "values": [200, 200, 201, 204, 400, 401, 403, 404, 429, 500, 502, 503] },
+    { "name": "StatusCode", "type": "string", "values": ["200", "200", "201", "204", "400", "401", "403", "404", "429", "500", "502", "503"] },
     { "name": "Latency", "type": "int", "values": [23, 45, 112, 78, 5, 234, 890, 15, 67, 1500, 345, 56] },
     { "name": "ClientIP", "type": "string", "values": ["10.0.1.50", "203.0.113.42", "198.51.100.17", "172.16.0.100", "10.0.2.10", "10.0.2.20"] },
-    { "name": "RequestHeaders", "type": "dynamic", "values": [
+    { "name": "RequestHeaders", "type": "string", "values": [
       "{\"Content-Type\":\"application/json\",\"Authorization\":\"Bearer ***\",\"X-Request-Id\":\"req-a1b2c3d4\",\"User-Agent\":\"Mozilla/5.0\"}",
       "{\"Content-Type\":\"application/json\",\"X-Api-Key\":\"***\",\"X-Request-Id\":\"req-e5f6a7b8\",\"Accept\":\"application/json\"}",
       "{\"Content-Type\":\"multipart/form-data\",\"Authorization\":\"Bearer ***\",\"X-Request-Id\":\"req-c9d0e1f2\"}",
       "{\"Content-Type\":\"application/json\",\"X-Request-Id\":\"req-a3b4c5d6\",\"Accept-Language\":\"en-US\"}"
     ] },
-    { "name": "ResponseHeaders", "type": "dynamic", "values": [
+    { "name": "ResponseHeaders", "type": "string", "values": [
       "{\"Content-Type\":\"application/json\",\"X-Request-Id\":\"req-a1b2c3d4\",\"X-RateLimit-Remaining\":\"98\"}",
       "{\"Content-Type\":\"application/json\",\"X-Request-Id\":\"req-e5f6a7b8\",\"X-RateLimit-Remaining\":\"45\"}",
       "{\"Content-Type\":\"application/json\",\"Retry-After\":\"30\",\"X-RateLimit-Remaining\":\"0\"}",
