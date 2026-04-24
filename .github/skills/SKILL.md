@@ -51,7 +51,7 @@ For users always use the UPN format.
 
 Both scripts use `az account get-access-token` by default — the user's own Azure CLI identity. **No service principal or client secret is needed.**
 
-**One-time RBAC setup required:** The signed-in user needs the `Monitoring Metrics Publisher` role on the Data Collection Rule (DCR). After deploying the DCR, remind the user to run:
+**One-time RBAC setup required:** The signed-in user needs the `Monitoring Metrics Publisher` role on the Data Collection Rule (DCR). During `-Deploy`, the script attempts to create this assignment automatically (requires User Access Administrator or Owner on the DCR scope). If that fails, or if `-SkipRoleAssignment` is used, run:
 
 ```bash
 az role assignment create --role "Monitoring Metrics Publisher" \

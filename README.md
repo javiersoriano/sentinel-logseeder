@@ -46,10 +46,10 @@ A Microsoft Sentinel toolkit for generating and ingesting **realistic sample dat
 - **PowerShell 7+** recommended
 - A **Log Analytics workspace** with Microsoft Sentinel enabled
 - **Azure RBAC permissions** on the target resource group:
-  - **Contributor** — to create Data Collection Endpoints (DCE), Data Collection Rules (DCR), and custom tables
+  - **Log Analytics Contributor** — to create Data Collection Endpoints (DCE), Data Collection Rules (DCR), and custom tables
   - **User Access Administrator** — to assign the `Monitoring Metrics Publisher` role on the DCR (required for data ingestion)
 
-> The agent handles creating the DCE, DCR, and custom tables, and assigns the `Monitoring Metrics Publisher` role automatically.
+> The agent handles creating the DCE, DCR, and custom tables, and attempts to assign the `Monitoring Metrics Publisher` role on the DCR automatically during `-Deploy`. If the caller lacks `Microsoft.Authorization/roleAssignments/write`, the script falls back to printing the manual `az role assignment create` command. Use `-SkipRoleAssignment` to opt out.
 
 ### 1. Clone the repo and open in VS Code or GitHub Copilot
 

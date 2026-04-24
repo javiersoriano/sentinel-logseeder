@@ -11,7 +11,10 @@ AI-generated sample data seeded with entities from entities.json. It supports bo
 .REQUIREMENTS
 - Azure CLI (az) installed and authenticated via 'az login'.
 - 'Monitoring Metrics Publisher' RBAC role on the DCR for the signed-in user (or the
-  service principal if using -ClientId/-ClientSecret).
+  service principal if using -ClientId/-ClientSecret). During -Deploy, the script
+  attempts to create this assignment automatically; this requires the caller to hold
+  'Microsoft.Authorization/roleAssignments/write' (User Access Administrator or Owner)
+  on the DCR scope. Use -SkipRoleAssignment to opt out.
 
 .PARAMETER TableName
 Target table name. Custom tables should end with '_CL'.
@@ -49,6 +52,10 @@ Service principal application (client) ID for ingestion auth (optional fallback)
 
 .PARAMETER ClientSecret
 Service principal client secret for ingestion auth (optional fallback).
+
+.PARAMETER SkipRoleAssignment
+When specified during -Deploy, skips the automatic 'Monitoring Metrics Publisher' role
+assignment on the newly created DCR and just prints a reminder instead.
 #>
 [CmdletBinding()]
 param(
@@ -75,7 +82,9 @@ param(
 
     [string]$ClientId,
 
-    [string]$ClientSecret
+    [string]$ClientSecret,
+
+    [switch]$SkipRoleAssignment
 )
 
 Set-StrictMode -Version Latest
@@ -437,6 +446,84 @@ function Get-DcrIngestionEndpoint {
         return $dcr.properties.endpoints.logsIngestion
     }
     return $null
+}
+
+function Grant-DcrPublisherRole {
+    <#
+    Assigns the 'Monitoring Metrics Publisher' role on the DCR to the signed-in
+    principal. Idempotent: silently succeeds if the assignment already exists.
+    On failure (e.g. caller lacks Microsoft.Authorization/roleAssignments/write),
+    falls back to printing the manual az CLI reminder.
+    #>
+    param(
+        [Parameter(Mandatory = $true)][string]$DcrId
+    )
+
+    # Fixed role definition GUID for 'Monitoring Metrics Publisher' — avoids name-resolution issues.
+    $roleDefId = "3913510d-42f4-4e42-8a64-420c390055eb"
+
+    $printReminder = {
+        Write-Host "`n[RBAC] Ensure you have 'Monitoring Metrics Publisher' role on the DCR:" -ForegroundColor Yellow
+        Write-Host "  az role assignment create --role 'Monitoring Metrics Publisher' ``" -ForegroundColor Yellow
+        Write-Host "    --assignee `"`$(az ad signed-in-user show --query id -o tsv)`" ``" -ForegroundColor Yellow
+        Write-Host "    --scope '$DcrId'" -ForegroundColor Yellow
+    }
+
+    try {
+        # Detect caller identity type (user vs service principal).
+        $accountJson = az account show -o json 2>$null
+        if (-not $accountJson) { throw "az account show failed" }
+        $account = $accountJson | ConvertFrom-Json
+        $userType = $account.user.type  # 'user' or 'servicePrincipal'
+
+        $principalId = $null
+        $principalType = $null
+        if ($userType -eq "user") {
+            $principalId = (az ad signed-in-user show --query id -o tsv 2>$null).Trim()
+            $principalType = "User"
+        } elseif ($userType -eq "servicePrincipal") {
+            $spAppId = $account.user.name
+            $principalId = (az ad sp show --id $spAppId --query id -o tsv 2>$null).Trim()
+            $principalType = "ServicePrincipal"
+        } else {
+            Write-Host "[RBAC] Unrecognized account type '$userType'; skipping auto-assignment." -ForegroundColor Yellow
+            & $printReminder
+            return
+        }
+
+        if (-not $principalId) {
+            Write-Host "[RBAC] Could not resolve signed-in principal object ID; skipping auto-assignment." -ForegroundColor Yellow
+            & $printReminder
+            return
+        }
+
+        Write-Host "`n[RBAC] Assigning 'Monitoring Metrics Publisher' on DCR to $principalType $principalId..." -ForegroundColor Cyan
+        $createOutput = az role assignment create `
+            --role $roleDefId `
+            --assignee-object-id $principalId `
+            --assignee-principal-type $principalType `
+            --scope $DcrId `
+            -o json 2>&1
+
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "[RBAC] Role assignment succeeded (note: propagation may take up to 5 minutes)." -ForegroundColor Green
+            return
+        }
+
+        # Non-zero exit: check if it's the benign 'already exists' case.
+        $errText = ($createOutput | Out-String)
+        if ($errText -match "RoleAssignmentExists" -or $errText -match "already exists") {
+            Write-Host "[RBAC] Role assignment already exists — no action needed." -ForegroundColor Green
+            return
+        }
+
+        Write-Host "[RBAC] Auto-assignment failed: $errText" -ForegroundColor Yellow
+        Write-Host "[RBAC] You likely lack 'Microsoft.Authorization/roleAssignments/write' on the DCR/RG." -ForegroundColor Yellow
+        & $printReminder
+    } catch {
+        Write-Host "[RBAC] Auto-assignment error: $($_.Exception.Message)" -ForegroundColor Yellow
+        & $printReminder
+    }
 }
 
 # ---------------------------------------------------------------------------
@@ -912,11 +999,16 @@ if ($Deploy) {
     Write-Host "  Stream       : $streamName"
     Write-Host "  Table        : $TableName"
 
-    # RBAC reminder
-    Write-Host "`n[RBAC] Ensure you have 'Monitoring Metrics Publisher' role on the DCR:" -ForegroundColor Yellow
-    Write-Host "  az role assignment create --role 'Monitoring Metrics Publisher' ``" -ForegroundColor Yellow
-    Write-Host "    --assignee `"`$(az ad signed-in-user show --query id -o tsv)`" ``" -ForegroundColor Yellow
-    Write-Host "    --scope '$dcrId'" -ForegroundColor Yellow
+    # RBAC: attempt auto-assignment of 'Monitoring Metrics Publisher' on the DCR.
+    if ($SkipRoleAssignment) {
+        Write-Host "`n[RBAC] -SkipRoleAssignment specified; skipping auto role assignment." -ForegroundColor Yellow
+        Write-Host "[RBAC] Ensure you have 'Monitoring Metrics Publisher' role on the DCR:" -ForegroundColor Yellow
+        Write-Host "  az role assignment create --role 'Monitoring Metrics Publisher' ``" -ForegroundColor Yellow
+        Write-Host "    --assignee `"`$(az ad signed-in-user show --query id -o tsv)`" ``" -ForegroundColor Yellow
+        Write-Host "    --scope '$dcrId'" -ForegroundColor Yellow
+    } else {
+        Grant-DcrPublisherRole -DcrId $dcrId
+    }
 
     # Save deployment info for subsequent -Ingest runs
     $deploymentInfo = @{
