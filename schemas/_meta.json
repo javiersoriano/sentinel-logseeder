@@ -1,5 +1,6 @@
 {
-  "generatedAt": "2026-04-20",
+  "generatedAt": "2026-04-27",
+  "lastUpdated": "2026-04-27",
   "sources": {
     "tablesDoc": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/sentinel/includes/sentinel-tables-connectors.md",
     "solutionsRepo": "https://github.com/Azure/Azure-Sentinel/tree/master/Solutions"
@@ -48,6 +49,24 @@
       ]
     },
     {
+      "name": "Alibaba Cloud Networking",
+      "solutionFolder": "Solutions/Alibaba Cloud Networking",
+      "packageId": "azuresentinel.azure-sentinel-solution-alibabacloud-networking",
+      "contentId": "azure-sentinel-solution-alibabacloud-networking",
+      "version": "2.0.0",
+      "officialTables": [
+        "SentinelAlibabaCloudAPIGatewayLogs",
+        "SentinelAlibabaCloudVPCFlowLogs",
+        "SentinelAlibabaCloudWAFLogs"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "SentinelAlibabaCloudAPIGatewayLogs",
+        "SentinelAlibabaCloudVPCFlowLogs",
+        "SentinelAlibabaCloudWAFLogs"
+      ]
+    },
+    {
       "name": "Amazon Web Services",
       "solutionFolder": "Solutions/Amazon Web Services",
       "packageId": "azuresentinel.azure-sentinel-solution-amazonwebservices",
@@ -76,17 +95,39 @@
       ]
     },
     {
+      "name": "Amazon Web Services Elastic Load Balancing (via Codeless Connector Framework)",
+      "solutionFolder": "Solutions/AWS ELB",
+      "packageId": "azuresentinel.azure-sentinel-solution-awselb",
+      "contentId": "azure-sentinel-solution-awselb",
+      "version": "2.0.0",
+      "officialTables": [
+        "AWSALBAccessLogs",
+        "AWSELBFlowLogs",
+        "AWSNLBAccessLogs"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "AWSALBAccessLogs",
+        "AWSELBFlowLogs",
+        "AWSNLBAccessLogs"
+      ]
+    },
+    {
       "name": "Amazon Web Services NetworkFirewall (via Codeless Connector Framework)",
       "solutionFolder": "Solutions/Amazon Web Services NetworkFirewall",
       "packageId": "azuresentinel.azure-sentinel-solution-aws-networkfirewall",
       "contentId": "azure-sentinel-solution-aws-networkfirewall",
       "version": "3.0.3",
       "officialTables": [
-        "AWSNetworkFirewallFlow"
+        "AWSNetworkFirewallFlow",
+        "AWSNetworkFirewallAlert",
+        "AWSNetworkFirewallTls"
       ],
       "hasSchema": "all",
       "tablesInRepo": [
-        "AWSNetworkFirewallFlow"
+        "AWSNetworkFirewallFlow",
+        "AWSNetworkFirewallAlert",
+        "AWSNetworkFirewallTls"
       ]
     },
     {
@@ -135,6 +176,20 @@
       "hasSchema": "all",
       "tablesInRepo": [
         "AWSWAF"
+      ]
+    },
+    {
+      "name": "Apache HTTP Server",
+      "solutionFolder": "Solutions/ApacheHTTPServer",
+      "packageId": "azuresentinel.azure-sentinel-solution-apachehttpserver",
+      "contentId": "azure-sentinel-solution-apachehttpserver",
+      "version": "1.0.0",
+      "officialTables": [
+        "Syslog-Apache"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "Syslog-Apache"
       ]
     },
     {
@@ -191,6 +246,20 @@
       "hasSchema": "all",
       "tablesInRepo": [
         "Event"
+      ]
+    },
+    {
+      "name": "AWS EKS Data Connector (via Codeless Connector Framework)",
+      "solutionFolder": "Solutions/AWS EKS",
+      "packageId": "azuresentinel.azure-sentinel-solution-awseks",
+      "contentId": "azure-sentinel-solution-awseks",
+      "version": "2.0.0",
+      "officialTables": [
+        "AWSEKS"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "AWSEKS"
       ]
     },
     {
@@ -306,6 +375,24 @@
       ],
       "hasSchema": "none",
       "tablesInRepo": []
+    },
+    {
+      "name": "Bitwarden Event Logs",
+      "solutionFolder": "Solutions/Bitwarden",
+      "packageId": "8bit-solutions-llc.bitwarden-sentinel-integration",
+      "contentId": "bitwarden-sentinel-integration",
+      "version": "3.0.0",
+      "officialTables": [
+        "BitwardenEventLogs_CL",
+        "BitwardenGroups_CL",
+        "BitwardenMembers_CL"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "BitwardenEventLogs_CL",
+        "BitwardenGroups_CL",
+        "BitwardenMembers_CL"
+      ]
     },
     {
       "name": "Box Events (CCP)",
@@ -530,11 +617,41 @@
       "contentId": "azure-sentinel-solution-crowdstrikefalconep",
       "version": "3.3.2",
       "officialTables": [
-        "CrowdStrikeAlerts"
+        "CrowdStrikeAlerts",
+        "CrowdStrikeAPIActivityAudit",
+        "CrowdStrikeAuthActivityAudit",
+        "CrowdStrikeCases",
+        "CrowdStrikeCSPMIOAStreaming",
+        "CrowdStrikeCSPMSearchStreaming",
+        "CrowdStrikeCustomerIOC",
+        "CrowdStrikeDetections",
+        "CrowdStrikeHosts",
+        "CrowdStrikeIncidents",
+        "CrowdStrikeReconNotificationSummary",
+        "CrowdStrikeRemoteResponseSessionEnd",
+        "CrowdStrikeRemoteResponseSessionStart",
+        "CrowdStrikeScheduledReportNotification",
+        "CrowdStrikeUserActivityAudit",
+        "CrowdStrikeVulnerabilities"
       ],
       "hasSchema": "all",
       "tablesInRepo": [
-        "CrowdStrikeAlerts"
+        "CrowdStrikeAlerts",
+        "CrowdStrikeAPIActivityAudit",
+        "CrowdStrikeAuthActivityAudit",
+        "CrowdStrikeCases",
+        "CrowdStrikeCSPMIOAStreaming",
+        "CrowdStrikeCSPMSearchStreaming",
+        "CrowdStrikeCustomerIOC",
+        "CrowdStrikeDetections",
+        "CrowdStrikeHosts",
+        "CrowdStrikeIncidents",
+        "CrowdStrikeReconNotificationSummary",
+        "CrowdStrikeRemoteResponseSessionEnd",
+        "CrowdStrikeRemoteResponseSessionStart",
+        "CrowdStrikeScheduledReportNotification",
+        "CrowdStrikeUserActivityAudit",
+        "CrowdStrikeVulnerabilities"
       ]
     },
     {
@@ -562,6 +679,20 @@
       ],
       "hasSchema": "none",
       "tablesInRepo": []
+    },
+    {
+      "name": "CrowdStrike Falcon Endpoint Protection",
+      "solutionFolder": "Solutions/CrowdStrike Falcon Endpoint Protection",
+      "packageId": "azuresentinel.azure-sentinel-solution-crowdstrikefalconep",
+      "contentId": "azure-sentinel-solution-crowdstrikefalconep",
+      "version": "3.3.2",
+      "officialTables": [
+        "CrowdStrikeAlerts"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "CrowdStrikeAlerts"
+      ]
     },
     {
       "name": "CTERA Syslog",
@@ -1128,6 +1259,20 @@
       ]
     },
     {
+      "name": "Google Cloud Platform Firewall Logs (via Codeless Connector Framework)",
+      "solutionFolder": "Solutions/Google Cloud Platform Firewall Logs",
+      "packageId": "azuresentinel.azure-sentinel-solution-gcpfirewalllogs-api",
+      "contentId": "azure-sentinel-solution-gcpfirewalllogs-api",
+      "version": "2.0.0",
+      "officialTables": [
+        "GCPFirewallLogs"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "GCPFirewallLogs"
+      ]
+    },
+    {
       "name": "Google Cloud Platform IAM (via Codeless Connector Framework)",
       "solutionFolder": "Solutions/GoogleCloudPlatformIAM",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpiam",
@@ -1293,6 +1438,20 @@
       ],
       "hasSchema": "none",
       "tablesInRepo": []
+    },
+    {
+      "name": "Imperva Cloud WAF (via Codeless Connector Framework)",
+      "solutionFolder": "Solutions/ImpervaCloudWAF",
+      "packageId": "azuresentinel.azure-sentinel-solution-impervawafcloud",
+      "contentId": "azure-sentinel-solution-impervawafcloud",
+      "version": "3.1.1",
+      "officialTables": [
+        "ImpervaWAFCloudV2_CL"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "ImpervaWAFCloudV2_CL"
+      ]
     },
     {
       "name": "Infoblox Cloud Data Connector via AMA",
@@ -1746,6 +1905,22 @@
       "tablesInRepo": []
     },
     {
+      "name": "Miro",
+      "solutionFolder": "Solutions/Miro",
+      "packageId": "realtimeboardincdbamiro1645117589045.azure-sentinel-solution-miro",
+      "contentId": "azure-sentinel-solution-miro",
+      "version": "3.0.0",
+      "officialTables": [
+        "MiroAuditLogs_CL",
+        "MiroContentLogs_CL"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "MiroAuditLogs_CL",
+        "MiroContentLogs_CL"
+      ]
+    },
+    {
       "name": "MISP2Sentinel",
       "solutionFolder": "Solutions/MISP2Sentinel",
       "packageId": "microsoftsentinelcommunity.azure-sentinel-solution-misp2sentinel",
@@ -1772,17 +1947,47 @@
       "tablesInRepo": []
     },
     {
+      "name": "Morphisec UTPP",
+      "solutionFolder": "Solutions/Morphisec",
+      "packageId": "morphisec.morphisec_utpp_mss",
+      "contentId": "morphisec_utpp_mss",
+      "version": "3.1.0",
+      "officialTables": [
+        "MorphisecAlerts_CL"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "MorphisecAlerts_CL"
+      ]
+    },
+    {
       "name": "Netskope Alerts and Events",
       "solutionFolder": "Solutions/Netskope",
       "packageId": "netskope.netskope_mss",
       "contentId": "netskope_mss",
       "version": "2.0.3",
       "officialTables": [
-        "NetskopeAlerts_CL"
+        "NetskopeAlerts_CL",
+        "NetskopeEventsApplication_CL",
+        "NetskopeEventsAudit_CL",
+        "NetskopeEventsConnection_CL",
+        "NetskopeEventsDLP_CL",
+        "NetskopeEventsEndpoint_CL",
+        "NetskopeEventsInfrastructure_CL",
+        "NetskopeEventsNetwork_CL",
+        "NetskopeEventsPage_CL"
       ],
       "hasSchema": "all",
       "tablesInRepo": [
-        "NetskopeAlerts_CL"
+        "NetskopeAlerts_CL",
+        "NetskopeEventsApplication_CL",
+        "NetskopeEventsAudit_CL",
+        "NetskopeEventsConnection_CL",
+        "NetskopeEventsDLP_CL",
+        "NetskopeEventsEndpoint_CL",
+        "NetskopeEventsInfrastructure_CL",
+        "NetskopeEventsNetwork_CL",
+        "NetskopeEventsPage_CL"
       ]
     },
     {
@@ -1808,6 +2013,20 @@
       ],
       "hasSchema": "none",
       "tablesInRepo": []
+    },
+    {
+      "name": "Okta Single Sign-On",
+      "solutionFolder": "Solutions/Okta Single Sign-On",
+      "packageId": "azuresentinel.azure-sentinel-solution-okta",
+      "contentId": "azure-sentinel-solution-okta",
+      "version": "3.0.0",
+      "officialTables": [
+        "OktaV2_CL"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "OktaV2_CL"
+      ]
     },
     {
       "name": "Onapsis Defend: Integrate Unmatched SAP Threat Detection & Intel with Microsoft Sentinel",
@@ -2064,6 +2283,22 @@
       ]
     },
     {
+      "name": "Rapid7 InsightVM",
+      "solutionFolder": "Solutions/Rapid7InsightVM",
+      "packageId": "azuresentinel.azure-sentinel-solution-rapid7insightvm",
+      "contentId": "azure-sentinel-solution-rapid7insightvm",
+      "version": "3.2.0",
+      "officialTables": [
+        "Rapid7InsightVMCloudAssets",
+        "Rapid7InsightVMCloudVulnerabilities"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "Rapid7InsightVMCloudAssets",
+        "Rapid7InsightVMCloudVulnerabilities"
+      ]
+    },
+    {
       "name": "Rubrik Security Cloud data connector (using Azure Functions)",
       "solutionFolder": "Solutions/RubrikSecurityCloud",
       "packageId": "rubrik_inc.rubrik_sentinel",
@@ -2313,10 +2548,13 @@
       "contentId": "azure-sentinel-solution-sophosep",
       "version": "3.0.8",
       "officialTables": [
-        "SophosEP_CL"
+        "SophosEP_CL",
+        "SophosEPAlerts_CL"
       ],
-      "hasSchema": "none",
-      "tablesInRepo": []
+      "hasSchema": "partial",
+      "tablesInRepo": [
+        "SophosEPAlerts_CL"
+      ]
     },
     {
       "name": "Sophos Endpoint Protection (via Codeless Connector Platform)",
@@ -2399,6 +2637,34 @@
       ],
       "hasSchema": "none",
       "tablesInRepo": []
+    },
+    {
+      "name": "TheHive (via Codeless Connector Framework)",
+      "solutionFolder": "Solutions/TheHive",
+      "packageId": "azuresentinel.azure-sentinel-solution-thehive",
+      "contentId": "azure-sentinel-solution-thehive",
+      "version": "2.0.0",
+      "officialTables": [
+        "SentinelTheHiveData"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "SentinelTheHiveData"
+      ]
+    },
+    {
+      "name": "Threat Intelligence (NEW)",
+      "solutionFolder": "Solutions/Threat Intelligence (NEW)",
+      "packageId": "azuresentinel.azure-sentinel-solution-threatintelligence-updated",
+      "contentId": "azure-sentinel-solution-threatintelligence-updated",
+      "version": "3.1.1",
+      "officialTables": [
+        "ThreatIntelObjects"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "ThreatIntelObjects"
+      ]
     },
     {
       "name": "Threat intelligence - TAXII",
@@ -2533,6 +2799,22 @@
       ]
     },
     {
+      "name": "VMware Carbon Black Cloud",
+      "solutionFolder": "Solutions/VMware Carbon Black Cloud",
+      "packageId": "azuresentinel.azure-sentinel-solution-vmwarecarbonblack",
+      "contentId": "azure-sentinel-solution-vmwarecarbonblack",
+      "version": "3.1.0",
+      "officialTables": [
+        "CarbonBlack_Alerts_CL",
+        "CarbonBlack_Watchlist_CL"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "CarbonBlack_Alerts_CL",
+        "CarbonBlack_Watchlist_CL"
+      ]
+    },
+    {
       "name": "Windows DNS Events via AMA",
       "solutionFolder": "Solutions/Windows Server DNS",
       "packageId": "azuresentinel.azure-sentinel-solution-dns",
@@ -2650,6 +2932,20 @@
       ],
       "hasSchema": "none",
       "tablesInRepo": []
+    },
+    {
+      "name": "Zscaler Internet Access (ZIA)",
+      "solutionFolder": "Solutions/Zscaler Internet Access",
+      "packageId": "zscaler.zscaler_zia",
+      "contentId": "zscaler_zia",
+      "version": "2.0.0",
+      "officialTables": [
+        "CommonSecurityLog"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "CommonSecurityLog-ZscalerZIA"
+      ]
     }
   ],
   "unresolved": [
