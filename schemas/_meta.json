@@ -1,13 +1,15 @@
 {
-  "generatedAt": "2026-04-27",
+  "generatedAt": "2026-04-20",
   "lastUpdated": "2026-04-27",
-  "sources": {
-    "tablesDoc": "https://github.com/MicrosoftDocs/azure-docs/blob/main/articles/sentinel/includes/sentinel-tables-connectors.md",
-    "solutionsRepo": "https://github.com/Azure/Azure-Sentinel/tree/master/Solutions"
+  "conventions": {
+    "isSentinelSolution": "true = entry is an Azure-Sentinel marketplace solution. false = entry is a native Azure/Microsoft table with no Sentinel solution; consumer should generate DCR/DCE directly from the schema.",
+    "streamPrefix": "Tables ending in '_CL' use stream name 'Custom-<TableName>'; all other tables use 'Microsoft-<TableName>'.",
+    "nativeTableMarketplaceFields": "When isSentinelSolution=false, solutionFolder/packageId/contentId/version are null."
   },
   "solutions": [
     {
       "name": "1Password (Serverless)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/1Password",
       "packageId": "1password1617200969773.azure-sentinel-solution-1password",
       "contentId": "azure-sentinel-solution-1password",
@@ -22,6 +24,7 @@
     },
     {
       "name": "1Password (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/1Password",
       "packageId": "1password1617200969773.azure-sentinel-solution-1password",
       "contentId": "azure-sentinel-solution-1password",
@@ -36,6 +39,7 @@
     },
     {
       "name": "Alibaba Cloud ActionTrail (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Alibaba Cloud ActionTrail",
       "packageId": "azuresentinel.azure-sentinel-solution-alibabacloud-actiontrail",
       "contentId": "azure-sentinel-solution-alibabacloud-actiontrail",
@@ -50,6 +54,7 @@
     },
     {
       "name": "Alibaba Cloud Networking",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Alibaba Cloud Networking",
       "packageId": "azuresentinel.azure-sentinel-solution-alibabacloud-networking",
       "contentId": "azure-sentinel-solution-alibabacloud-networking",
@@ -68,6 +73,7 @@
     },
     {
       "name": "Amazon Web Services",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Amazon Web Services",
       "packageId": "azuresentinel.azure-sentinel-solution-amazonwebservices",
       "contentId": "azure-sentinel-solution-amazonwebservices",
@@ -82,6 +88,7 @@
     },
     {
       "name": "Amazon Web Services CloudFront (via Codeless Connector Framework) (Preview)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Amazon Web Services",
       "packageId": "azuresentinel.azure-sentinel-solution-amazonwebservices",
       "contentId": "azure-sentinel-solution-amazonwebservices",
@@ -96,6 +103,7 @@
     },
     {
       "name": "Amazon Web Services Elastic Load Balancing (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/AWS ELB",
       "packageId": "azuresentinel.azure-sentinel-solution-awselb",
       "contentId": "azure-sentinel-solution-awselb",
@@ -114,6 +122,7 @@
     },
     {
       "name": "Amazon Web Services NetworkFirewall (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Amazon Web Services NetworkFirewall",
       "packageId": "azuresentinel.azure-sentinel-solution-aws-networkfirewall",
       "contentId": "azure-sentinel-solution-aws-networkfirewall",
@@ -132,6 +141,7 @@
     },
     {
       "name": "Amazon Web Services S3",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Amazon Web Services",
       "packageId": "azuresentinel.azure-sentinel-solution-amazonwebservices",
       "contentId": "azure-sentinel-solution-amazonwebservices",
@@ -152,6 +162,7 @@
     },
     {
       "name": "Amazon Web Services S3 DNS Route53 (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Amazon Web Services",
       "packageId": "azuresentinel.azure-sentinel-solution-amazonwebservices",
       "contentId": "azure-sentinel-solution-amazonwebservices",
@@ -166,6 +177,7 @@
     },
     {
       "name": "Amazon Web Services S3 WAF",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Amazon Web Services",
       "packageId": "azuresentinel.azure-sentinel-solution-amazonwebservices",
       "contentId": "azure-sentinel-solution-amazonwebservices",
@@ -179,7 +191,23 @@
       ]
     },
     {
+      "name": "Anomalies",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "Anomalies"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "Anomalies"
+      ]
+    },
+    {
       "name": "Apache HTTP Server",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ApacheHTTPServer",
       "packageId": "azuresentinel.azure-sentinel-solution-apachehttpserver",
       "contentId": "azure-sentinel-solution-apachehttpserver",
@@ -194,6 +222,7 @@
     },
     {
       "name": "Atlassian Confluence Audit (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/AtlassianConfluenceAudit",
       "packageId": "azuresentinel.azure-sentinel-solution-atlassianconfluenceaudit",
       "contentId": "azure-sentinel-solution-atlassianconfluenceaudit",
@@ -208,6 +237,7 @@
     },
     {
       "name": "Atlassian Jira Audit (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/AtlassianJiraAudit",
       "packageId": "azuresentinel.azure-sentinel-solution-atlassianjiraaudit",
       "contentId": "azure-sentinel-solution-atlassianjiraaudit",
@@ -222,6 +252,7 @@
     },
     {
       "name": "Auth0 Logs(via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Auth0",
       "packageId": "azuresentinel.azure-sentinel-solution-auth0",
       "contentId": "azure-sentinel-solution-auth0",
@@ -236,6 +267,7 @@
     },
     {
       "name": "Automated Logic WebCTRL",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ALC-WebCTRL",
       "packageId": "azuresentinel.azure-sentinel-solution-automated-logic-webctrl",
       "contentId": "azure-sentinel-solution-automated-logic-webctrl",
@@ -250,6 +282,7 @@
     },
     {
       "name": "AWS EKS Data Connector (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/AWS EKS",
       "packageId": "azuresentinel.azure-sentinel-solution-awseks",
       "contentId": "azure-sentinel-solution-awseks",
@@ -264,6 +297,7 @@
     },
     {
       "name": "AWS S3 Server Access Logs (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/AWS_AccessLogs",
       "packageId": "azuresentinel.azure-sentinel-solution-awsaccesslogs",
       "contentId": "azure-sentinel-solution-awsaccesslogs",
@@ -278,6 +312,7 @@
     },
     {
       "name": "AWS Security Hub Findings (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/AWS Security Hub",
       "packageId": "azuresentinel.azure-sentinel-solution-awssecurityhub",
       "contentId": "azure-sentinel-solution-awssecurityhub",
@@ -292,6 +327,7 @@
     },
     {
       "name": "Azure CloudNGFW By Palo Alto Networks",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Azure Cloud NGFW by Palo Alto Networks",
       "packageId": "paloaltonetworks.cloudngfw-sentinel-solution",
       "contentId": "cloudngfw-sentinel-solution",
@@ -304,6 +340,7 @@
     },
     {
       "name": "Azure DevOps Audit Logs (via Codeless Connector Platform)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/AzureDevOpsAuditing",
       "packageId": "azuresentinel.azure-sentinel-solution-azuredevopsauditing",
       "contentId": "azure-sentinel-solution-azuredevopsauditing",
@@ -318,6 +355,7 @@
     },
     {
       "name": "Azure Firewall",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Azure Firewall",
       "packageId": "sentinel4azurefirewall.sentinel4azurefirewall",
       "contentId": "sentinel4azurefirewall",
@@ -338,6 +376,7 @@
     },
     {
       "name": "Azure Storage Account",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Azure Storage",
       "packageId": "azuresentinel.azure-sentinel-solution-azurestorageaccount",
       "contentId": "azure-sentinel-solution-azurestorageaccount",
@@ -352,7 +391,23 @@
       "tablesInRepo": []
     },
     {
+      "name": "AzureMetricsV2",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "AzureMetricsV2"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "AzureMetricsV2"
+      ]
+    },
+    {
       "name": "BeyondTrust PM Cloud",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/BeyondTrustPMCloud",
       "packageId": "beyondtrust.azure-sentinel-solution-beyondtrustpmcloud",
       "contentId": "azure-sentinel-solution-beyondtrustpmcloud",
@@ -366,6 +421,7 @@
     },
     {
       "name": "BigID DSPM connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/BigID",
       "packageId": "big-id.azure-sentinel-solution-bigid",
       "contentId": "azure-sentinel-solution-bigid",
@@ -378,6 +434,7 @@
     },
     {
       "name": "Bitwarden Event Logs",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Bitwarden",
       "packageId": "8bit-solutions-llc.bitwarden-sentinel-integration",
       "contentId": "bitwarden-sentinel-integration",
@@ -396,6 +453,7 @@
     },
     {
       "name": "Box Events (CCP)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Box",
       "packageId": "azuresentinel.azure-sentinel-solution-box",
       "contentId": "azure-sentinel-solution-box",
@@ -410,6 +468,7 @@
     },
     {
       "name": "Check Point CloudGuard CNAPP Connector for Microsoft Sentinel",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Check Point CloudGuard CNAPP",
       "packageId": "checkpoint.checkpoint-sentinel-solutions-cloud-guard",
       "contentId": "checkpoint-sentinel-solutions-cloud-guard",
@@ -422,6 +481,7 @@
     },
     {
       "name": "Check Point Cyberint Alerts Connector (via Codeless Connector Platform)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Check Point Cyberint Alerts",
       "packageId": "checkpoint.checkpoint-cyberint-solutions-alerts",
       "contentId": "checkpoint-cyberint-solutions-alerts",
@@ -434,6 +494,7 @@
     },
     {
       "name": "Cisco ASA/FTD via AMA",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CiscoASA",
       "packageId": "azuresentinel.azure-sentinel-solution-ciscoasa",
       "contentId": "azure-sentinel-solution-ciscoasa",
@@ -448,6 +509,7 @@
     },
     {
       "name": "Cisco Cloud Security (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CiscoDuoSecurity",
       "packageId": "cisco.cisco-duo-microsoft-sentinel",
       "contentId": "cisco-duo-microsoft-sentinel",
@@ -464,6 +526,7 @@
     },
     {
       "name": "Cisco Cloud Security (using elastic premium plan) (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CiscoDuoSecurity",
       "packageId": "cisco.cisco-duo-microsoft-sentinel",
       "contentId": "cisco-duo-microsoft-sentinel",
@@ -480,6 +543,7 @@
     },
     {
       "name": "Cisco Meraki (using REST API)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CiscoMeraki",
       "packageId": "azuresentinel.azure-sentinel-solution-ciscomeraki",
       "contentId": "azure-sentinel-solution-ciscomeraki",
@@ -494,6 +558,7 @@
     },
     {
       "name": "Cisco Secure Endpoint (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cisco Secure Endpoint",
       "packageId": "azuresentinel.azure-sentinel-solution-ciscosecureendpoint",
       "contentId": "azure-sentinel-solution-ciscosecureendpoint",
@@ -510,6 +575,7 @@
     },
     {
       "name": "Cisco Software Defined WAN",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cisco SD-WAN",
       "packageId": "cisco.cisco-catalyst-sdwan-sentinel",
       "contentId": "cisco-catalyst-sdwan-sentinel",
@@ -524,6 +590,7 @@
     },
     {
       "name": "Claroty xDome",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Claroty xDome",
       "packageId": "claroty1709722359369.microsoft-sentinel-solution-xdome",
       "contentId": "microsoft-sentinel-solution-xdome",
@@ -538,6 +605,7 @@
     },
     {
       "name": "Cloudflare (Preview) (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cloudflare",
       "packageId": "cloudflare.cloudflare_sentinel",
       "contentId": "cloudflare_sentinel",
@@ -550,6 +618,7 @@
     },
     {
       "name": "Cloudflare (Using Blob Container) (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cloudflare",
       "packageId": "cloudflare.cloudflare_sentinel",
       "contentId": "cloudflare_sentinel",
@@ -564,6 +633,7 @@
     },
     {
       "name": "Cognni",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cognni",
       "packageId": "shieldox.cognni_for_microsoft_sentinel",
       "contentId": "cognni_for_microsoft_sentinel",
@@ -576,6 +646,7 @@
     },
     {
       "name": "Cohesity (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CohesitySecurity",
       "packageId": "cohesitydev1592001764720.cohesity_sentinel_data_connector",
       "contentId": "cohesity_sentinel_data_connector",
@@ -588,6 +659,7 @@
     },
     {
       "name": "CommvaultSecurityIQ",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Commvault Security IQ",
       "packageId": "commvault.microsoft-sentinel-solution-commvaultsecurityiq",
       "contentId": "microsoft-sentinel-solution-commvaultsecurityiq",
@@ -600,6 +672,7 @@
     },
     {
       "name": "Cortex XDR - Incidents",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cortex XDR",
       "packageId": "defendlimited1682894612656.cortex_xdr_connector",
       "contentId": "cortex_xdr_connector",
@@ -612,6 +685,7 @@
     },
     {
       "name": "CrowdStrike API Data Connector (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CrowdStrike Falcon Endpoint Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-crowdstrikefalconep",
       "contentId": "azure-sentinel-solution-crowdstrikefalconep",
@@ -656,6 +730,7 @@
     },
     {
       "name": "CrowdStrike Falcon Adversary Intelligence  (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CrowdStrike Falcon Endpoint Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-crowdstrikefalconep",
       "contentId": "azure-sentinel-solution-crowdstrikefalconep",
@@ -670,6 +745,7 @@
     },
     {
       "name": "CrowdStrike Falcon Data Replicator (AWS S3) (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CrowdStrike Falcon Endpoint Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-crowdstrikefalconep",
       "contentId": "azure-sentinel-solution-crowdstrikefalconep",
@@ -682,6 +758,7 @@
     },
     {
       "name": "CrowdStrike Falcon Endpoint Protection",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CrowdStrike Falcon Endpoint Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-crowdstrikefalconep",
       "contentId": "azure-sentinel-solution-crowdstrikefalconep",
@@ -696,6 +773,7 @@
     },
     {
       "name": "CTERA Syslog",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Syslog",
       "packageId": "azuresentinel.azure-sentinel-solution-syslog",
       "contentId": "azure-sentinel-solution-syslog",
@@ -710,6 +788,7 @@
     },
     {
       "name": "Custom logs via AMA",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CustomLogsAma",
       "packageId": "azuresentinel.azure-sentinel-solution-customlogsviaama",
       "contentId": "azure-sentinel-solution-customlogsviaama",
@@ -736,6 +815,7 @@
     },
     {
       "name": "CyberArk Audit",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CyberArkAudit",
       "packageId": "cyberark.cyberark_audit_sentinel",
       "contentId": "cyberark_audit_sentinel",
@@ -748,6 +828,7 @@
     },
     {
       "name": "CyberArkAudit (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CyberArkAudit",
       "packageId": "cyberark.cyberark_audit_sentinel",
       "contentId": "cyberark_audit_sentinel",
@@ -760,6 +841,7 @@
     },
     {
       "name": "Cyborg Security HUNTER Hunt Packages",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cyborg Security HUNTER",
       "packageId": "cyborgsecurityinc1689265652101.azure-sentinel-solution-cyborgsecurity-hunter",
       "contentId": "azure-sentinel-solution-cyborgsecurity-hunter",
@@ -774,6 +856,7 @@
     },
     {
       "name": "CYFIRMA Attack Surface",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cyfirma Attack Surface",
       "packageId": "cyfirmaholdingspteltd1742879329545.azure-sentinel-solution-cyfirma-attack-surface",
       "contentId": "azure-sentinel-solution-cyfirma-attack-surface",
@@ -798,6 +881,7 @@
     },
     {
       "name": "CYFIRMA Brand Intelligence",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cyfirma Brand Intelligence",
       "packageId": "cyfirmaholdingspteltd1742879329545.azure-sentinel-solution-cyfirma-brand-intelligence",
       "contentId": "azure-sentinel-solution-cyfirma-brand-intelligence",
@@ -820,6 +904,7 @@
     },
     {
       "name": "CYFIRMA Compromised Accounts",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cyfirma Compromised Accounts",
       "packageId": "cyfirmaholdingspteltd1742879329545.azure-sentinel-solution-cyfirmacompromisedaccounts",
       "contentId": "azure-sentinel-solution-cyfirmacompromisedaccounts",
@@ -834,6 +919,7 @@
     },
     {
       "name": "CYFIRMA Cyber Intelligence",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cyfirma Cyber Intelligence",
       "packageId": "cyfirmaholdingspteltd1742879329545.azure-sentinel-solution-cyfirma-cyber-intelligence",
       "contentId": "azure-sentinel-solution-cyfirma-cyber-intelligence",
@@ -854,6 +940,7 @@
     },
     {
       "name": "CYFIRMA Digital Risk",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cyfirma Digital Risk",
       "packageId": "cyfirmaholdingspteltd1742879329545.azure-sentinel-solution-cyfirma-digital-risk",
       "contentId": "azure-sentinel-solution-cyfirma-digital-risk",
@@ -880,6 +967,7 @@
     },
     {
       "name": "CYFIRMA Vulnerabilities Intelligence",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Cyfirma Vulnerabilities Intel",
       "packageId": "cyfirmaholdingspteltd1742879329545.azure-sentinel-solution-cyfirma-vulnerabilities",
       "contentId": "azure-sentinel-solution-cyfirma-vulnerabilities",
@@ -894,6 +982,7 @@
     },
     {
       "name": "Darktrace Connector for Microsoft Sentinel REST API",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Darktrace",
       "packageId": "darktrace1655286944672.darktrace_for_sentinel",
       "contentId": "darktrace_for_sentinel",
@@ -906,6 +995,7 @@
     },
     {
       "name": "Datalake2Sentinel",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Datalake2Sentinel",
       "packageId": "cert_orange_cyberdefense.microsoft-sentinel-solution-datalake2sentinel",
       "contentId": "microsoft-sentinel-solution-datalake2sentinel",
@@ -920,6 +1010,7 @@
     },
     {
       "name": "Derdack SIGNL4",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SIGNL4",
       "packageId": "derdack.azure-sentinel-solution-signl4",
       "contentId": "azure-sentinel-solution-signl4",
@@ -932,6 +1023,7 @@
     },
     {
       "name": "Digital Shadows Searchlight (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Digital Shadows",
       "packageId": "digitalshadows1662022995707.digitalshadows_searchlight_for_sentinel",
       "contentId": "digitalshadows_searchlight_for_sentinel",
@@ -944,6 +1036,7 @@
     },
     {
       "name": "DNS",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/NXLogDnsLogs",
       "packageId": "nxlogltd1589381969261.nxlog_dns_logs",
       "contentId": "nxlog_dns_logs",
@@ -956,7 +1049,23 @@
       "tablesInRepo": []
     },
     {
+      "name": "DnsAuditEvents",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "DnsAuditEvents"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "DnsAuditEvents"
+      ]
+    },
+    {
       "name": "Dragos Notifications via Cloud Sitestore",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Dragos",
       "packageId": "dragosinc1734451815609.microsoft-sentinel-solution-dragos",
       "contentId": "microsoft-sentinel-solution-dragos",
@@ -969,6 +1078,7 @@
     },
     {
       "name": "Druva Events Connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/DruvaDataSecurityCloud",
       "packageId": "druva-azuresentinel-solution.azure-sentinel-solution-druva",
       "contentId": "azure-sentinel-solution-druva",
@@ -981,6 +1091,7 @@
     },
     {
       "name": "Dynamics 365 Finance and Operations",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Dynamics 365",
       "packageId": "sentinel4dynamics365.dynamics365connector",
       "contentId": "dynamics365connector",
@@ -995,6 +1106,7 @@
     },
     {
       "name": "Dynamics365",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Dynamics 365",
       "packageId": "sentinel4dynamics365.dynamics365connector",
       "contentId": "dynamics365connector",
@@ -1007,6 +1119,7 @@
     },
     {
       "name": "Dynatrace Audit Logs",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Dynatrace",
       "packageId": "dynatrace.dynatrace_azure_sentinel",
       "contentId": "dynatrace_azure_sentinel",
@@ -1019,6 +1132,7 @@
     },
     {
       "name": "Ermes Browser Security Events",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Ermes Browser Security",
       "packageId": "ermes.azure-sentinel-solution-ermes-browser-security",
       "contentId": "azure-sentinel-solution-ermes-browser-security",
@@ -1031,6 +1145,7 @@
     },
     {
       "name": "ESET Protect Platform (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ESET Protect Platform",
       "packageId": "eset.eset-protect-platform-solution",
       "contentId": "eset-protect-platform-solution",
@@ -1044,6 +1159,7 @@
     },
     {
       "name": "F5 BIG-IP",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/F5 BIG-IP",
       "packageId": "f5-networks.f5_bigip_mss",
       "contentId": "f5_bigip_mss",
@@ -1056,6 +1172,7 @@
     },
     {
       "name": "Flare Push Connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Flare",
       "packageId": "flaresystmesinc1617114736428.flare-systems-firework-sentinel",
       "contentId": "flare-systems-firework-sentinel",
@@ -1068,6 +1185,7 @@
     },
     {
       "name": "Forescout Host Property Monitor",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ForescoutHostPropertyMonitor",
       "packageId": "forescout.azure-sentinel-solution-forescout",
       "contentId": "azure-sentinel-solution-forescout",
@@ -1080,6 +1198,7 @@
     },
     {
       "name": "GCP Cloud Run (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform Cloud Run",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpcloudrun",
       "contentId": "azure-sentinel-solution-gcpcloudrun",
@@ -1094,6 +1213,7 @@
     },
     {
       "name": "GCP Cloud SQL (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleCloudPlatformSQL",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpsql",
       "contentId": "azure-sentinel-solution-gcpsql",
@@ -1108,6 +1228,7 @@
     },
     {
       "name": "GCP Pub/Sub Audit Logs",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform Audit Logs",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpauditlogs-api",
       "contentId": "azure-sentinel-solution-gcpauditlogs-api",
@@ -1122,6 +1243,7 @@
     },
     {
       "name": "GCP Pub/Sub Load Balancer Logs (via Codeless Connector Platform).",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform Load Balancer Logs",
       "packageId": "azuresentinel.azure-sentinel-solution-gcploadbalancerlogs-api",
       "contentId": "azure-sentinel-solution-gcploadbalancerlogs-api",
@@ -1136,6 +1258,7 @@
     },
     {
       "name": "GCP Pub/Sub VPC Flow Logs (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform VPC Flow Logs",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpvpcflowlogs-api",
       "contentId": "azure-sentinel-solution-gcpvpcflowlogs-api",
@@ -1150,6 +1273,7 @@
     },
     {
       "name": "GitHub (using Webhooks)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GitHub",
       "packageId": "microsoftcorporation1622712991604.sentinel4github",
       "contentId": "sentinel4github",
@@ -1162,6 +1286,7 @@
     },
     {
       "name": "GitHub Enterprise Audit Log (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GitHub",
       "packageId": "microsoftcorporation1622712991604.sentinel4github",
       "contentId": "sentinel4github",
@@ -1176,6 +1301,7 @@
     },
     {
       "name": "Google ApigeeX (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Apigee",
       "packageId": "azuresentinel.azure-sentinel-solution-googleapigeex",
       "contentId": "azure-sentinel-solution-googleapigeex",
@@ -1190,6 +1316,7 @@
     },
     {
       "name": "Google Cloud Platform CDN (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleCloudPlatformCDN",
       "packageId": "azuresentinel.azure-sentinel-solution-gcp-cdn",
       "contentId": "azure-sentinel-solution-gcp-cdn",
@@ -1204,6 +1331,7 @@
     },
     {
       "name": "Google Cloud Platform Cloud IDS (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleCloudPlatformIDS",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpids",
       "contentId": "azure-sentinel-solution-gcpids",
@@ -1218,6 +1346,7 @@
     },
     {
       "name": "Google Cloud Platform Cloud Monitoring (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform Cloud Monitoring",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpmonitoring",
       "contentId": "azure-sentinel-solution-gcpmonitoring",
@@ -1232,6 +1361,7 @@
     },
     {
       "name": "Google Cloud Platform Compute Engine (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform Compute Engine",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpcomputeengine",
       "contentId": "azure-sentinel-solution-gcpcomputeengine",
@@ -1246,6 +1376,7 @@
     },
     {
       "name": "Google Cloud Platform DNS (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleCloudPlatformDNS",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpdns",
       "contentId": "azure-sentinel-solution-gcpdns",
@@ -1260,6 +1391,7 @@
     },
     {
       "name": "Google Cloud Platform Firewall Logs (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform Firewall Logs",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpfirewalllogs-api",
       "contentId": "azure-sentinel-solution-gcpfirewalllogs-api",
@@ -1274,6 +1406,7 @@
     },
     {
       "name": "Google Cloud Platform IAM (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleCloudPlatformIAM",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpiam",
       "contentId": "azure-sentinel-solution-gcpiam",
@@ -1288,6 +1421,7 @@
     },
     {
       "name": "Google Cloud Platform NAT (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleCloudPlatformNAT",
       "packageId": "azuresentinel.azure-sentinel-solution-gcp-nat",
       "contentId": "azure-sentinel-solution-gcp-nat",
@@ -1304,6 +1438,7 @@
     },
     {
       "name": "Google Cloud Platform Resource Manager (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleCloudPlatformResourceManager",
       "packageId": "azuresentinel.azure-sentinel-solution-gcp-rm",
       "contentId": "azure-sentinel-solution-gcp-rm",
@@ -1318,20 +1453,32 @@
     },
     {
       "name": "Google Kubernetes Engine (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Kubernetes Engine",
       "packageId": "azuresentinel.azure-sentinel-solution-gkelogs-api",
       "contentId": "azure-sentinel-solution-gkelogs-api",
       "version": "3.0.2",
       "officialTables": [
-        "GKEAudit"
+        "GKEAudit",
+        "GKEAPIServer",
+        "GKEApplication",
+        "GKEControllerManager",
+        "GKEHPADecision",
+        "GKEScheduler"
       ],
       "hasSchema": "all",
       "tablesInRepo": [
-        "GKEAudit"
+        "GKEAudit",
+        "GKEAPIServer",
+        "GKEApplication",
+        "GKEControllerManager",
+        "GKEHPADecision",
+        "GKEScheduler"
       ]
     },
     {
       "name": "Google Security Command Center",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Google Cloud Platform Security Command Center",
       "packageId": "azuresentinel.azure-sentinel-solution-gcpscclogs-api",
       "contentId": "azure-sentinel-solution-gcpscclogs-api",
@@ -1346,6 +1493,7 @@
     },
     {
       "name": "Google Workspace Activities (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GoogleWorkspaceReports",
       "packageId": "azuresentinel.azure-sentinel-solution-googleworkspacereports",
       "contentId": "azure-sentinel-solution-googleworkspacereports",
@@ -1360,6 +1508,7 @@
     },
     {
       "name": "GreyNoise Threat Intelligence",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/GreyNoiseThreatIntelligence",
       "packageId": "greynoiseintelligenceinc1681236078693.microsoft-sentinel-byol-greynoise",
       "contentId": "microsoft-sentinel-byol-greynoise",
@@ -1374,6 +1523,7 @@
     },
     {
       "name": "Halcyon Connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Halcyon",
       "packageId": "halcyontech1743610828684.azure-sentinel-solution-halcyon",
       "contentId": "azure-sentinel-solution-halcyon",
@@ -1390,6 +1540,7 @@
     },
     {
       "name": "IIS Logs of Microsoft Exchange Servers",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Exchange Security - Exchange On-Premises",
       "packageId": "microsoftsentinelcommunity.azure-sentinel-solution-exchangesecurityinsights",
       "contentId": "azure-sentinel-solution-exchangesecurityinsights",
@@ -1402,6 +1553,7 @@
     },
     {
       "name": "Illumio Insights",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Illumio Insight",
       "packageId": "illumioinc1629822633689.azure-sentinel-solution-illumioinsight",
       "contentId": "azure-sentinel-solution-illumioinsight",
@@ -1416,6 +1568,7 @@
     },
     {
       "name": "Illumio SaaS (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/IllumioSaaS",
       "packageId": "illumioinc1629822633689.illumio_sentinel",
       "contentId": "illumio_sentinel",
@@ -1429,6 +1582,7 @@
     },
     {
       "name": "Imperva Cloud WAF (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ImpervaCloudWAF",
       "packageId": "azuresentinel.azure-sentinel-solution-impervawafcloud",
       "contentId": "azure-sentinel-solution-impervawafcloud",
@@ -1441,6 +1595,7 @@
     },
     {
       "name": "Imperva Cloud WAF (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ImpervaCloudWAF",
       "packageId": "azuresentinel.azure-sentinel-solution-impervawafcloud",
       "contentId": "azure-sentinel-solution-impervawafcloud",
@@ -1455,6 +1610,7 @@
     },
     {
       "name": "Infoblox Cloud Data Connector via AMA",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Infoblox",
       "packageId": "infoblox.infoblox-app-for-microsoft-sentinel",
       "contentId": "infoblox-app-for-microsoft-sentinel",
@@ -1469,6 +1625,7 @@
     },
     {
       "name": "Infoblox SOC Insight Data Connector via AMA",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Infoblox SOC Insights",
       "packageId": "infoblox.infoblox-soc-insight-solution",
       "contentId": "infoblox-soc-insight-solution",
@@ -1483,6 +1640,7 @@
     },
     {
       "name": "Island Enterprise Browser Admin Audit (Polling CCP)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Island",
       "packageId": "islandtechnologyinc1679434413850.island-sentinel-solution",
       "contentId": "island-sentinel-solution",
@@ -1495,6 +1653,7 @@
     },
     {
       "name": "Island Enterprise Browser User Activity (Polling CCP)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Island",
       "packageId": "islandtechnologyinc1679434413850.island-sentinel-solution",
       "contentId": "island-sentinel-solution",
@@ -1507,6 +1666,7 @@
     },
     {
       "name": "Jamf Protect Push Connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Jamf Protect",
       "packageId": "jamfsoftwareaustraliaptyltd1620360395539.jamf_protect",
       "contentId": "jamf_protect",
@@ -1521,6 +1681,7 @@
     },
     {
       "name": "JoeSandboxThreatIntelligence (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Threat Intelligence",
       "packageId": "azuresentinel.azure-sentinel-solution-threatintelligence-taxii",
       "contentId": "azure-sentinel-solution-threatintelligence-taxii",
@@ -1535,6 +1696,7 @@
     },
     {
       "name": "Keeper Security Push Connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Keeper Security",
       "packageId": "keepersecurity.keeper-security-integration",
       "contentId": "keeper-security-integration",
@@ -1547,6 +1709,7 @@
     },
     {
       "name": "Lookout Mobile Threat Detection Connector (via Codeless Connector Framework) (Preview)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Lookout",
       "packageId": "lookoutinc.lookout_mtd_sentinel",
       "contentId": "lookout_mtd_sentinel",
@@ -1561,6 +1724,7 @@
     },
     {
       "name": "Luminar IOCs and Leaked Credentials (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/CognyteLuminar",
       "packageId": "cognytetechnologiesisraelltd.microsoft-sentinel-solution-cognyte-luminar",
       "contentId": "microsoft-sentinel-solution-cognyte-luminar",
@@ -1575,6 +1739,7 @@
     },
     {
       "name": "MailGuard 365",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/MailGuard 365",
       "packageId": "mailguardptylimited.microsoft-sentinel-solution-mailguard365",
       "contentId": "microsoft-sentinel-solution-mailguard365",
@@ -1587,6 +1752,7 @@
     },
     {
       "name": "Microsoft 365 (formerly, Office 365)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft 365",
       "packageId": "azuresentinel.azure-sentinel-solution-office365",
       "contentId": "azure-sentinel-solution-office365",
@@ -1599,6 +1765,7 @@
     },
     {
       "name": "Microsoft 365 Insider Risk Management",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft 365",
       "packageId": "azuresentinel.azure-sentinel-solution-office365",
       "contentId": "azure-sentinel-solution-office365",
@@ -1611,6 +1778,7 @@
     },
     {
       "name": "Microsoft Defender for Endpoint",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/MicrosoftDefenderForEndpoint",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftdefenderendpoint",
       "contentId": "azure-sentinel-solution-microsoftdefenderendpoint",
@@ -1623,6 +1791,7 @@
     },
     {
       "name": "Microsoft Defender for Identity",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender For Identity",
       "packageId": "azuresentinel.azure-sentinel-solution-mdefenderforidentity",
       "contentId": "azure-sentinel-solution-mdefenderforidentity",
@@ -1635,6 +1804,7 @@
     },
     {
       "name": "Microsoft Defender for IoT",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender for Cloud",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftdefenderforcloud",
       "contentId": "azure-sentinel-solution-microsoftdefenderforcloud",
@@ -1647,6 +1817,7 @@
     },
     {
       "name": "Microsoft Defender for Office 365 (Preview)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender for Office 365",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftdefenderforo365",
       "contentId": "azure-sentinel-solution-microsoftdefenderforo365",
@@ -1659,6 +1830,7 @@
     },
     {
       "name": "Microsoft Defender Threat Intelligence",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender Threat Intelligence",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftdefenderthreatint",
       "contentId": "azure-sentinel-solution-microsoftdefenderthreatint",
@@ -1673,6 +1845,7 @@
     },
     {
       "name": "Microsoft Defender XDR",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender XDR",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoft365defender",
       "contentId": "azure-sentinel-solution-microsoft365defender",
@@ -1681,16 +1854,22 @@
         "AlertEvidence",
         "CloudAppEvents",
         "DeviceEvents",
+        "DeviceTvmSecureConfigurationAssessmentKB",
+        "DeviceTvmSoftwareVulnerabilitiesKB",
         "EmailEvents",
         "IdentityLogonEvents",
         "SecurityAlert",
         "SecurityIncident"
       ],
-      "hasSchema": "none",
-      "tablesInRepo": []
+      "hasSchema": "partial",
+      "tablesInRepo": [
+        "DeviceTvmSecureConfigurationAssessmentKB",
+        "DeviceTvmSoftwareVulnerabilitiesKB"
+      ]
     },
     {
       "name": "Microsoft Entra ID",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Entra ID",
       "packageId": "azuresentinel.azure-sentinel-solution-azureactivedirectory",
       "contentId": "azure-sentinel-solution-azureactivedirectory",
@@ -1714,6 +1893,7 @@
     },
     {
       "name": "Microsoft Entra ID Protection",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Entra ID Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-azureactivedirectoryip",
       "contentId": "azure-sentinel-solution-azureactivedirectoryip",
@@ -1726,6 +1906,7 @@
     },
     {
       "name": "Microsoft Exchange Admin Audit Logs by Event Logs",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Exchange Security - Exchange On-Premises",
       "packageId": "microsoftsentinelcommunity.azure-sentinel-solution-exchangesecurityinsights",
       "contentId": "azure-sentinel-solution-exchangesecurityinsights",
@@ -1740,6 +1921,7 @@
     },
     {
       "name": "Microsoft Exchange HTTP Proxy Logs",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Exchange Security - Exchange On-Premises",
       "packageId": "microsoftsentinelcommunity.azure-sentinel-solution-exchangesecurityinsights",
       "contentId": "azure-sentinel-solution-exchangesecurityinsights",
@@ -1752,6 +1934,7 @@
     },
     {
       "name": "Microsoft Exchange Logs and Events",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Exchange Security - Exchange On-Premises",
       "packageId": "microsoftsentinelcommunity.azure-sentinel-solution-exchangesecurityinsights",
       "contentId": "azure-sentinel-solution-exchangesecurityinsights",
@@ -1766,6 +1949,7 @@
     },
     {
       "name": "Microsoft Exchange Message Tracking Logs",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Exchange Security - Exchange On-Premises",
       "packageId": "microsoftsentinelcommunity.azure-sentinel-solution-exchangesecurityinsights",
       "contentId": "azure-sentinel-solution-exchangesecurityinsights",
@@ -1778,6 +1962,7 @@
     },
     {
       "name": "Microsoft PowerBI",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft PowerBI",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftpowerbi",
       "contentId": "azure-sentinel-solution-microsoftpowerbi",
@@ -1790,6 +1975,7 @@
     },
     {
       "name": "Microsoft Project",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Project",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftproject",
       "contentId": "azure-sentinel-solution-microsoftproject",
@@ -1802,6 +1988,7 @@
     },
     {
       "name": "Microsoft Purview",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Purview",
       "packageId": "azuresentinel.azure-sentinel-solution-azurepurview",
       "contentId": "azure-sentinel-solution-azurepurview",
@@ -1814,6 +2001,7 @@
     },
     {
       "name": "Microsoft Purview Information Protection",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Purview Information Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-mip",
       "contentId": "azure-sentinel-solution-mip",
@@ -1826,6 +2014,7 @@
     },
     {
       "name": "Mimecast Audit",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/MimecastAudit",
       "packageId": "mimecastnorthamerica1584469118674.azure-sentinel-solution-mimecastaudit",
       "contentId": "azure-sentinel-solution-mimecastaudit",
@@ -1838,6 +2027,7 @@
     },
     {
       "name": "Mimecast Awareness Training",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Mimecast",
       "packageId": "mimecastnorthamerica1584469118674.azure-sentinel-solution-mimecast",
       "contentId": "azure-sentinel-solution-mimecast",
@@ -1853,6 +2043,7 @@
     },
     {
       "name": "Mimecast Cloud Integrated",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Mimecast",
       "packageId": "mimecastnorthamerica1584469118674.azure-sentinel-solution-mimecast",
       "contentId": "azure-sentinel-solution-mimecast",
@@ -1865,6 +2056,7 @@
     },
     {
       "name": "Mimecast Intelligence for Microsoft - Microsoft Sentinel (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Mimecast",
       "packageId": "mimecastnorthamerica1584469118674.azure-sentinel-solution-mimecast",
       "contentId": "azure-sentinel-solution-mimecast",
@@ -1879,6 +2071,7 @@
     },
     {
       "name": "Mimecast Secure Email Gateway",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Mimecast",
       "packageId": "mimecastnorthamerica1584469118674.azure-sentinel-solution-mimecast",
       "contentId": "azure-sentinel-solution-mimecast",
@@ -1892,6 +2085,7 @@
     },
     {
       "name": "Mimecast Targeted Threat Protection",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Mimecast",
       "packageId": "mimecastnorthamerica1584469118674.azure-sentinel-solution-mimecast",
       "contentId": "azure-sentinel-solution-mimecast",
@@ -1906,6 +2100,7 @@
     },
     {
       "name": "Miro",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Miro",
       "packageId": "realtimeboardincdbamiro1645117589045.azure-sentinel-solution-miro",
       "contentId": "azure-sentinel-solution-miro",
@@ -1922,6 +2117,7 @@
     },
     {
       "name": "MISP2Sentinel",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/MISP2Sentinel",
       "packageId": "microsoftsentinelcommunity.azure-sentinel-solution-misp2sentinel",
       "contentId": "azure-sentinel-solution-misp2sentinel",
@@ -1936,6 +2132,7 @@
     },
     {
       "name": "MongoDB Atlas Logs",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/MongoDBAtlas",
       "packageId": "mongodb.azure-sentinel-solution-mongodbatlas",
       "contentId": "azure-sentinel-solution-mongodbatlas",
@@ -1948,6 +2145,7 @@
     },
     {
       "name": "Morphisec UTPP",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Morphisec",
       "packageId": "morphisec.morphisec_utpp_mss",
       "contentId": "morphisec_utpp_mss",
@@ -1962,6 +2160,7 @@
     },
     {
       "name": "Netskope Alerts and Events",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Netskope",
       "packageId": "netskope.netskope_mss",
       "contentId": "netskope_mss",
@@ -1992,6 +2191,7 @@
     },
     {
       "name": "Netskope Web Transaction Connector (via Blob Storage)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Netskope",
       "packageId": "netskope.netskope_mss",
       "contentId": "netskope_mss",
@@ -2004,6 +2204,7 @@
     },
     {
       "name": "NordPass",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/NordPass",
       "packageId": "nordsecurityinc.azure-sentinel-solution-nordpass",
       "contentId": "azure-sentinel-solution-nordpass",
@@ -2016,6 +2217,7 @@
     },
     {
       "name": "Okta Single Sign-On",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Okta Single Sign-On",
       "packageId": "azuresentinel.azure-sentinel-solution-okta",
       "contentId": "azure-sentinel-solution-okta",
@@ -2030,6 +2232,7 @@
     },
     {
       "name": "Onapsis Defend: Integrate Unmatched SAP Threat Detection & Intel with Microsoft Sentinel",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Onapsis Defend",
       "packageId": "onapsis.azure-sentinel-solution-onapsis-defend",
       "contentId": "azure-sentinel-solution-onapsis-defend",
@@ -2042,6 +2245,7 @@
     },
     {
       "name": "OneLogin IAM Platform (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/OneLoginIAM",
       "packageId": "azuresentinel.azure-sentinel-solution-oneloginiam",
       "contentId": "azure-sentinel-solution-oneloginiam",
@@ -2058,6 +2262,7 @@
     },
     {
       "name": "OneTrust",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/OneTrust",
       "packageId": "onetrustllc1594047340198.azure-sentinel-solution-onetrust",
       "contentId": "azure-sentinel-solution-onetrust",
@@ -2070,6 +2275,7 @@
     },
     {
       "name": "Open Systems Data Connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Open Systems",
       "packageId": "opensystemsag1582030008223.azure-sentinel-solution-osag",
       "contentId": "azure-sentinel-solution-osag",
@@ -2082,6 +2288,7 @@
     },
     {
       "name": "Oracle Cloud Infrastructure (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Oracle Cloud Infrastructure",
       "packageId": "azuresentinel.azure-sentinel-solution-ocilogs",
       "contentId": "azure-sentinel-solution-ocilogs",
@@ -2096,6 +2303,7 @@
     },
     {
       "name": "Orca Security Alerts",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Orca Security Alerts",
       "packageId": "orcasecurityinc1621870991703.orca_security_alerts_mss",
       "contentId": "orca_security_alerts_mss",
@@ -2107,7 +2315,23 @@
       "tablesInRepo": []
     },
     {
+      "name": "OTelLogs",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "OTelLogs"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "OTelLogs"
+      ]
+    },
+    {
       "name": "Palo Alto Cortex XDR",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Palo Alto Cortex XDR CCP",
       "packageId": "azuresentinel.azure-sentinel-solution-cortexccp",
       "contentId": "azure-sentinel-solution-cortexccp",
@@ -2130,6 +2354,7 @@
     },
     {
       "name": "Palo Alto Cortex Xpanse (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Palo Alto Cortex Xpanse CCF",
       "packageId": "azuresentinel.azure-sentinel-solution-cortexxpanse",
       "contentId": "azure-sentinel-solution-cortexxpanse",
@@ -2142,6 +2367,7 @@
     },
     {
       "name": "Palo Alto Prisma Cloud CSPM (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/PaloAltoPrismaCloud",
       "packageId": "azuresentinel.azure-sentinel-solution-paloaltoprisma",
       "contentId": "azure-sentinel-solution-paloaltoprisma",
@@ -2154,6 +2380,7 @@
     },
     {
       "name": "Palo Alto Prisma Cloud CWPP (using REST API)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Palo Alto Prisma Cloud CWPP",
       "packageId": "azuresentinel.azure-sentinel-solution-prismacloudcompute",
       "contentId": "azure-sentinel-solution-prismacloudcompute",
@@ -2166,6 +2393,7 @@
     },
     {
       "name": "Pathlock Inc.: Threat Detection and Response for SAP",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Pathlock_TDnR",
       "packageId": "pathlockinc1631410274035.pathlock_tdnr",
       "contentId": "pathlock_tdnr",
@@ -2180,6 +2408,7 @@
     },
     {
       "name": "Ping One (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/PingOne",
       "packageId": "azuresentinel.azure-sentinel-pingone",
       "contentId": "azure-sentinel-pingone",
@@ -2194,6 +2423,7 @@
     },
     {
       "name": "Premium Microsoft Defender Threat Intelligence",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender Threat Intelligence",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftdefenderthreatint",
       "contentId": "azure-sentinel-solution-microsoftdefenderthreatint",
@@ -2208,6 +2438,7 @@
     },
     {
       "name": "Proofpoint On Demand Email Security (via Codeless Connector Platform)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Proofpoint On demand(POD) Email Security",
       "packageId": "proofpointinc1600438591120.azure-sentinel-proofpointpod",
       "contentId": "azure-sentinel-proofpointpod",
@@ -2224,6 +2455,7 @@
     },
     {
       "name": "Proofpoint TAP (via Codeless Connector Platform)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ProofPointTap",
       "packageId": "proofpointinc1600438591120.azure-sentinel-proofpoint",
       "contentId": "azure-sentinel-proofpoint",
@@ -2244,6 +2476,7 @@
     },
     {
       "name": "Qualys Knowledge Base (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Qualys VM Knowledgebase",
       "packageId": "azuresentinel.azure-sentinel-solution-qualysvmknowledgebase",
       "contentId": "azure-sentinel-solution-qualysvmknowledgebase",
@@ -2258,6 +2491,7 @@
     },
     {
       "name": "Qualys VM KnowledgeBase (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Qualys VM Knowledgebase",
       "packageId": "azuresentinel.azure-sentinel-solution-qualysvmknowledgebase",
       "contentId": "azure-sentinel-solution-qualysvmknowledgebase",
@@ -2270,6 +2504,7 @@
     },
     {
       "name": "Qualys Vulnerability Management (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/QualysVM",
       "packageId": "azuresentinel.azure-sentinel-qualysvm",
       "contentId": "azure-sentinel-qualysvm",
@@ -2284,6 +2519,7 @@
     },
     {
       "name": "Rapid7 InsightVM",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Rapid7InsightVM",
       "packageId": "azuresentinel.azure-sentinel-solution-rapid7insightvm",
       "contentId": "azure-sentinel-solution-rapid7insightvm",
@@ -2300,6 +2536,7 @@
     },
     {
       "name": "Rubrik Security Cloud data connector (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/RubrikSecurityCloud",
       "packageId": "rubrik_inc.rubrik_sentinel",
       "contentId": "rubrik_sentinel",
@@ -2315,6 +2552,7 @@
     },
     {
       "name": "SailPoint IdentityNow (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SailPointIdentityNow",
       "packageId": "sailpoint1582673310610.sentinel_offering",
       "contentId": "sentinel_offering",
@@ -2327,6 +2565,7 @@
     },
     {
       "name": "Salesforce Service Cloud (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Salesforce Service Cloud",
       "packageId": "azuresentinel.azure-sentinel-solution-salesforceservicecloud",
       "contentId": "azure-sentinel-solution-salesforceservicecloud",
@@ -2341,6 +2580,7 @@
     },
     {
       "name": "Samsung Knox Asset Intelligence",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Samsung Knox Asset Intelligence",
       "packageId": "samsungelectronics1632791654245.azure-sentinel-solution-samsung-knox-kai",
       "contentId": "azure-sentinel-solution-samsung-knox-kai",
@@ -2353,6 +2593,7 @@
     },
     {
       "name": "SAP BTP",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SAP BTP",
       "packageId": "sentinel4sap.sap_btp_sentinel_solution",
       "contentId": "sap_btp_sentinel_solution",
@@ -2367,6 +2608,7 @@
     },
     {
       "name": "SAP Enterprise Threat Detection, cloud edition",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SAP ETD Cloud",
       "packageId": "sap_jasondau.azure-sentinel-solution-sapetd",
       "contentId": "azure-sentinel-solution-sapetd",
@@ -2383,6 +2625,7 @@
     },
     {
       "name": "SAP LogServ (RISE), S/4HANA Cloud private edition",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SAP LogServ",
       "packageId": "sap_jasondau.azure-sentinel-solution-saplogserv",
       "contentId": "azure-sentinel-solution-saplogserv",
@@ -2395,6 +2638,7 @@
     },
     {
       "name": "SAP S/4HANA Cloud Public Edition",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SAP S4 Cloud Public Edition",
       "packageId": "sap_jasondau.azure-sentinel-solution-s4hana-public",
       "contentId": "azure-sentinel-solution-s4hana-public",
@@ -2409,6 +2653,7 @@
     },
     {
       "name": "Security Events via Legacy Agent",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Windows Security Events",
       "packageId": "azuresentinel.azure-sentinel-solution-securityevents",
       "contentId": "azure-sentinel-solution-securityevents",
@@ -2423,6 +2668,7 @@
     },
     {
       "name": "SecurityBridge Solution for SAP",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SecurityBridge App",
       "packageId": "securitybridge1647511278080.securitybridge-sentinel-app-1",
       "contentId": "securitybridge-sentinel-app-1",
@@ -2437,6 +2683,7 @@
     },
     {
       "name": "SentinelOne",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SentinelOne",
       "packageId": "azuresentinel.azure-sentinel-solution-sentinelone",
       "contentId": "azure-sentinel-solution-sentinelone",
@@ -2459,6 +2706,7 @@
     },
     {
       "name": "SentinelOne (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SentinelOne",
       "packageId": "azuresentinel.azure-sentinel-solution-sentinelone",
       "contentId": "azure-sentinel-solution-sentinelone",
@@ -2471,6 +2719,7 @@
     },
     {
       "name": "Silverfort Admin Console",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Silverfort",
       "packageId": "silverfort.microsoft-sentinel-solution-silverfort",
       "contentId": "microsoft-sentinel-solution-silverfort",
@@ -2485,6 +2734,7 @@
     },
     {
       "name": "SlackAudit (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SlackAudit",
       "packageId": "azuresentinel.azure-sentinel-solution-slackaudit",
       "contentId": "azure-sentinel-solution-slackaudit",
@@ -2499,6 +2749,7 @@
     },
     {
       "name": "Snowflake (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Snowflake",
       "packageId": "azuresentinel.azure-sentinel-solution-snowflake",
       "contentId": "azure-sentinel-solution-snowflake",
@@ -2531,6 +2782,7 @@
     },
     {
       "name": "SOC Prime Platform Audit Logs Data Connector",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/SOC Prime CCF",
       "packageId": "socprimeinc1666873751297.azure-sentinel-solution-socprimeauditccp",
       "contentId": "azure-sentinel-solution-socprimeauditccp",
@@ -2543,6 +2795,7 @@
     },
     {
       "name": "Sophos Endpoint Protection (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Sophos Endpoint Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-sophosep",
       "contentId": "azure-sentinel-solution-sophosep",
@@ -2558,6 +2811,7 @@
     },
     {
       "name": "Sophos Endpoint Protection (via Codeless Connector Platform)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Sophos Endpoint Protection",
       "packageId": "azuresentinel.azure-sentinel-solution-sophosep",
       "contentId": "azure-sentinel-solution-sophosep",
@@ -2572,6 +2826,7 @@
     },
     {
       "name": "Subscription-based Microsoft Defender for Cloud (Legacy)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender for Cloud",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftdefenderforcloud",
       "contentId": "azure-sentinel-solution-microsoftdefenderforcloud",
@@ -2584,6 +2839,7 @@
     },
     {
       "name": "Syslog via AMA",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Syslog",
       "packageId": "azuresentinel.azure-sentinel-solution-syslog",
       "contentId": "azure-sentinel-solution-syslog",
@@ -2598,6 +2854,7 @@
     },
     {
       "name": "Syslog via Legacy Agent",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Syslog",
       "packageId": "azuresentinel.azure-sentinel-solution-syslog",
       "contentId": "azure-sentinel-solution-syslog",
@@ -2612,6 +2869,7 @@
     },
     {
       "name": "Tenable Vulnerability Management (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/TenableIO",
       "packageId": "tenable.tenable-sentinel-integration",
       "contentId": "tenable-sentinel-integration",
@@ -2628,6 +2886,7 @@
     },
     {
       "name": "Tenant-based Microsoft Defender for Cloud",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Microsoft Defender for Cloud",
       "packageId": "azuresentinel.azure-sentinel-solution-microsoftdefenderforcloud",
       "contentId": "azure-sentinel-solution-microsoftdefenderforcloud",
@@ -2640,6 +2899,7 @@
     },
     {
       "name": "TheHive (via Codeless Connector Framework)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/TheHive",
       "packageId": "azuresentinel.azure-sentinel-solution-thehive",
       "contentId": "azure-sentinel-solution-thehive",
@@ -2654,6 +2914,7 @@
     },
     {
       "name": "Threat Intelligence (NEW)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Threat Intelligence (NEW)",
       "packageId": "azuresentinel.azure-sentinel-solution-threatintelligence-updated",
       "contentId": "azure-sentinel-solution-threatintelligence-updated",
@@ -2668,6 +2929,7 @@
     },
     {
       "name": "Threat intelligence - TAXII",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Threat Intelligence",
       "packageId": "azuresentinel.azure-sentinel-solution-threatintelligence-taxii",
       "contentId": "azure-sentinel-solution-threatintelligence-taxii",
@@ -2682,6 +2944,7 @@
     },
     {
       "name": "Threat Intelligence Platforms",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Threat Intelligence",
       "packageId": "azuresentinel.azure-sentinel-solution-threatintelligence-taxii",
       "contentId": "azure-sentinel-solution-threatintelligence-taxii",
@@ -2696,6 +2959,7 @@
     },
     {
       "name": "Threat Intelligence Upload API (Preview)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Threat Intelligence",
       "packageId": "azuresentinel.azure-sentinel-solution-threatintelligence-taxii",
       "contentId": "azure-sentinel-solution-threatintelligence-taxii",
@@ -2709,7 +2973,128 @@
       ]
     },
     {
+      "name": "UCClient",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCClient"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCClient"
+      ]
+    },
+    {
+      "name": "UCClientReadinessStatus",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCClientReadinessStatus"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCClientReadinessStatus"
+      ]
+    },
+    {
+      "name": "UCClientUpdateStatus",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCClientUpdateStatus"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCClientUpdateStatus"
+      ]
+    },
+    {
+      "name": "UCDeviceAlert",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCDeviceAlert"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCDeviceAlert"
+      ]
+    },
+    {
+      "name": "UCDOAggregatedStatus",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCDOAggregatedStatus"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCDOAggregatedStatus"
+      ]
+    },
+    {
+      "name": "UCDOStatus",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCDOStatus"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCDOStatus"
+      ]
+    },
+    {
+      "name": "UCServiceUpdateStatus",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCServiceUpdateStatus"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCServiceUpdateStatus"
+      ]
+    },
+    {
+      "name": "UCUpdateAlert",
+      "isSentinelSolution": false,
+      "solutionFolder": null,
+      "packageId": null,
+      "contentId": null,
+      "version": null,
+      "officialTables": [
+        "UCUpdateAlert"
+      ],
+      "hasSchema": "all",
+      "tablesInRepo": [
+        "UCUpdateAlert"
+      ]
+    },
+    {
       "name": "Vectra XDR (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Vectra XDR",
       "packageId": "vectraaiinc.vectra-xdr-for-microsoft-sentinel",
       "contentId": "vectra-xdr-for-microsoft-sentinel",
@@ -2727,6 +3112,7 @@
     },
     {
       "name": "Veeam Data Connector (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Veeam",
       "packageId": "veeamsoftware.azure-sentinel-solution-veeamapp",
       "contentId": "azure-sentinel-solution-veeamapp",
@@ -2744,6 +3130,7 @@
     },
     {
       "name": "VirtualMetric DataStream for Microsoft Sentinel",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/VirtualMetric DataStream",
       "packageId": "virtualmetric.azure-sentinel-solution-virtualmetric-datastream",
       "contentId": "azure-sentinel-solution-virtualmetric-datastream",
@@ -2758,6 +3145,7 @@
     },
     {
       "name": "VirtualMetric DataStream for Microsoft Sentinel data lake",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/VirtualMetric DataStream",
       "packageId": "virtualmetric.azure-sentinel-solution-virtualmetric-datastream",
       "contentId": "azure-sentinel-solution-virtualmetric-datastream",
@@ -2772,6 +3160,7 @@
     },
     {
       "name": "VirtualMetric Director Proxy",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/VirtualMetric DataStream",
       "packageId": "virtualmetric.azure-sentinel-solution-virtualmetric-datastream",
       "contentId": "azure-sentinel-solution-virtualmetric-datastream",
@@ -2786,6 +3175,7 @@
     },
     {
       "name": "VMRayThreatIntelligence (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Threat Intelligence",
       "packageId": "azuresentinel.azure-sentinel-solution-threatintelligence-taxii",
       "contentId": "azure-sentinel-solution-threatintelligence-taxii",
@@ -2800,6 +3190,7 @@
     },
     {
       "name": "VMware Carbon Black Cloud",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/VMware Carbon Black Cloud",
       "packageId": "azuresentinel.azure-sentinel-solution-vmwarecarbonblack",
       "contentId": "azure-sentinel-solution-vmwarecarbonblack",
@@ -2816,6 +3207,7 @@
     },
     {
       "name": "Windows DNS Events via AMA",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Windows Server DNS",
       "packageId": "azuresentinel.azure-sentinel-solution-dns",
       "contentId": "azure-sentinel-solution-dns",
@@ -2830,6 +3222,7 @@
     },
     {
       "name": "Windows Forwarded Events",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Windows Forwarded Events",
       "packageId": "azuresentinel.azure-sentinel-solution-windowsforwardedevents",
       "contentId": "azure-sentinel-solution-windowsforwardedevents",
@@ -2844,6 +3237,7 @@
     },
     {
       "name": "Windows Security Events via AMA",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Windows Security Events",
       "packageId": "azuresentinel.azure-sentinel-solution-securityevents",
       "contentId": "azure-sentinel-solution-securityevents",
@@ -2858,6 +3252,7 @@
     },
     {
       "name": "WithSecure Elements API (Azure Function)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/WithSecureElementsViaFunction",
       "packageId": "withsecurecorporation.sentinel-solution-withsecure-via-function",
       "contentId": "sentinel-solution-withsecure-via-function",
@@ -2870,6 +3265,7 @@
     },
     {
       "name": "Workday User Activity",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Workday",
       "packageId": "azuresentinel.azure-sentinel-solution-workday",
       "contentId": "azure-sentinel-solution-workday",
@@ -2884,6 +3280,7 @@
     },
     {
       "name": "Zero Networks Segment (Push)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ZeroNetworks",
       "packageId": "zeronetworksltd1629013803351.azure-sentinel-solution-znsegmentaudit",
       "contentId": "azure-sentinel-solution-znsegmentaudit",
@@ -2899,6 +3296,7 @@
     },
     {
       "name": "Zero Networks Segment Audit",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ZeroNetworks",
       "packageId": "zeronetworksltd1629013803351.azure-sentinel-solution-znsegmentaudit",
       "contentId": "azure-sentinel-solution-znsegmentaudit",
@@ -2911,6 +3309,7 @@
     },
     {
       "name": "ZeroFox Enterprise - Alerts (Polling CCF)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ZeroFox",
       "packageId": "zerofoxinc1695922129370.zerofox-sentinel-connector",
       "contentId": "zerofox-sentinel-connector",
@@ -2923,6 +3322,7 @@
     },
     {
       "name": "Zoom Reports (using Azure Functions)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/ZoomReports",
       "packageId": "azuresentinel.azure-sentinel-solution-zoomreports",
       "contentId": "azure-sentinel-solution-zoomreports",
@@ -2935,6 +3335,7 @@
     },
     {
       "name": "Zscaler Internet Access (ZIA)",
+      "isSentinelSolution": true,
       "solutionFolder": "Solutions/Zscaler Internet Access",
       "packageId": "zscaler.zscaler_zia",
       "contentId": "zscaler_zia",
@@ -2946,46 +3347,6 @@
       "tablesInRepo": [
         "CommonSecurityLog-ZscalerZIA"
       ]
-    }
-  ],
-  "unresolved": [
-    {
-      "name": "Microsoft Active-Directory Domain Controllers Security Event Logs",
-      "officialTables": [
-        "SecurityEvent"
-      ],
-      "reason": "first-party connector — no Solutions/ package",
-      "hasSchema": "all",
-      "tablesInRepo": [
-        "SecurityEvent"
-      ]
-    },
-    {
-      "name": "Microsoft Dataverse",
-      "officialTables": [
-        "DataverseActivity"
-      ],
-      "reason": "first-party connector — no Solutions/ package",
-      "hasSchema": "none",
-      "tablesInRepo": []
-    },
-    {
-      "name": "Microsoft Power Automate",
-      "officialTables": [
-        "PowerAutomateActivity"
-      ],
-      "reason": "folder Power Platform missing metadata",
-      "hasSchema": "none",
-      "tablesInRepo": []
-    },
-    {
-      "name": "Microsoft Power Platform Admin Activity",
-      "officialTables": [
-        "PowerPlatformAdminActivity"
-      ],
-      "reason": "folder Power Platform missing metadata",
-      "hasSchema": "none",
-      "tablesInRepo": []
     }
   ]
 }
